@@ -1,0 +1,75 @@
+/*
+ * App Global CSS
+ * ----------------------------------------------------------------------------
+ * Put style rules here that you want to apply globally. These styles are for
+ * the entire app and not just one component. Additionally, this file can be
+ * used as an entry point to import other CSS/Sass files to be included in the
+ * output CSS.
+ * For more information on global stylesheets, visit the documentation:
+ * https://ionicframework.com/docs/layout/global-stylesheets
+ */
+
+/* Core CSS required for Ionic components to work properly */
+@import "~@ionic/angular/css/core.css";
+
+/* Basic CSS for apps built with Ionic */
+@import "~@ionic/angular/css/normalize.css";
+@import "~@ionic/angular/css/structure.css";
+@import "~@ionic/angular/css/typography.css";
+@import '~@ionic/angular/css/display.css';
+
+/* Optional CSS utils that can be commented out */
+@import "~@ionic/angular/css/padding.css";
+@import "~@ionic/angular/css/float-elements.css";
+@import "~@ionic/angular/css/text-alignment.css";
+@import "~@ionic/angular/css/text-transformation.css";
+@import "~@ionic/angular/css/flex-utils.css";
+
+ion-toolbar {
+  --min-height: 120px;
+  --border-color: #B9AA97;
+  position: relative;
+  img {
+    width: 10% !important;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  ion-buttons {
+    margin-left: 5%;
+    display: block !important;
+  }
+  .menu_button {
+    font-size: 52px;
+    color: black;
+  }
+}
+
+ion-menu {
+  --width: 55%;
+  ion-header {
+    height: 20%;
+    ion-toolbar {
+      height: 100%;
+      display: flex;
+      ion-title {
+        text-align: center;
+      }
+    }
+  };
+  ion-list {
+    padding: 0 !important;
+    background-color: #B9AA97 !important;
+  }
+}
+
+.w_30 {
+  width: 30%;
+}
+
+.actionSheet {
+  --button-color: #007AFF;
+  --background: rgba(255, 255, 255, 0.9);
+  --width: 355px;
+}

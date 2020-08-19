@@ -1,0 +1,189 @@
+.grid{
+  padding: 5px 44px 5px 44px;
+}
+
+.item-wp{
+  padding-left: 0px;
+  margin-top: 15px;
+}
+.item-inner{
+  padding-right: 0px!important;
+}
+
+
+.datetime-wp {
+  padding: 0!important;
+}
+
+.datetime-wp .datetime-text {
+  padding:8px;
+  border: 1px solid #B9AA97;
+}
+.content-wp hr
+{
+  background-color: rgb(185,  170, 151);
+  opacity: 0.8;
+}
+
+hr {
+  height:2px;
+}
+.label-ios {
+  margin: 11px 8px 11px 8px;
+}
+.text-input-wp {
+  margin:  0px;
+  border: 1px solid #B9AA97;
+  height: 47px;
+  width: 297px;
+}
+.trio .text-input-wp {
+
+  width: 100%;
+}
+.solo .text-input-wp {
+  width: 100%;
+}
+.right .text-input-wp {
+  float: right;
+}
+.readonly input {
+  color: white;
+  background-color: #B9AA97;
+}
+textarea.text-input-wp {
+  width: 100%;
+  height: 120px;
+}
+#bloc-bottom {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 50px;
+  width: 100%;
+  div {
+    width: 50%
+  }
+}
+canvas {
+  border: 1px solid black;
+}
+
+.datetime-text {
+  height: 47px;
+  width: 297px;
+}
+
+
+button.item-cover{
+  position: absolute;
+  width: 297px;
+  height: 47px;
+  top:inherit;
+  left:inherit;
+}
+
+
+.selector{
+  //color:white;
+  //background-color: #B9AA97;
+  //border: 1px solid #B9AA97;
+  //height: 47px;
+  //width: 297px;
+  width: 100%;
+  padding: 0 !important;
+  padding-right: 4px !important;
+  // margin: 13px 8px 13px 8px; PEUT ETRE A REMETTRE
+}
+.selectorTrio{
+  width:  100%;
+  padding: 0 !important;
+  padding-right: 4px !important;
+  //border: 1px solid #B9AA97;
+  //height: 47px;
+  //display:flex;
+  //display : -webkit-flex
+}
+
+ion-select{
+  max-width: 100%;
+}
+
+
+.selector .select-placeholder {
+  color:white!important;
+}
+
+.input {
+  border: 1px solid #B9AA97;
+  width: 90%;
+  margin-bottom: 1.5vh;
+}
+
+.fullwidth {
+  width: 100%;
+}
+
+.divider {
+  border-bottom: 1px solid #B9AA97;
+  margin-bottom: 1.5vh;
+}
+
+.add_icon {
+  font-size: 48px !important;
+  margin-bottom: 1.5vh;
+}
+
+.margin1_5 {
+  margin-bottom: 1.5vh
+}
+
+ion-datetime {
+  padding-left: 0;
+}
+
+.camera {
+  margin-right: 5%
+}
+
+.photos_container {
+  margin-bottom: 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.photos {
+  width: 65%;
+  margin-left: 5%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.photos div {
+  width: 48%;
+  margin-bottom: 5px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.icon_trash_photo {
+  font-size: 28px;
+  margin-left: 5%
+}
+
+.green_input {
+  border: 1px solid #04B200;
+}
+
+.orange_input {
+  border: 1px solid #FFAB00;
+}
+
+.label_plein {
+  --background:#B9AA97;
+  color: white
+}
+
+

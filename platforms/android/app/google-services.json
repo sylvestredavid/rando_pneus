@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "468724977097",
+    "firebase_url": "https://rando-pneu.firebaseio.com",
+    "project_id": "rando-pneu",
+    "storage_bucket": "rando-pneu.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:468724977097:android:480840de286bae02616c18",
+        "android_client_info": {
+          "package_name": "com.rando.rando"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "468724977097-idfqaptk88vtvv64ttovujnou1racqtk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBH95Eom_wU84UdW2Ek5KbpO0KZ-FhyYsI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "468724977097-idfqaptk88vtvv64ttovujnou1racqtk.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "468724977097-tqnoqbjrltk9fuiimoipm73f7dkc29c3.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.rando.rando"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

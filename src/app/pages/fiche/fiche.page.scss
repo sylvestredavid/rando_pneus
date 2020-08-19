@@ -1,0 +1,52 @@
+
+.file{
+  height: 90px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 0 30px;
+  border-bottom: 1px solid #B9AA97
+}
+
+ion-icon{
+  font-size:30px;
+}
+
+.relative {
+  position: relative;
+  width: fit-content;
+  ion-icon {
+    font-size: 36px;
+    margin-right:24px;
+  }
+}
+
+.round {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  margin-right: 1.5vw;
+}
+
+.round_positioned {
+  position: absolute;
+  top: 0;
+  right: 40%;
+  margin: 0;
+  background: #04B200;
+}
+
+.round_success {
+  background: #04B200;
+}
+
+.round_warning {
+  background: #FFAB00;
+}
+
+.name {
+  width: 75%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}

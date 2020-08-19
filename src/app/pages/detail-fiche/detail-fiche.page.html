@@ -1,0 +1,268 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button class="menu_button"></ion-menu-button>
+    </ion-buttons>
+    <img class="papatte" src="./assets/img/patte.png" align="middle" alt="">
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content class="ion-padding">
+  <ion-list *ngIf="fiche" id="form">
+
+
+    <ion-list mode="ios">
+      <ion-grid>
+        <ion-row class="ion-justify-content-between">
+          <ion-col>
+            <ion-item class="input" lines="none" mode="ios">
+              <ion-input mode="wp" readonly type="text" placeholder="Heure d'arrivée chez le client" value="{{fiche.arrive | date: 'dd/MM/yy HH:mm'}}"></ion-input>
+
+            </ion-item>
+          </ion-col>
+
+          <ion-col>
+            <ion-item class="input ion-float-right" lines="none" mode="ios">
+              <ion-input mode="wp" readonly class="right" type="text" placeholder="Heure de départ" value="{{fiche.depart | date: 'dd/MM/yy HH:mm'}}"></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+
+
+        <ion-row class="ion-justify-content-between">
+          <ion-col>
+            <ion-item class="input" lines="none" mode="ios">
+              <ion-input mode="wp" readonly type="text" placeholder="Temps passé" value="{{fiche.temps}}"></ion-input>
+            </ion-item>
+          </ion-col>
+          <ion-col>
+            <ion-item class="input ion-float-right" lines="none" mode="ios">
+              <ion-input mode="wp" readonly class="right" type="text" placeholder="Position de la roue" value="{{fiche.positionRoue}}"></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col>
+            <ion-item class="input fullwidth" lines="none" mode="ios">
+              <ion-input mode="wp" readonly class="solo" type="text" placeholder="Nom client" value="{{fiche.nomClient}}"></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+
+        <div class="divider"></div>
+
+        <ion-row>
+          <ion-col>
+            <ion-item class="input fullwidth" lines="none" mode="ios">
+              <ion-input mode="wp" readonly class="solo" type="text" placeholder="Nom et adresse" value="{{fiche.nomAdresse}}"></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+
+
+        <ion-row class="ion-justify-content-between">
+          <ion-col>
+            <ion-item class="input fullwidth" lines="none" mode="ios">
+              <ion-input mode="wp" readonly class="trio" type="text" placeholder="Dimension" value="{{fiche.dimension}}"></ion-input>
+            </ion-item>
+          </ion-col>
+
+          <ion-col>
+            <ion-item class="input fullwidth" lines="none" mode="ios">
+              <ion-input mode="wp" readonly class="trio" type="text" placeholder="Dimension" value="{{fiche.dimensionLibre}}"></ion-input>
+            </ion-item>
+          </ion-col>
+
+          <ion-col>
+            <ion-item class="input fullwidth" lines="none" mode="ios">
+              <ion-input mode="wp" readonly class="trio" type="text" placeholder="NVH" value="{{fiche.nvh}}"></ion-input>
+            </ion-item>
+          </ion-col>
+
+          <ion-col>
+            <ion-item class="input fullwidth" lines="none" mode="ios">
+              <ion-input mode="wp" readonly class="trio" type="text" placeholder="Kilomètres compteur" value="{{fiche.kmCompteur}}"></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+
+        <div class="divider"></div>
+
+        <ion-row class="ion-justify-content-between" *ngIf="fiche.demontage">
+          <ion-col>
+            <ion-item class="input" lines="none" mode="ios">
+              <ion-input mode="ios" class="readonly" type="text" readonly
+                         value="Démontage/remontage"></ion-input>
+
+            </ion-item>
+          </ion-col>
+          <ion-col>
+            <ion-item class="input ion-float-right" lines="none" mode="ios">
+              <ion-input mode="wp" readonly class="right" type="text" placeholder="Quantité" value="{{fiche.demontage}}"></ion-input>
+
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row class="ion-justify-content-between" *ngIf="fiche.depose">
+          <ion-col>
+            <ion-item class="input" lines="none" mode="ios">
+              <ion-input mode="ios" type="text" class="readonly" readonly value="Dépose/repose">
+              </ion-input>
+            </ion-item>
+          </ion-col>
+          <ion-col>
+            <ion-item class="input ion-float-right" lines="none" mode="ios">
+              <ion-input mode="wp" readonly class="right" type="text" placeholder="Quantité" value="{{fiche.depose}}"></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+
+
+        <ion-row class="ion-justify-content-around" *ngIf="fiche.reparation">
+          <ion-col>
+            <ion-item class="input" lines="none" mode="ios">
+              <ion-input mode="ios" class="readonly" type="text" readonly
+                         value="Réparation/Tubeless"></ion-input>
+            </ion-item>
+          </ion-col>
+          <ion-col>
+            <ion-item class="input ion-float-right" lines="none" mode="ios">
+              <ion-input mode="wp" readonly class="right" type="text" placeholder="Quantité" value="{{fiche.reparation}}"></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+
+
+        <ion-row class="ion-justify-content-around" *ngIf="fiche.chaair">
+          <ion-col>
+            <ion-item class="input" lines="none" mode="ios">
+              <ion-input mode="ios" class="readonly" type="text" readonly
+                         value="Réparation CH.AAIR"></ion-input>
+            </ion-item>
+          </ion-col>
+          <ion-col>
+            <ion-item class="input ion-float-right" lines="none" mode="ios">
+              <ion-input mode="wp" readonly class="right" type="text" placeholder="Quantité" value="{{fiche.chaair}}"></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+
+        <ion-row class="ion-justify-content-around" *ngIf="fiche.retaillage">
+          <ion-col>
+            <ion-item class="input" lines="none" mode="ios">
+              <ion-input mode="ios" class="readonly" type="text" readonly value="Retaillage"></ion-input>
+            </ion-item>
+          </ion-col>
+          <ion-col>
+            <ion-item class="input ion-float-right" lines="none" mode="ios">
+              <ion-input mode="wp" readonly class="right" type="text" placeholder="Quantité" value="{{fiche.retaillage}}"></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+
+          <ion-row class="ion-justify-content-between" *ngIf="fiche.emplatre?.quantite">
+            <ion-col>
+              <ion-item class="input" lines="none" mode="ios">
+                <ion-input mode="wp" class="readonly" type="text" value="{{fiche.emplatre.nom}}" readonly></ion-input>
+              </ion-item>
+            </ion-col>
+            <ion-col>
+              <ion-item class="input ion-float-right" lines="none" mode="ios">
+                <ion-input mode="wp" readonly class="right" type="text" placeholder="Quantité" value="{{fiche.emplatre.quantite}}"></ion-input>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+
+        <ion-row class="ion-justify-content-between" *ngIf="fiche.forfait">
+          <ion-col>
+            <ion-item class="input" lines="none" mode="ios">
+              <ion-input mode="ios" class="readonly" type="text" readonly
+                         value="Forfait véhiculé"></ion-input>
+            </ion-item>
+          </ion-col>
+          <ion-col>
+            <ion-item class="input ion-float-right" lines="none" mode="ios">
+              <ion-input mode="wp" readonly class="right" type="text" placeholder="Quantité" value="{{fiche.forfait}}"></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+
+
+        <ion-row class="ion-justify-content-between" *ngFor="let fourni of fiche.fournitures">
+          <ion-col>
+            <ion-item class="input" lines="none" mode="ios">
+              <ion-input mode="ios" class="readonly" type="text" readonly value="{{fourni.nom}}"></ion-input>
+            </ion-item>
+          </ion-col>
+          <ion-col>
+            <ion-item class="input ion-float-right" lines="none" mode="ios">
+              <ion-input mode="ios" readonly class="right" type="text" placeholder="Quantité" value="{{fourni.quantite}}"></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+
+        <div class="divider"></div>
+
+
+        <ion-row>
+          <ion-col>
+            <ion-item class="input fullwidth" lines="none" mode="ios">
+              <ion-textarea class="textarea" readonly placeholder="Observation" mode="wp" value="{{fiche.observation}}">
+              </ion-textarea>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+
+
+        <ion-row>
+          <ion-col>
+            <ion-item class="input fullwidth" lines="none" mode="ios">
+              <ion-input mode="wp" class="solo" readonly type="text" placeholder="N° pneu monté" value="{{fiche.numeroPneu}}"></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+
+        <ion-row class="ion-justify-content-between">
+          <ion-col>
+            <ion-item class="input" lines="none" mode="ios">
+              <ion-input mode="wp" type="text" readonly placeholder="Contrôle pression" value="{{fiche.pression}}"></ion-input>
+            </ion-item>
+          </ion-col>
+          <ion-col>
+            <ion-item class="input ion-float-right" lines="none" mode="ios">
+              <ion-input mode="wp" class="right" readonly type="text" placeholder="Contrôle serrage" value="{{fiche.serrage}}"></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+
+        <ion-item mode="ios" lines="none" class="margin1_5">
+          Prière de resserer les roues après 25Km, 100Km et ensuite périodiquement
+        </ion-item>
+        <ion-item mode="ios" lines="none">
+          <div id="bloc-bottom">
+
+            <div>Signature responsable :
+              <br>
+              <br>
+              <img src="{{fiche.signatureResponsable}}" />
+            </div>
+            <div>Signature client :
+              <br>
+              <br>
+              <img src="{{fiche.signatureClient}}" />
+            </div>
+          </div>
+        </ion-item>
+        <ion-item mode="ios" lines="none">
+          <ion-button mode="ios" size="large" type="submit" (click)="send($event, fiche)">Envoyer
+          </ion-button>
+
+
+        </ion-item>
+
+      </ion-grid>
+    </ion-list>
+  </ion-list>
+</ion-content>

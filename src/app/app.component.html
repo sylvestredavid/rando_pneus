@@ -1,0 +1,26 @@
+<ion-app>
+    <ion-menu side="start" menuId="first" contentId="content1">
+        <ion-header>
+            <ion-toolbar>
+                <ion-title color="primary">Menu</ion-title>
+            </ion-toolbar>
+        </ion-header>
+        <ion-content>
+            <ion-list>
+                <ion-menu-toggle auto-hide="true">
+                    <div *ngFor="let pages of pages" class="itemMenu" [routerLink]="pages.url"
+                         routerDirection="forward">
+                        <ion-icon class="iconMenu" [name]="pages.icon" slot="start"></ion-icon>
+                        {{pages.title}}
+                    </div>
+                </ion-menu-toggle>
+            </ion-list>
+            <div class="fixed_bottom">
+                <ion-menu-toggle auto-hide="true">
+                    <p routerLink="/a-propos">A propos</p>
+                </ion-menu-toggle>
+            </div>
+        </ion-content>
+    </ion-menu>
+    <ion-router-outlet id="content1"></ion-router-outlet>
+</ion-app>

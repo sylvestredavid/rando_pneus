@@ -1,0 +1,385 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button class="menu_button"></ion-menu-button>
+    </ion-buttons>
+    <img class="papatte" src="./assets/img/patte.png" align="middle" alt="">
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content class="ion-padding">
+  <form [formGroup]="ficheForm" *ngIf="ficheForm" (ngSubmit)="save()" id="form">
+
+
+    <ion-list mode="ios">
+      <ion-grid>
+        <ion-row class="ion-justify-content-between">
+          <ion-col>
+            <ion-item class="input" lines="none" mode="ios" [ngClass]="ficheForm.controls.arrive.value ? 'green_input' : 'orange_input'">
+              <ion-datetime tappable mode="ios" (ionChange)="calculTime()" formControlName="arrive"
+                            placeholder="Heure d'arrivée chez le client"
+                            cancelText="Annuler" doneText="Valider" displayFormat="HH:mm"
+                            pickerFormat="HH:mm"></ion-datetime>
+            </ion-item>
+          </ion-col>
+
+          <ion-col>
+            <ion-item class="input ion-float-right" lines="none" mode="ios" [ngClass]="ficheForm.controls.depart.value ? 'green_input' : ''">
+              <ion-datetime mode="ios" formControlName="depart" (ionChange)="calculTime()"
+                            placeholder="Heure de départ" cancelText="Annuler"
+                            doneText="Valider" displayFormat="HH:mm" pickerFormat="HH:mm"></ion-datetime>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+
+
+        <ion-row class="ion-justify-content-between">
+          <ion-col>
+            <ion-item class="input" lines="none" mode="ios" [ngClass]="ficheForm.controls.temps.value ? 'green_input' : ''">
+              <ion-input mode="ios" formControlName="temps" type="text"
+                         placeholder="Temps passé"></ion-input>
+            </ion-item>
+          </ion-col>
+          <ion-col>
+            <ion-item class="input ion-float-right" lines="none" mode="ios" [ngClass]="ficheForm.controls.positionRoue.value ? 'green_input' : 'orange_input'">
+              <ion-input mode="ios" formControlName="positionRoue" class="right" type="text"
+                         placeholder="Position de la roue"></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col>
+            <ion-item class="input fullwidth" lines="none" mode="ios" [ngClass]="ficheForm.controls.nomClient.value ? 'green_input' : 'orange_input'">
+              <ion-input mode="ios" formControlName="nomClient" class="solo" type="text"
+                         placeholder="Nom client"></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+
+        <div class="divider"></div>
+
+        <ion-row>
+          <ion-col>
+            <ion-item class="input fullwidth" lines="none" mode="ios" [ngClass]="ficheForm.controls.nomAdresse.value ? 'green_input' : ''">
+              <ion-input mode="ios" formControlName="nomAdresse" class="solo" type="text"
+                         placeholder="Nom et adresse"></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+
+
+        <ion-row class="ion-justify-content-between">
+          <ion-col>
+            <ion-item class="input fullwidth" lines="none" mode="ios" [ngClass]="ficheForm.controls.dimension.value ? 'green_input' : ''">
+
+              <ion-select class="selectorTrio  trio" formControlName="dimension" placeholder="Dimension">
+                <ion-select-option value="0">Aucune</ion-select-option>
+                <ion-select-option value="12 x 22.5 AM09 HANKOOK">pneu 12 x 22.5 AM09 HANKOOK
+                </ion-select-option>
+                <ion-select-option value="13 x 22.5 AM09 HANKOOK">pneu 13 x 22.5 AM09 HANKOOK
+                </ion-select-option>
+                <ion-select-option value="12 x 22.5 DM09 HANKOOK">pneu 12 x 22.5 DM09 HANKOOK
+                </ion-select-option>
+                <ion-select-option value="13 x 22.5 DM09 HANKOOK">pneu 13 x 22.5 DM09 HANKOOK
+                </ion-select-option>
+                <ion-select-option value="12 x 22.5 RECHAPE">pneu 12 x 22.5 RECHAPE</ion-select-option>
+                <ion-select-option value="10 x 16.5 NHS">pneu 10 x 16.5 NHS</ion-select-option>
+                <ion-select-option value="385/65 x 22.5 TM15 HANKOOK">pneu 385/65 x 22.5 TM15 HANKOOK
+                </ion-select-option>
+                <ion-select-option value="385/65 x 22.5 HT3 CONTINENTAL">pneu 385/65 x 22.5 HT3
+                  CONTINENTAL
+                </ion-select-option>
+                <ion-select-option value="315/80 x 22.5 HS3 CONTINENTAL">pneu 315/80 x 22.5 HS3
+                  CONTINENTAL
+                </ion-select-option>
+                <ion-select-option value="315/70 x 22.5 HS3 CONTINENTAL">pneu 315/70 x 22.5 HS3
+                  CONTINENTAL
+                </ion-select-option>
+                <ion-select-option value="155 x 13 KUHMO">pneu 155 x 13 KUHMO</ion-select-option>
+                <ion-select-option value="195/75 x 16 RA18 HANKOOK">pneu 195/75 x 16 RA18 HANKOOK
+                </ion-select-option>
+
+              </ion-select>
+            </ion-item>
+          </ion-col>
+
+          <ion-col>
+            <ion-item class="input fullwidth" lines="none" mode="ios" [ngClass]="ficheForm.controls.dimensionLibre.value ? 'green_input' : ''">
+              <ion-input mode="ios" formControlName="dimensionLibre" class="trio" type="text"
+                         placeholder="Dimension"></ion-input>
+            </ion-item>
+          </ion-col>
+
+          <ion-col>
+            <ion-item class="input fullwidth" lines="none" mode="ios" [ngClass]="ficheForm.controls.nvh.value ? 'green_input' : ''">
+              <ion-input mode="ios" formControlName="nvh" class="trio" type="text"
+                         placeholder="NVH"></ion-input>
+            </ion-item>
+          </ion-col>
+
+          <ion-col>
+            <ion-item class="input fullwidth" lines="none" mode="ios" [ngClass]="ficheForm.controls.kmCompteur.value ? 'green_input' : ''">
+              <ion-input mode="ios" formControlName="kmCompteur" class="trio" type="text"
+                         placeholder="Kilomètres compteur"></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+
+        <div class="divider"></div>
+
+        <ion-row class="ion-justify-content-between">
+          <ion-col>
+            <ion-item class="input" lines="none" mode="ios" [ngClass]="ficheForm.controls.demontage.value ? 'label_plein' : ''">
+              <ion-input mode="ios" class="readonly" type="text" readonly
+                         value="Démontage/remontage"></ion-input>
+
+            </ion-item>
+          </ion-col>
+          <ion-col>
+            <ion-item class="input ion-float-right" lines="none" mode="ios" [ngClass]="ficheForm.controls.demontage.value ? 'green_input' : ''">
+              <ion-input mode="ios" formControlName="demontage" class="right" type="text"
+                         placeholder="Quantité"></ion-input>
+
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row class="ion-justify-content-between">
+          <ion-col>
+            <ion-item class="input" lines="none" mode="ios" [ngClass]="ficheForm.controls.depose.value ? 'label_plein' : ''">
+              <ion-input mode="ios" type="text" class="readonly" readonly value="Dépose/repose">
+              </ion-input>
+            </ion-item>
+          </ion-col>
+          <ion-col>
+            <ion-item class="input ion-float-right" lines="none" mode="ios" [ngClass]="ficheForm.controls.depose.value ? 'green_input' : ''">
+              <ion-input mode="ios" formControlName="depose" class="right" type="text"
+                         placeholder="Quantité">
+              </ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+
+
+        <ion-row class="ion-justify-content-around">
+          <ion-col>
+            <ion-item class="input" lines="none" mode="ios" [ngClass]="ficheForm.controls.reparation.value ? 'label_plein' : ''">
+              <ion-input mode="ios" class="readonly" type="text" readonly
+                         value="Réparation/Tubeless"></ion-input>
+            </ion-item>
+          </ion-col>
+          <ion-col>
+            <ion-item class="input ion-float-right" lines="none" mode="ios" [ngClass]="ficheForm.controls.reparation.value ? 'green_input' : ''">
+              <ion-input mode="ios" formControlName="reparation" class="right" type="text"
+                         placeholder="Quantité"></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+
+
+        <ion-row class="ion-justify-content-around">
+          <ion-col>
+            <ion-item class="input" lines="none" mode="ios" [ngClass]="ficheForm.controls.chaair.value ? 'label_plein' : ''">
+              <ion-input mode="ios" class="readonly" type="text" readonly
+                         value="Réparation CH.AAIR"></ion-input>
+            </ion-item>
+          </ion-col>
+          <ion-col>
+            <ion-item class="input ion-float-right" lines="none" mode="ios" [ngClass]="ficheForm.controls.chaair.value ? 'green_input' : ''">
+              <ion-input mode="ios" formControlName="chaair" class="right" type="text"
+                         placeholder="Quantité"></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+
+        <ion-row class="ion-justify-content-around">
+          <ion-col>
+            <ion-item class="input" lines="none" mode="ios" [ngClass]="ficheForm.controls.retaillage.value ? 'label_plein' : ''">
+              <ion-input mode="ios" class="readonly" type="text" readonly value="Retaillage"></ion-input>
+            </ion-item>
+          </ion-col>
+          <ion-col>
+            <ion-item class="input ion-float-right" lines="none" mode="ios" [ngClass]="ficheForm.controls.retaillage.value ? 'green_input' : ''">
+              <ion-input mode="ios" formControlName="retaillage" class="right" type="text"
+                         placeholder="Quantité"></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+
+        <div formGroupName="emplatre">
+          <ion-row class="ion-justify-content-between">
+            <ion-col>
+              <ion-item class="input" lines="none" mode="ios" [ngClass]="ficheForm.controls.emplatre.controls.nom.value ? 'label_plein' : ''">
+                <ion-select class="selector" formControlName="nom" placeholder="Emplâtre">
+                  <ion-select-option value="Emplâtre 110 TL">Emplâtre 110 TL</ion-select-option>
+                  <ion-select-option value="Emplâtre 120 TL">Emplâtre 120 TL</ion-select-option>
+                  <ion-select-option value="Emplâtre 125 TL">Emplâtre 125 TL</ion-select-option>
+                  <ion-select-option value="Emplâtre 135 TL">Emplâtre 135 TL</ion-select-option>
+                  <ion-select-option value="Emplâtre 140 TL">Emplâtre 140 TL</ion-select-option>
+                  <ion-select-option value="Emplâtre 142 TL">Emplâtre 142 TL</ion-select-option>
+                  <ion-select-option value="Emplâtre 145 TL">Emplâtre 145 TL</ion-select-option>
+                  <!--  <ion-select-option value="G159">Emplâtre 146 TL</ion-select-option>
+                  <ion-select-option value="G169">Emplâtre PN02L</ion-select-option>
+                  <ion-select-option value="G170">Emplâtre PN03</ion-select-option>
+                  <ion-select-option value="G171">Emplâtre PN04</ion-select-option>
+                  <ion-select-option value="G172">Emplâtre PN05</ion-select-option>
+                  <ion-select-option value="G173">Emplâtre PN06</ion-select-option> -->
+                </ion-select>
+              </ion-item>
+            </ion-col>
+            <ion-col>
+              <ion-item class="input ion-float-right" lines="none" mode="ios" [ngClass]="ficheForm.controls.emplatre.controls.quantite.value ? 'green_input' : ''">
+                <ion-input mode="ios" formControlName="quantite" class="right" type="text"
+                           placeholder="Quantité"></ion-input>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+        </div>
+
+        <ion-row class="ion-justify-content-between">
+          <ion-col>
+            <ion-item class="input" lines="none" mode="ios" [ngClass]="ficheForm.controls.forfait.value ? 'label_plein' : ''">
+              <ion-input mode="ios" class="readonly" type="text" readonly
+                         value="Forfait véhiculé"></ion-input>
+            </ion-item>
+          </ion-col>
+          <ion-col>
+            <ion-item class="input ion-float-right" lines="none" mode="ios" [ngClass]="ficheForm.controls.forfait.value ? 'green_input' : ''">
+              <ion-input mode="ios" formControlName="forfait" class="right" type="text"
+                         placeholder="Quantité" value="1"></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+
+
+        <div formArrayName="fournitures">
+          <ng-container *ngFor="let fourniture of ficheForm.controls.fournitures.controls; let i=index"
+                        formGroupName="{{i}}">
+
+            <ion-row class="ion-justify-content-between">
+              <ion-col>
+
+                <ion-item-sliding>
+                  <ion-item class="input" lines="none" mode="ios" [ngClass]="fourniture.controls.nom.value ? 'label_plein' : ''">
+                    <ion-select class="selector" formControlName="nom" placeholder="Fourniture">
+                      <ion-select-option *ngFor="let fourni of fournituresList"
+                                         [value]="fourni">{{fourni}}</ion-select-option>
+                    </ion-select>
+                  </ion-item>
+                  <ion-item-options side="start">
+                    <ion-button color="danger" (click)="deleteFourni(i)">
+                      <ion-icon name="trash"></ion-icon>
+                      Supprimer
+                    </ion-button>
+                  </ion-item-options>
+                </ion-item-sliding>
+              </ion-col>
+              <ion-col>
+                <ion-item class="input ion-float-right" lines="none" mode="ios" [ngClass]="fourniture.controls.quantite.value ? 'green_input' : ''">
+                  <ion-input mode="ios" formControlName="quantite" class="right" type="text"
+                             placeholder="Quantité"></ion-input>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+          </ng-container>
+        </div>
+
+        <ion-icon class="add_icon" name="add-circle-outline" tappable (click)="addFourniture()" color="secondary"
+                  style="font-size:5rem;"></ion-icon>
+
+
+        <div class="divider"></div>
+
+
+        <ion-row>
+          <ion-col>
+            <ion-item class="input fullwidth" lines="none" mode="ios" [ngClass]="ficheForm.controls.observation.value ? 'green_input' : ''">
+              <ion-textarea class="textarea" formControlName="observation" placeholder="Observation"
+                            mode="ios">
+              </ion-textarea>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+
+
+        <ion-row>
+          <ion-col>
+            <ion-item class="input fullwidth" lines="none" mode="ios" [ngClass]="ficheForm.controls.numeroPneu.value ? 'green_input' : ''">
+              <!--<ion-label stacked>N° Pneu monté</ion-label>-->
+              <ion-input mode="ios" formControlName="numeroPneu" class="solo" type="text"
+                         placeholder="N° pneu monté"></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+
+        <ion-row class="ion-justify-content-between">
+          <ion-col>
+            <ion-item class="input" lines="none" mode="ios" [ngClass]="ficheForm.controls.pression.value ? 'green_input' : ''">
+              <ion-input mode="ios" type="text" formControlName="pression"
+                         placeholder="Contrôle pression"></ion-input>
+            </ion-item>
+          </ion-col>
+          <ion-col>
+            <ion-item class="input ion-float-right" lines="none" mode="ios" [ngClass]="ficheForm.controls.serrage.value ? 'green_input' : ''">
+              <ion-input mode="ios" type="text" formControlName="serrage" class="right"
+                         placeholder="Contrôle serrage"></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+
+        <ion-item mode="ios" lines="none" class="margin1_5">
+          Prière de resserer les roues après 25Km, 100Km et ensuite périodiquement
+        </ion-item>
+        <ion-item mode="ios" lines="none" class="photos_container">
+          <div class="w_30">
+            <ion-button mode="ios" size="full" (click)="uploadImage()">
+              <ion-icon name="camera-sharp" class="camera"></ion-icon>
+              Ajouter une photo
+            </ion-button>
+          </div>
+          <div class="photos">
+            <div *ngFor="let photo of photos; let i = index">
+              <p>{{photo.nom}}</p>
+              <ion-icon name="trash-sharp" class="icon_trash_photo" color="danger" tappable
+                        (click)="deletePhoto(i)"></ion-icon>
+            </div>
+          </div>
+        </ion-item>
+        <ion-item mode="ios" lines="none">
+          <div id="bloc-bottom">
+
+            <div>Signature responsable :
+              <br>
+              <br>
+              <app-signature-responsable #signatureResponsable>
+              </app-signature-responsable>
+              <br>
+
+              <ion-button mode="ios" size="large" type="button" (click)="clear('responsable')">Reset
+              </ion-button>
+            </div>
+            <div>Signature client :
+              <br>
+              <br>
+              <app-signature-client #signatureClient>
+              </app-signature-client>
+              <br>
+              <ion-button mode="ios" size="large" type="button" (click)="clear('client')">Reset
+              </ion-button>
+            </div>
+          </div>
+        </ion-item>
+        <ion-item mode="ios" lines="none">
+          <ion-button mode="ios" size="large" type="submit"
+                      [disabled]="!ficheForm.valid">{{autosend ? "Envoyer" : "Enregistrer"}}
+          </ion-button>
+
+
+        </ion-item>
+
+      </ion-grid>
+    </ion-list>
+  </form>
+  <div *ngIf="msgErreur">{{msgErreur}}</div>
+</ion-content>

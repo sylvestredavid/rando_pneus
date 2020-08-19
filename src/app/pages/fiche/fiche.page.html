@@ -1,0 +1,32 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-menu-button class="menu_button"></ion-menu-button>
+        </ion-buttons>
+        <img class="papatte" src="./assets/img/patte.png" align="middle" alt="">
+    </ion-toolbar>
+</ion-header>
+<ion-content>
+    <div>
+        <div class="file" tappable *ngFor="let fiche of fiches" (click)="detailPage(fiche.id)">
+          <div class="name">
+              <div class="round round_success" *ngIf="!fiche.vue"></div>
+              <div class="round round_warning" *ngIf="fiche.vue && fiche.modifieParBureau"></div>
+              <div class="round" *ngIf="fiche.vue && !fiche.modifieParBureau"></div>
+            <div class="relative">
+                <ion-icon name="document-text-sharp" class="icon" color="primary">
+                </ion-icon>
+<!--                <div class="round round_positioned" *ngIf="fiche.envoye"></div>-->
+            </div>
+            {{fiche.nomClient}}
+          </div>
+            <ion-icon name="pencil-sharp" class="icon" color="primary" tappable
+                      (click)="edit($event, fiche.id)"></ion-icon>
+            <ion-icon name="trash-sharp" class="icon" color="primary" tappable
+                      (click)="delete($event, fiche.id)"></ion-icon>
+            <ion-icon name="send-sharp" class="icon" color="primary" tappable (click)="send($event, fiche)"></ion-icon>
+        </div>
+        <ion-item *ngIf="fiches?.length == 0">Vous n'avez pas de fiche
+        </ion-item>
+    </div>
+</ion-content>

@@ -1,0 +1,57 @@
+.content {
+  --background: #B9AA97;
+  position: relative;
+}
+
+.big {
+  margin-top: 250px;
+}
+
+.person {
+  color: #747474;
+  font-size: 8em;
+}
+
+.options_container {
+  border-collapse: collapse;
+  margin-top: 10%;
+}
+
+.options {
+  padding: 20px 40px;
+  background: white;
+  border: 1px solid #B9AA97;
+  display: flex;
+  align-items: center;
+  &:first-of-type {
+    color: #D60B0B;
+    border-bottom: none;
+    ion-icon {
+      font-size: 48px;
+    }
+  }
+  &:last-of-type {
+    color: #7B7B7B;
+    ion-toggle {
+      width: 88px;
+      height: 50px;
+      border-radius: 100px;
+      --handle-width: 42px;
+      --handle-height: 42px;
+    }
+  }
+}
+
+.label {
+  margin-right: 2vw;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.fixed_bottom {
+  position: fixed;
+  bottom: 44px;
+  left: 44px;
+  color: white;
+  font-size: 18px;
+}
