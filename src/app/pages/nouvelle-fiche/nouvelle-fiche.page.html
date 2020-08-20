@@ -16,7 +16,7 @@
             <ion-grid>
                 <ion-row class="ion-justify-content-between">
                     <ion-col>
-                        <ion-item class="input" lines="none" mode="ios" [ngClass]="ficheForm.controls.arrive.value ? 'green_input' : 'orange_input'">
+                        <ion-item class="input" lines="none" mode="ios" [ngClass]="ficheForm.get('arrive').value ? 'green_input' : 'orange_input'">
                             <ion-datetime tappable mode="ios" (ionChange)="calculTime()" formControlName="arrive"
                                           placeholder="Heure d'arrivée chez le client"
                                           cancelText="Annuler" doneText="Valider" displayFormat="HH:mm"
@@ -25,7 +25,7 @@
                     </ion-col>
 
                     <ion-col>
-                        <ion-item class="input ion-float-right" lines="none" mode="ios" [ngClass]="ficheForm.controls.depart.value ? 'green_input' : ''">
+                        <ion-item class="input ion-float-right" lines="none" mode="ios" [ngClass]="ficheForm.get('depart').value ? 'green_input' : ''">
                             <ion-datetime mode="ios" formControlName="depart" (ionChange)="calculTime()"
                                           placeholder="Heure de départ" cancelText="Annuler"
                                           doneText="Valider" displayFormat="HH:mm" pickerFormat="HH:mm"></ion-datetime>
@@ -36,13 +36,13 @@
 
                 <ion-row class="ion-justify-content-between">
                     <ion-col>
-                        <ion-item class="input" lines="none" mode="ios" [ngClass]="ficheForm.controls.temps.value ? 'green_input' : ''">
+                        <ion-item class="input" lines="none" mode="ios" [ngClass]="ficheForm.get('temps').value ? 'green_input' : ''">
                             <ion-input mode="ios" formControlName="temps" type="text"
                                        placeholder="Temps passé"></ion-input>
                         </ion-item>
                     </ion-col>
                     <ion-col>
-                        <ion-item class="input ion-float-right" lines="none" mode="ios" [ngClass]="ficheForm.controls.positionRoue.value ? 'green_input' : 'orange_input'">
+                        <ion-item class="input ion-float-right" lines="none" mode="ios" [ngClass]="ficheForm.get('positionRoue').value ? 'green_input' : 'orange_input'">
                             <ion-input mode="ios" formControlName="positionRoue" class="right" type="text"
                                        placeholder="Position de la roue"></ion-input>
                         </ion-item>
@@ -51,7 +51,7 @@
 
                 <ion-row>
                     <ion-col>
-                        <ion-item class="input fullwidth" lines="none" mode="ios" [ngClass]="ficheForm.controls.nomClient.value ? 'green_input' : 'orange_input'">
+                        <ion-item class="input fullwidth" lines="none" mode="ios" [ngClass]="ficheForm.get('nomClient').value ? 'green_input' : 'orange_input'">
                             <ion-input mode="ios" formControlName="nomClient" class="solo" type="text"
                                        placeholder="Nom client"></ion-input>
                         </ion-item>
@@ -62,7 +62,7 @@
 
                 <ion-row>
                     <ion-col>
-                        <ion-item class="input fullwidth" lines="none" mode="ios" [ngClass]="ficheForm.controls.nomAdresse.value ? 'green_input' : ''">
+                        <ion-item class="input fullwidth" lines="none" mode="ios" [ngClass]="ficheForm.get('nomAdresse').value ? 'green_input' : ''">
                             <ion-input mode="ios" formControlName="nomAdresse" class="solo" type="text"
                                        placeholder="Nom et adresse"></ion-input>
                         </ion-item>
@@ -72,7 +72,7 @@
 
                 <ion-row class="ion-justify-content-between">
                     <ion-col>
-                        <ion-item class="input fullwidth" lines="none" mode="ios" [ngClass]="ficheForm.controls.dimension.value ? 'green_input' : ''">
+                        <ion-item class="input fullwidth" lines="none" mode="ios" [ngClass]="ficheForm.get('dimension').value ? 'green_input' : ''">
 
                             <ion-select class="selectorTrio  trio" formControlName="dimension" placeholder="Dimension">
                                 <ion-select-option value="0">Aucune</ion-select-option>
@@ -106,21 +106,21 @@
                     </ion-col>
 
                     <ion-col>
-                        <ion-item class="input fullwidth" lines="none" mode="ios" [ngClass]="ficheForm.controls.dimensionLibre.value ? 'green_input' : ''">
+                        <ion-item class="input fullwidth" lines="none" mode="ios" [ngClass]="ficheForm.get('dimensionLibre').value ? 'green_input' : ''">
                             <ion-input mode="ios" formControlName="dimensionLibre" class="trio" type="text"
                                        placeholder="Dimension"></ion-input>
                         </ion-item>
                     </ion-col>
 
                     <ion-col>
-                        <ion-item class="input fullwidth" lines="none" mode="ios" [ngClass]="ficheForm.controls.nvh.value ? 'green_input' : ''">
+                        <ion-item class="input fullwidth" lines="none" mode="ios" [ngClass]="ficheForm.get('nvh').value ? 'green_input' : ''">
                             <ion-input mode="ios" formControlName="nvh" class="trio" type="text"
                                        placeholder="NVH"></ion-input>
                         </ion-item>
                     </ion-col>
 
                     <ion-col>
-                        <ion-item class="input fullwidth" lines="none" mode="ios" [ngClass]="ficheForm.controls.kmCompteur.value ? 'green_input' : ''">
+                        <ion-item class="input fullwidth" lines="none" mode="ios" [ngClass]="ficheForm.get('kmCompteur').value ? 'green_input' : ''">
                             <ion-input mode="ios" formControlName="kmCompteur" class="trio" type="text"
                                        placeholder="Kilomètres compteur"></ion-input>
                         </ion-item>
@@ -131,14 +131,14 @@
 
                 <ion-row class="ion-justify-content-between">
                     <ion-col>
-                        <ion-item class="input" lines="none" mode="ios" [ngClass]="ficheForm.controls.demontage.value ? 'label_plein' : ''">
+                        <ion-item class="input" lines="none" mode="ios" [ngClass]="ficheForm.get('demontage').value ? 'label_plein' : ''">
                             <ion-input mode="ios" class="readonly" type="text" readonly
                                        value="Démontage/remontage"></ion-input>
 
                         </ion-item>
                     </ion-col>
                     <ion-col>
-                        <ion-item class="input ion-float-right" lines="none" mode="ios" [ngClass]="ficheForm.controls.demontage.value ? 'green_input' : ''">
+                        <ion-item class="input ion-float-right" lines="none" mode="ios" [ngClass]="ficheForm.get('demontage').value ? 'green_input' : ''">
                             <ion-input mode="ios" formControlName="demontage" class="right" type="text"
                                        placeholder="Quantité"></ion-input>
 
@@ -147,13 +147,13 @@
                 </ion-row>
                 <ion-row class="ion-justify-content-between">
                     <ion-col>
-                        <ion-item class="input" lines="none" mode="ios" [ngClass]="ficheForm.controls.depose.value ? 'label_plein' : ''">
+                        <ion-item class="input" lines="none" mode="ios" [ngClass]="ficheForm.get('depose').value ? 'label_plein' : ''">
                             <ion-input mode="ios" type="text" class="readonly" readonly value="Dépose/repose">
                             </ion-input>
                         </ion-item>
                     </ion-col>
                     <ion-col>
-                        <ion-item class="input ion-float-right" lines="none" mode="ios" [ngClass]="ficheForm.controls.depose.value ? 'green_input' : ''">
+                        <ion-item class="input ion-float-right" lines="none" mode="ios" [ngClass]="ficheForm.get('depose').value ? 'green_input' : ''">
                             <ion-input mode="ios" formControlName="depose" class="right" type="text"
                                        placeholder="Quantité">
                             </ion-input>
@@ -164,13 +164,13 @@
 
                 <ion-row class="ion-justify-content-around">
                     <ion-col>
-                        <ion-item class="input" lines="none" mode="ios" [ngClass]="ficheForm.controls.reparation.value ? 'label_plein' : ''">
+                        <ion-item class="input" lines="none" mode="ios" [ngClass]="ficheForm.get('reparation').value ? 'label_plein' : ''">
                             <ion-input mode="ios" class="readonly" type="text" readonly
                                        value="Réparation/Tubeless"></ion-input>
                         </ion-item>
                     </ion-col>
                     <ion-col>
-                        <ion-item class="input ion-float-right" lines="none" mode="ios" [ngClass]="ficheForm.controls.reparation.value ? 'green_input' : ''">
+                        <ion-item class="input ion-float-right" lines="none" mode="ios" [ngClass]="ficheForm.get('reparation').value ? 'green_input' : ''">
                             <ion-input mode="ios" formControlName="reparation" class="right" type="text"
                                        placeholder="Quantité"></ion-input>
                         </ion-item>
@@ -180,13 +180,13 @@
 
                 <ion-row class="ion-justify-content-around">
                     <ion-col>
-                        <ion-item class="input" lines="none" mode="ios" [ngClass]="ficheForm.controls.chaair.value ? 'label_plein' : ''">
+                        <ion-item class="input" lines="none" mode="ios" [ngClass]="ficheForm.get('chaair').value ? 'label_plein' : ''">
                             <ion-input mode="ios" class="readonly" type="text" readonly
                                        value="Réparation CH.AAIR"></ion-input>
                         </ion-item>
                     </ion-col>
                     <ion-col>
-                        <ion-item class="input ion-float-right" lines="none" mode="ios" [ngClass]="ficheForm.controls.chaair.value ? 'green_input' : ''">
+                        <ion-item class="input ion-float-right" lines="none" mode="ios" [ngClass]="ficheForm.get('chaair').value ? 'green_input' : ''">
                             <ion-input mode="ios" formControlName="chaair" class="right" type="text"
                                        placeholder="Quantité"></ion-input>
                         </ion-item>
@@ -195,12 +195,12 @@
 
                 <ion-row class="ion-justify-content-around">
                     <ion-col>
-                        <ion-item class="input" lines="none" mode="ios" [ngClass]="ficheForm.controls.retaillage.value ? 'label_plein' : ''">
+                        <ion-item class="input" lines="none" mode="ios" [ngClass]="ficheForm.get('retaillage').value ? 'label_plein' : ''">
                             <ion-input mode="ios" class="readonly" type="text" readonly value="Retaillage"></ion-input>
                         </ion-item>
                     </ion-col>
                     <ion-col>
-                        <ion-item class="input ion-float-right" lines="none" mode="ios" [ngClass]="ficheForm.controls.retaillage.value ? 'green_input' : ''">
+                        <ion-item class="input ion-float-right" lines="none" mode="ios" [ngClass]="ficheForm.get('retaillage').value ? 'green_input' : ''">
                             <ion-input mode="ios" formControlName="retaillage" class="right" type="text"
                                        placeholder="Quantité"></ion-input>
                         </ion-item>
@@ -210,7 +210,7 @@
                 <div formGroupName="emplatre">
                     <ion-row class="ion-justify-content-between">
                         <ion-col>
-                            <ion-item class="input" lines="none" mode="ios" [ngClass]="ficheForm.controls.emplatre.controls.nom.value ? 'label_plein' : ''">
+                            <ion-item class="input" lines="none" mode="ios" [ngClass]="ficheForm.get('emplatre').get('nom').value ? 'label_plein' : ''">
                                 <ion-select class="selector" formControlName="nom" placeholder="Emplâtre">
                                     <ion-select-option value="Emplâtre 110 TL">Emplâtre 110 TL</ion-select-option>
                                     <ion-select-option value="Emplâtre 120 TL">Emplâtre 120 TL</ion-select-option>
@@ -229,7 +229,7 @@
                             </ion-item>
                         </ion-col>
                         <ion-col>
-                            <ion-item class="input ion-float-right" lines="none" mode="ios" [ngClass]="ficheForm.controls.emplatre.controls.quantite.value ? 'green_input' : ''">
+                            <ion-item class="input ion-float-right" lines="none" mode="ios" [ngClass]="ficheForm.get('emplatre').get('quantite').value ? 'green_input' : ''">
                                 <ion-input mode="ios" formControlName="quantite" class="right" type="text"
                                            placeholder="Quantité"></ion-input>
                             </ion-item>
@@ -239,13 +239,13 @@
 
                 <ion-row class="ion-justify-content-between">
                     <ion-col>
-                        <ion-item class="input" lines="none" mode="ios" [ngClass]="ficheForm.controls.forfait.value ? 'label_plein' : ''">
+                        <ion-item class="input" lines="none" mode="ios" [ngClass]="ficheForm.get('forfait').value ? 'label_plein' : ''">
                             <ion-input mode="ios" class="readonly" type="text" readonly
                                        value="Forfait véhiculé"></ion-input>
                         </ion-item>
                     </ion-col>
                     <ion-col>
-                        <ion-item class="input ion-float-right" lines="none" mode="ios" [ngClass]="ficheForm.controls.forfait.value ? 'green_input' : ''">
+                        <ion-item class="input ion-float-right" lines="none" mode="ios" [ngClass]="ficheForm.get('forfait').value ? 'green_input' : ''">
                             <ion-input mode="ios" formControlName="forfait" class="right" type="text"
                                        placeholder="Quantité" value="1"></ion-input>
                         </ion-item>
@@ -254,14 +254,14 @@
 
 
                 <div formArrayName="fournitures">
-                    <ng-container *ngFor="let fourniture of ficheForm.controls.fournitures.controls; let i=index"
+                    <ng-container *ngFor="let fourniture of ficheForm.get('fournitures')['controls']; let i=index"
                                   formGroupName="{{i}}">
 
                         <ion-row class="ion-justify-content-between">
                             <ion-col>
 
                                 <ion-item-sliding>
-                                    <ion-item class="input" lines="none" mode="ios" [ngClass]="fourniture.controls.nom.value ? 'label_plein' : ''">
+                                    <ion-item class="input" lines="none" mode="ios" [ngClass]="fourniture.get('nom').value ? 'label_plein' : ''">
                                         <ion-select class="selector" formControlName="nom" placeholder="Fourniture">
                                             <ion-select-option *ngFor="let fourni of fournituresList"
                                                                [value]="fourni">{{fourni}}</ion-select-option>
@@ -276,7 +276,7 @@
                                 </ion-item-sliding>
                             </ion-col>
                             <ion-col>
-                                <ion-item class="input ion-float-right" lines="none" mode="ios" [ngClass]="fourniture.controls.quantite.value ? 'green_input' : ''">
+                                <ion-item class="input ion-float-right" lines="none" mode="ios" [ngClass]="fourniture.get('quantite').value ? 'green_input' : ''">
                                     <ion-input mode="ios" formControlName="quantite" class="right" type="text"
                                                placeholder="Quantité"></ion-input>
                                 </ion-item>
@@ -295,7 +295,7 @@
 
                 <ion-row>
                     <ion-col>
-                        <ion-item class="input fullwidth" lines="none" mode="ios" [ngClass]="ficheForm.controls.observation.value ? 'green_input' : ''">
+                        <ion-item class="input fullwidth" lines="none" mode="ios" [ngClass]="ficheForm.get('observation').value ? 'green_input' : ''">
                             <ion-textarea class="textarea" formControlName="observation" placeholder="Observation"
                                           mode="ios">
                             </ion-textarea>
@@ -306,7 +306,7 @@
 
                 <ion-row>
                     <ion-col>
-                        <ion-item class="input fullwidth" lines="none" mode="ios" [ngClass]="ficheForm.controls.numeroPneu.value ? 'green_input' : ''">
+                        <ion-item class="input fullwidth" lines="none" mode="ios" [ngClass]="ficheForm.get('numeroPneu').value ? 'green_input' : ''">
                             <!--<ion-label stacked>N° Pneu monté</ion-label>-->
                             <ion-input mode="ios" formControlName="numeroPneu" class="solo" type="text"
                                        placeholder="N° pneu monté"></ion-input>
@@ -316,13 +316,13 @@
 
                 <ion-row class="ion-justify-content-between">
                     <ion-col>
-                        <ion-item class="input" lines="none" mode="ios" [ngClass]="ficheForm.controls.pression.value ? 'green_input' : ''">
+                        <ion-item class="input" lines="none" mode="ios" [ngClass]="ficheForm.get('pression').value ? 'green_input' : ''">
                             <ion-input mode="ios" type="text" formControlName="pression"
                                        placeholder="Contrôle pression"></ion-input>
                         </ion-item>
                     </ion-col>
                     <ion-col>
-                        <ion-item class="input ion-float-right" lines="none" mode="ios" [ngClass]="ficheForm.controls.serrage.value ? 'green_input' : ''">
+                        <ion-item class="input ion-float-right" lines="none" mode="ios" [ngClass]="ficheForm.get('serrage').value ? 'green_input' : ''">
                             <ion-input mode="ios" type="text" formControlName="serrage" class="right"
                                        placeholder="Contrôle serrage"></ion-input>
                         </ion-item>

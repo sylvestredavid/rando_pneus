@@ -9,7 +9,7 @@ export class SignatureResponsableComponent{
 
   @ViewChild('signaturePad') signaturePad: SignaturePad;
 
-  private signaturePadOptions = { // passed through to szimek/signature_pad constructor
+  signaturePadOptions = { // passed through to szimek/signature_pad constructor
     minWidth: 1,
     maxWidth: 2,
     canvasWidth: 300,
@@ -20,11 +20,11 @@ export class SignatureResponsableComponent{
 
   }
 
-  private drawComplete() {
+  drawComplete() {
     // will be notified of szimek/signature_pad's onEnd event
   }
 
-  private drawStart() {
+  drawStart() {
     // will be notified of szimek/signature_pad's onBegin event
   }
 
