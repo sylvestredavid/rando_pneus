@@ -43,7 +43,7 @@
     <name>Rando-Pneus</name>
     <description>Application Rando-Pneus</description>
     <author email="romain.croizat@gmail.com" href="http://ionicframework.com/">Romain Croizat</author>
-    <content original-src="index.html" src="http://localhost:8100" />
+    <content src="index.html" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
