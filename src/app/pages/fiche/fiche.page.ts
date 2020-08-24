@@ -29,12 +29,11 @@ export class FichePage implements OnInit {
 
         this.ficheFirebaseService.fiches$.subscribe(
             fichesF => {
-                this.fiches = []
+                this.fiches = fichesF
                 this.ficheService.getFiches().then(fiches => {
-                        this.fiches = [...fiches, ...fichesF];
+                        this.fiches = [...this.fiches, ...fiches];
                     }
                 );
-                this.fiches = this.fiches.reverse()
             }
         );
 
