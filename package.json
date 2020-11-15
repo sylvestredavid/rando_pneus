@@ -7,6 +7,7 @@
     "ng": "ng",
     "start": "ng serve",
     "android": "ionic cordova run android -l",
+    "ios": "ionic cordova run ios --target=3BB5D6E0-E01B-4777-AF4F-B9471B68247D",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",

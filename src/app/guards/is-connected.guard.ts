@@ -13,10 +13,8 @@ export class IsConnectedGuard implements CanActivate {
         state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
         if (localStorage.getItem('userId')) {
             if (this.ficheFirebaseService.fiches$) {
-                console.log('on ne récupere pas')
                 return true;
             } else {
-                console.log('on récupere')
                 this.ficheFirebaseService.getFiches(+localStorage.getItem('userId'));
                 return true;
             }

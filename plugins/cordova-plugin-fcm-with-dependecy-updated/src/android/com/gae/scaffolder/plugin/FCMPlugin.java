@@ -78,32 +78,23 @@ public class FCMPlugin extends CordovaPlugin {
         Log.d(TAG, "==> FCMPlugin execute: " + action);
 
         try {
-            // READY //
             if (action.equals("ready")) {
                 callbackContext.success();
-            }
-            // START JS EVENT BRIDGE //
-            else if (action.equals("startJsEventBridge")) {
+            } else if (action.equals("startJsEventBridge")) {
                 this.jsEventBridgeCallbackContext = callbackContext;
-            }
-            // GET TOKEN //
-            else if (action.equals("getToken")) {
+            } else if (action.equals("getToken")) {
                 cordova.getActivity().runOnUiThread(new Runnable() {
                     public void run() {
                         getToken(callbackContext);
                     }
                 });
-            }
-            // GET INITIAL PUSH PAYLOAD //
-            else if (action.equals("getInitialPushPayload")) {
+            } else if (action.equals("getInitialPushPayload")) {
                 cordova.getActivity().runOnUiThread(new Runnable() {
                     public void run() {
                         getInitialPushPayload(callbackContext);
                     }
                 });
-            }
-            // UN/SUBSCRIBE TOPICS //
-            else if (action.equals("subscribeToTopic")) {
+            } else if (action.equals("subscribeToTopic")) {
                 cordova.getThreadPool().execute(new Runnable() {
                     public void run() {
                         try {
@@ -144,6 +135,8 @@ public class FCMPlugin extends CordovaPlugin {
                         new FCMPluginChannelCreator(getContext()).createNotificationChannel(callbackContext, args);
                     }
                 });
+            } else if (action.equals("deleteInstanceId")) {
+                this.deleteInstanceId(callbackContext);
             } else {
                 callbackContext.error("Method not found");
                 return false;
@@ -224,6 +217,19 @@ public class FCMPlugin extends CordovaPlugin {
         }
     }
 
+    private void deleteInstanceId(final CallbackContext callbackContext) {
+        cordova.getThreadPool().execute(new Runnable() {
+            public void run() {
+                try {
+                    FirebaseInstanceId.getInstance().deleteInstanceId();
+                    callbackContext.success();
+                } catch (Exception e) {
+                    callbackContext.error(e.getMessage());
+                }
+            }
+        });
+    }
+
     private JSONObject exceptionToJson(final Exception exception) throws JSONException {
         return new JSONObject() {
             {
@@ -260,11 +266,14 @@ public class FCMPlugin extends CordovaPlugin {
         Log.d(TAG, "\tSent event: " + eventName + " with " + stringifiedJSONValue);
     }
 
-    public static void sendPushPayload(Map<String, Object> payload) {
-        Log.d(TAG, "==> FCMPlugin sendPushPayload");
+    public static void setInitialPushPayload(Map<String, Object> payload) {
         if(initialPushPayload == null) {
             initialPushPayload = payload;
         }
+    }
+
+    public static void sendPushPayload(Map<String, Object> payload) {
+        Log.d(TAG, "==> FCMPlugin sendPushPayload");
         try {
             JSONObject jo = new JSONObject();
             for (String key : payload.keySet()) {

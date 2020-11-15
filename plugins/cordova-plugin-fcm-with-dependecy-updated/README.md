@@ -12,7 +12,7 @@
 [![Known Vulnerabilities](https://snyk.io/test/github/andrehtissot/cordova-plugin-fcm-with-dependecy-updated/badge.svg?targetFile=package.json)](https://snyk.io/test/github/andrehtissot/cordova-plugin-fcm-with-dependecy-updated?targetFile=package.json)
 [![DeepScan grade](https://deepscan.io/api/teams/3417/projects/5068/branches/39495/badge/grade.svg)](https://deepscan.io/dashboard#view=project&tid=3417&pid=5068&bid=39495)
 
-[How it works](#how-it-works) | [Installation](#installation) | [Push Payload Configuration](#push-payload-configuration) |  [Features](#features) | [Example Apps](#example-apps) | [Companion Plugins](#companion-plugins) | [Changelog](#changelog) | [Authorship](#authorship)
+[How it works](#how-it-works) | [Installation](#installation) | [Push Payload Configuration](#push-payload-configuration) |  [Features](#features) | [Example Apps](#example-apps) | [Companion Plugins](#companion-plugins) | [Changelog](https://github.com/andrehtissot/cordova-plugin-fcm-with-dependecy-updated/blob/master/CHANGELOG.md) | [Authorship](#authorship)
 
 ## How it works
 Send a push notification to a single device or topic.
@@ -27,6 +27,17 @@ Send a push notification to a single device or topic.
   - The device displays the notification message in the device notification bar.
   - If the user taps the notification, the application comes to foreground and the notification data is received in the JavaScript callback.
   - If the user does not tap the notification but opens the application, nothing happens until the notification is tapped.
+  
+### Push Notifications on iOS
+
+On Android, push notifications don't require any special permission and can be tested from emulators freely.
+
+Unfortunately, Apple is not as nice to work with, requiring:
+- The running device to be a real device, no simulators allowed;
+- Application has require the `UIBackgroundModes=[remote-notification]` permission (automatically configured by this plugin);
+- The user running the application has to manually allow the application to receive push notifications;
+- The application must be build with credentials created from a paid account (or team) that is allowed to receive push notifications;
+- The build installed has to have come from either Apple Store or TestFlight; Or, be build with a special certificate (https://customersupport.doubledutch.me/hc/en-us/articles/229495568-iOS-How-to-Create-a-Push-Notification-Certificate)
 
 ## Installation
 
@@ -46,12 +57,16 @@ Make sure you have ‘google-services.json’ for Android or ‘GoogleService-In
 Default preferences:
 
 ```
+npm install -g cordova@latest # Version 9 or higher required
+npm uninstall @ionic-native/fcm # Ionic support is included and conflicts with @ionic-native's implementation.
 cordova plugin add cordova-plugin-fcm-with-dependecy-updated
 ```
 
 Complete:
 
 ```
+npm install -g cordova@latest # Version 9 or higher required
+npm uninstall @ionic-native/fcm # Ionic support is included and conflicts with @ionic-native's implementation.
 cordova plugin add cordova-plugin-fcm-with-dependecy-updated \
   --variable ANDROID_FCM_VERSION="19.0.0" \
   --variable ANDROID_GRADLE_TOOLS_VERSION="3.5.3" \
@@ -64,12 +79,16 @@ cordova plugin add cordova-plugin-fcm-with-dependecy-updated \
 Default preferences:
 
 ```
+npm install -g cordova@latest # Version 9 or higher required
+npm uninstall @ionic-native/fcm # Ionic support is included and conflicts with @ionic-native's implementation.
 ionic cordova plugin add cordova-plugin-fcm-with-dependecy-updated
 ```
 
 Complete:
 
 ```
+npm install -g cordova@latest # Version 9 or higher required
+npm uninstall @ionic-native/fcm # Ionic support is included and conflicts with @ionic-native's implementation.
 ionic cordova plugin add cordova-plugin-fcm-with-dependecy-updated \
   --variable ANDROID_FCM_VERSION="19.0.0" \
   --variable ANDROID_GRADLE_TOOLS_VERSION="3.5.3" \
@@ -128,6 +147,7 @@ Example:
 - [As its own](#as-its-own)
   - [FCM.clearAllNotifications()](#fcmclearallnotifications)
   - [FCM.createNotificationChannel()](#fcmcreatenotificationchannel)
+  - [FCM.deleteInstanceId()](#fcmdeleteinstanceid)
   - [FCM.getAPNSToken()](#fcmgetapnstoken)
   - [FCM.getInitialPushPayload()](#fcmgetinitialpushpayload)
   - [FCM.getToken()](#fcmgettoken)
@@ -138,7 +158,7 @@ Example:
   - [FCM.subscribeToTopic()](#fcmsubscribetotopic)
   - [FCM.unsubscribeFromTopic()](#fcmunsubscribefromtopic)
   - [FCM.eventTarget](#fcmeventtarget)
-- [With Ionic](#with-ionic)
+- [**With Ionic**](#with-ionic)
   - [FCM.onNotification()](#fcmonnotification-1)
   - [FCM.onTokenRefresh()](#fcmontokenrefresh-1)
 
@@ -171,6 +191,13 @@ await FCM.createNotificationChannel({
 });
 ```
 
+##### FCM.deleteInstanceId()
+
+Deletes the InstanceId, revoking all tokens.
+```typescript
+await FCM.deleteInstanceId();
+```
+
 ##### FCM.getAPNSToken()
 
 Gets iOS device's current APNS token.
@@ -180,7 +207,7 @@ const apnsToken: string = await FCM.getAPNSToken();
 
 ##### FCM.getInitialPushPayload()
 
-Retrieves the message that, on tap, opened the app.
+Retrieves the message that, on tap, opened the app. And `null`, if the app was open normally.
 ```typescript
 const pushPayload: object = await FCM.getInitialPushPayload()
 ```
@@ -301,7 +328,7 @@ this.fcm.onNotification().subscribe((payload: object) => {
 
 ##### FCM.onTokenRefresh()
 
-Event firing when receiving new notifications.
+Event firing when receiving a new Firebase token.
 ```typescript
 this.fcm.onTokenRefresh().subscribe((token: string) => {
   // ...
@@ -324,60 +351,17 @@ https://github.com/andrehtissot/cordova-plugin-fcm-with-dependecy-updated-ionic-
 
 ## Companion Plugins
 
-### Optional FCM Image Support for Cordova iOS
+### Optional standalone FCM Image Support for Cordova iOS
 
-After a lot of work, the first release of the plugin https://github.com/andrehtissot/cordova-plugin-fcm-image-support is out. Which should enable the support, just by installing it.
+After a lot of work, the first release of the plugin is out. Which should enable the support, just by installing it.
 
-## Changelog
-### Version 7.0.9 (21/07/2020)
+Link: https://github.com/andrehtissot/cordova-plugin-fcm-image-support 
 
-getInitialPushPayload: Conversion of NSData* into NSDictonary* fix -- Thanks to @medeirosrafael for debugging and fixing it!
+### Optional standalone Cocoapods CDN source switcher
 
-### Version 7.0.8 (20/07/2020)
+When the environment supports, the cocoapods source is automatically set to the official CDN instead of the slow Github repository.
 
-Avoided execution of install_ionic_dependencies.bat after the app is installed;
-
-Removed old framework dependencies -- Thanks for @QuentinFarizon, for pointing it out!
-
-### Version 7.0.7 (17/07/2020)
-
-Removed auto-cdnfy due to service issues;
-
-Set AndroidXEnabled for cordova-android-9.0.0 (https://cordova.apache.org/announcements/2020/06/29/cordova-android-9.0.0.html).
-
-### Version 7.0.6 (14/07/2020)
-
-Simplified ionic/ngx/FCM.d.ts imports
-
-### Version 7.0.5 (13/07/2020)
-
-Renamed extension scripts/install_ionic_dependencies.sh to .bat, to have it running on windows.
-
-### Version 7.0.4 (13/07/2020)
-
-Simplified ionic/FCM.js and ionic/ngx/FCM.js files to ease building with them.
-
-Improved scripts/install_ionic_dependencies.sh windows support.
-
-### Version 7.0.3 (07/07/2020)
-
-Simplified ionic/v4/FCM.js file by setting the FCM function in the global context.
-
-### Version 7.0.2 (01/07/2020)
-
-Simplified .d.ts files by removing the new "type" from imports and exports.
-
-### Version 7.0.1 (28/06/2020)
-
-Replaced native to JS context messaging, from JS injection to event subscription.
-
-### Version 7.0.0 (27/06/2020)
-
-Breaking update released. Please pay atention to the changes in plugin preferences and API methods.
-
-### Version 6
-
-Version 6 changelogs will be only reported in its specific support branch [v6 branch](https://github.com/andrehtissot/cordova-plugin-fcm-with-dependecy-updated/tree/v6).
+Link: https://github.com/andrehtissot/cordova-plugin-cocoapods-cdn
 
 ## Authorship
 This started as a fork from https://github.com/fechanique/cordova-plugin-fcm and, gradually, had most of its implementation rewritten and improved, for newer dependency versions support, jitpack and cocoapods support, and new useful features.

@@ -15,7 +15,6 @@ export class FicheFirebaseService {
   }
 
   getFiches(userId: number) {
-    console.log(userId)
     this.ficheList = this.af.list<FicheModel>('fiches',
         ref => ref.orderByChild('userId').equalTo('' + userId));
     this.fiches$ = this.ficheList.valueChanges();

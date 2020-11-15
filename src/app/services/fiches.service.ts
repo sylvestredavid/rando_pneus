@@ -57,8 +57,8 @@ export class FicheService {
         const user = await this.storage.get('user');
         // ficheClean.signatureClient = encodeURIComponent(window.btoa(ficheClean.signatureClient));
         // ficheClean.signatureResponsable = encodeURIComponent(window.btoa(ficheClean.signatureResponsable));
-        ficheClean.nom = 'XXX';
-        ficheClean.prenom = 'XXX';
+        ficheClean.nom = user && user.nom ? user.nom : fiche.nomClient;
+        ficheClean.prenom = user && user.prenom ? user.prenom : '';
         /************************/
         return this.http
             .post(this.url, JSON.stringify(ficheClean), {headers: this.headers})

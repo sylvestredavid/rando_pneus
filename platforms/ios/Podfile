@@ -4,6 +4,5 @@ platform :ios, '11.0'
 
 target 'Rando-Pneus' do
 	project 'Rando-Pneus.xcodeproj'
-	pod 'Firebase/Analytics', '>= 6.21.0'
-	pod 'Firebase/Messaging', '>= 6.21.0'
+	pod 'Firebase/Messaging'
 end

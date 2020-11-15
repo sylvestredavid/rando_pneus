@@ -7,14 +7,8 @@
         }
     },
     "libraries": {
-        "Firebase/Analytics": {
-            "name": "Firebase/Analytics",
-            "spec": ">= 6.21.0",
-            "count": 1
-        },
         "Firebase/Messaging": {
             "name": "Firebase/Messaging",
-            "spec": ">= 6.21.0",
             "count": 1
         }
     }

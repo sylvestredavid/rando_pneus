@@ -32,4 +32,5 @@ export class FicheModel {
     vue?: boolean;
     modifieParBureau?: boolean;
     photos?: {nom: string, data: string}[];
+    note?: string;
 }

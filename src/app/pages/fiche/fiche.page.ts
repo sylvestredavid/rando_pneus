@@ -1,39 +1,45 @@
-import {Component, OnInit} from '@angular/core';
-import {AlertController} from '@ionic/angular';
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {AlertController, LoadingController} from '@ionic/angular';
 import {Router} from '@angular/router';
 import {FicheService} from '../../services/fiches.service';
 import {Events} from '../../services/events';
 import {FicheModel} from '../../models/fiche.model';
 import {MOCK_FICHES} from '../../models/fiches.mock';
 import {FicheFirebaseService} from '../../services/fiche-firebase.service';
+import {Subscription} from 'rxjs';
 
 @Component({
     selector: 'app-fiche',
     templateUrl: './fiche.page.html',
     styleUrls: ['./fiche.page.scss'],
 })
-export class FichePage implements OnInit {
+export class FichePage implements OnInit, OnDestroy {
     fiches: FicheModel[];
+    sub: Subscription;
     user: any;
 
     constructor(public alertCtrl: AlertController,
                 public router: Router,
                 private ficheService: FicheService,
                 public events: Events,
+                public loadingCtrl: LoadingController,
                 private ficheFirebaseService: FicheFirebaseService) {
 
         events.destroy('ficheEnvoyed');
     }
 
-    getFiches(): void {
+   async getFiches() {
+        const loading = await this.loadingCtrl.create({
+            message: 'Récupération des fiches en cours...'
+        });
+        if(!this.fiches) {
+            await loading.present();
+        }
 
-        this.ficheFirebaseService.fiches$.subscribe(
+        this.sub = this.ficheFirebaseService.fiches$.subscribe(
             fichesF => {
-                this.fiches = fichesF
-                this.ficheService.getFiches().then(fiches => {
-                        this.fiches = [...this.fiches, ...fiches];
-                    }
-                );
+                this.fiches = fichesF;
+                loading.dismiss();
             }
         );
 
@@ -47,7 +53,7 @@ export class FichePage implements OnInit {
 
 
     detailPage(id: number): void {
-        this.router.navigate(['detail-fiche/' + id]);
+        this.router.navigate(['edit-fiche/' + id]);
     }
 
 
@@ -74,12 +80,8 @@ export class FichePage implements OnInit {
                 {
                     text: 'Oui',
                     handler: () => {
-                        this.ficheService.delete(id).then(
-                            () => {
-                                this.ficheFirebaseService.deleteFiche(id)
-                                    .then(() => this.removeItem(id))
-                            }
-                        );
+                        this.ficheFirebaseService.deleteFiche(id)
+                            .then(() => this.removeItem(id));
                     }
                 },
                 {
@@ -99,5 +101,9 @@ export class FichePage implements OnInit {
                 this.fiches.splice(i, 1);
             }
         }
+    }
+
+    ngOnDestroy(): void {
+        this.sub.unsubscribe();
     }
 }

@@ -22,13 +22,13 @@ import { Camera } from '@ionic-native/Camera/ngx';
 import { Base64 } from '@ionic-native/base64/ngx';
 
 const firebaseConfig = {
-    apiKey: 'AIzaSyBDydLYUR4N_NjfJZ8wV2iWweVkRUno7Sg',
-    authDomain: 'rando-pneu.firebaseapp.com',
-    databaseURL: 'https://rando-pneu.firebaseio.com',
-    projectId: 'rando-pneu',
-    storageBucket: 'rando-pneu.appspot.com',
-    messagingSenderId: '468724977097',
-    appId: '1:468724977097:web:69b3472a067293f0616c18'
+    apiKey: 'AIzaSyDIF_Gu-dVLpN6m1PYDUZ_rgKYXMs1-NcE',
+    authDomain: 'rando-pneus.firebaseapp.com',
+    databaseURL: 'https://rando-pneus.firebaseio.com',
+    projectId: 'rando-pneus',
+    storageBucket: 'rando-pneus.appspot.com',
+    messagingSenderId: '861834275864',
+    appId: '1:861834275864:web:91203fdc810af3fe93676d',
 };
 
 @NgModule({

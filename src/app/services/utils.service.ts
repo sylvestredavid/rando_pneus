@@ -24,11 +24,8 @@ export class UtilsService {
             arrive.setSeconds(0, 0)
             depart.setSeconds(0, 0)
             const diff = depart.getTime() - arrive.getTime()
-            console.log(diff)
             let heures: any = Math.floor(diff / (1000 * 60 * 60));
             let minutes: any = Math.floor(diff / (1000 * 60)) - (heures * 60);
-            console.log(heures)
-            console.log(minutes)
             heures = heures ? heures + 'h' : '';
             minutes = this.formatTempsPasse(minutes, 'm');
             return heures + minutes;

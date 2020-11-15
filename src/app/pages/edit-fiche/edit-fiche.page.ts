@@ -11,7 +11,7 @@ import {FicheModel} from '../../models/fiche.model';
 import {FicheFirebaseService} from '../../services/fiche-firebase.service';
 import {UtilsService} from '../../services/utils.service';
 import {Camera, CameraOptions} from '@ionic-native/Camera/ngx';
-import {ActionSheetController, AlertController} from '@ionic/angular';
+import {ActionSheetController, AlertController, LoadingController} from '@ionic/angular';
 import {Base64} from '@ionic-native/base64/ngx';
 import {Subscription} from 'rxjs';
 
@@ -36,10 +36,9 @@ export class EditFichePage implements OnInit, AfterViewInit, OnDestroy {
     fournituresList: Array<string>;
     fournituresArray: Array<FormGroup> = [];
     numberForm: number;
-    subrcisption: Subscription
+    subrcisption: Subscription;
 
     constructor(private formBuilder: FormBuilder,
-                private ficheService: FicheService,
                 private route: ActivatedRoute,
                 public router: Router,
                 public events: Events,
@@ -47,6 +46,7 @@ export class EditFichePage implements OnInit, AfterViewInit, OnDestroy {
                 private camera: Camera,
                 private base64: Base64,
                 private utilsService: UtilsService,
+                public loadingCtrl: LoadingController,
                 private actionSheetController: ActionSheetController,
                 private ficheFirebaseService: FicheFirebaseService) {
         this.id = this.route.snapshot.params.id;
@@ -67,26 +67,16 @@ export class EditFichePage implements OnInit, AfterViewInit, OnDestroy {
     }
 
     getFiche(id: any) {
-        this.ficheService.getFiche(id)
-            .then(
-                fiche => {
-                    if (fiche) {
-                        this.fiche = fiche;
-                        this.constructFourni();
-                    } else {
-                        this.subrcisption = this.ficheFirebaseService.fiches$.subscribe(
-                            fiches => {
-                                this.fiche = fiches.find(f => f.id === id);
-                                this.photos = this.fiche.photos ? this.fiche.photos : [];
-                                this.constructFourni();
-                                this.fiche.vue = true;
-                                this.fiche.modifieParBureau = false;
-                                this.ficheFirebaseService.updateFiche(this.fiche);
-                            }
-                        );
-                    }
-                }
-            );
+        this.subrcisption = this.ficheFirebaseService.fiches$.subscribe(
+            fiches => {
+                this.fiche = fiches.find(f => f.id === id);
+                this.photos = this.fiche.photos ? this.fiche.photos : [];
+                this.constructFourni();
+                this.fiche.vue = true;
+                this.fiche.modifieParBureau = false;
+                this.ficheFirebaseService.updateFiche(this.fiche);
+            }
+        );
         // construit le tableau des fournitures
     }
 
@@ -110,7 +100,7 @@ export class EditFichePage implements OnInit, AfterViewInit, OnDestroy {
     initForm() {
         this.ficheForm = this.formBuilder.group({
             arrive: [this.fiche.arrive, Validators.required],
-            depart: [this.fiche.depart],
+            depart: [this.fiche.depart, Validators.required],
             temps: [this.fiche.temps],
             positionRoue: [this.fiche.positionRoue, Validators.required],
             nomClient: [this.fiche.nomClient, Validators.required],
@@ -142,24 +132,22 @@ export class EditFichePage implements OnInit, AfterViewInit, OnDestroy {
         this.ficheForm.controls.temps.setValue(this.utilsService.calculTime(this.ficheForm));
     }
 
-    save(): void {
+    async save() {
+        const loading = await this.loadingCtrl.create({
+            message: 'Modification de la fiche en cours...'
+        });
+        await loading.present();
         this.ficheForm.value.signatureClient = this.signatureClient.getSignature(); //
         this.ficheForm.value.signatureResponsable = this.signatureResponsable.getSignature(); //
         this.ficheForm.value.photos = this.photos;
-        if (isNaN(this.id)) {
-            const fiche = this.ficheForm.value;
-            fiche.id = this.fiche.id;
-            fiche.userId = this.fiche.userId;
-            this.ficheFirebaseService.updateFiche(fiche)
-                .then(() => {
-                    this.router.navigate(['fiche']);
-                });
-        } else {
-            this.ficheService.edit(this.id, this.ficheForm.value)
-                .then(() => {
-                    this.router.navigate(['fiche']);
-                });
-        }
+        const fiche = this.ficheForm.value;
+        fiche.id = this.fiche.id;
+        fiche.userId = this.fiche.userId;
+        this.ficheFirebaseService.updateFiche(fiche)
+            .then(() => {
+                loading.dismiss();
+                this.router.navigate(['fiche']);
+            });
     }
 
 
@@ -257,14 +245,12 @@ export class EditFichePage implements OnInit, AfterViewInit, OnDestroy {
                 {
                     text: 'Ouvrir l’appareil photo',
                     handler: () => {
-                        console.log('Ouvrir l’appareil photo');
                         this.pickImage(this.camera.PictureSourceType.CAMERA);
                     },
                 },
                 {
                     text: 'Ouvrir la pellicule',
                     handler: () => {
-                        console.log('Ouvrir la pellicule');
                         this.pickImage(this.camera.PictureSourceType.PHOTOLIBRARY);
                     },
                 },
@@ -283,22 +269,17 @@ export class EditFichePage implements OnInit, AfterViewInit, OnDestroy {
         const options: CameraOptions = {
             quality: 100,
             sourceType: source,
-            destinationType: this.camera.DestinationType.FILE_URI,
+            destinationType: this.camera.DestinationType.DATA_URL,
             encodingType: this.camera.EncodingType.JPEG,
             mediaType: this.camera.MediaType.PICTURE
         };
         this.camera.getPicture(options).then(
             (imageData) => {
-                const imageSplit = imageData.split('/');
-                const name = imageSplit[imageSplit.length - 1];
-                console.log(name);
-                this.base64.encodeFile(imageData).then((base64File: string) => {
-                    this.photos.push({
-                        nom: name,
-                        data: base64File
-                    });
-                }, (err) => {
-                    console.log(err);
+                const date = new Date();
+                const name = 'image-' + date.getTime();
+                this.photos.push({
+                    nom: name,
+                    data: 'data:image/*;base64,' + imageData
                 });
             })
             .catch(e => console.log(e));
@@ -325,6 +306,6 @@ export class EditFichePage implements OnInit, AfterViewInit, OnDestroy {
     }
 
     ngOnDestroy(): void {
-        this.subrcisption.unsubscribe()
+        this.subrcisption.unsubscribe();
     }
 }

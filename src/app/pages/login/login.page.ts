@@ -28,7 +28,6 @@ export class LoginPage {
     submit() {
         this.userService.login(this.loginForm.value).subscribe(
             user => {
-                console.log(user)
                 localStorage.setItem('userId', '' + user.id);
                 this.userService.storUser(user);
                 this.userService.addToken(user.id, this.userService.token).subscribe();

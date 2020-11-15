@@ -2,7 +2,7 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {FormArray, FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {FicheService} from '../../services/fiches.service';
 import {UserService} from '../../services/user.service';
-import {ActionSheetController, AlertController, NavController} from '@ionic/angular';
+import {ActionSheetController, AlertController, LoadingController, NavController} from '@ionic/angular';
 import {Events} from '../../services/events';
 import {Router} from '@angular/router';
 import {SignatureClientComponent} from '../../components/signatures/signature-client.component';
@@ -44,15 +44,23 @@ export class NouvelleFichePage implements OnInit {
                 private base64: Base64,
                 private utilsService: UtilsService,
                 private actionSheetController: ActionSheetController,
+                public loadingCtrl: LoadingController,
                 private ficheFirebaseService: FicheFirebaseService) {
+        events.subscribe('ficheEnvoyed', () => { // quand une fiche est envoyée on retourne sur fichePage
+            this.router.navigate(['fiche']);
+        });
+    }
+
+
+    ngOnInit() {
         this.ficheForm = this.formBuilder.group({
             arrive: ['', Validators.required],
-            depart: [''],
+            depart: ['', Validators.required],
             temps: [''],
             positionRoue: ['', Validators.required],
             nomClient: ['', Validators.required],
             nomAdresse: [''],
-            dimension: [''],
+            dimension: ['0'],
             dimensionLibre: [''],
             nvh: [''],
             kmCompteur: [''],
@@ -72,13 +80,6 @@ export class NouvelleFichePage implements OnInit {
             serrage: [''],
             fournitures: this.formBuilder.array([])
         });
-        events.subscribe('ficheEnvoyed', () => { // quand une fiche est envoyée on retourne sur fichePage
-            this.router.navigate(['fiche']);
-        });
-    }
-
-
-    ngOnInit() {
         this.photos = [];
         this.userService.getState().then(autosend => {
                 this.autosend = autosend;
@@ -140,7 +141,12 @@ export class NouvelleFichePage implements OnInit {
         control.removeAt(i);
     }
 
-    save(): void {
+    async save() {
+        const loading = await this.loadingCtrl.create({
+            message: 'Enregistrement de la fiche en cours...'
+        });
+
+        await loading.present();
         this.ficheForm.value.signatureClient = this.signatureClient.getSignature(); // recupere les coordoonnees
         this.ficheForm.value.signatureResponsable = this.signatureResponsable.getSignature();
         this.ficheForm.value.aEnvoyer = true;
@@ -160,13 +166,33 @@ export class NouvelleFichePage implements OnInit {
         this.ficheFirebaseService.addFiche(fiche)
             .then(
                 f => {
-                    console.log(f);
                     fiche.id = f.key;
                     this.ficheFirebaseService.updateFiche(fiche)
-                        .then(() => this.callback(fiche));
+                        .then(() => {
+                            this.callback(fiche);
+                            this.ficheForm.reset();
+                            loading.dismiss();
+                        });
                 }
-            );
+            )
+            .catch(err => {
+                loading.dismiss();
+                this.presentAlert();
+            })
 
+    }
+
+    async presentAlert() {
+        const confirm = await this.alertCtrl.create({
+            header: 'Un probleme est survenu lors de la création de la fiche.',
+            buttons: [
+                {
+                    text: 'ok',
+                }
+            ],
+            mode: 'ios'
+        });
+        await confirm.present();
     }
 
     callback(fiche: FicheModel) {
@@ -254,14 +280,12 @@ export class NouvelleFichePage implements OnInit {
                 {
                     text: 'Ouvrir l’appareil photo',
                     handler: () => {
-                        console.log('Ouvrir l’appareil photo');
                         this.pickImage(this.camera.PictureSourceType.CAMERA);
                     },
                 },
                 {
                     text: 'Ouvrir la pellicule',
                     handler: () => {
-                        console.log('Ouvrir la pellicule');
                         this.pickImage(this.camera.PictureSourceType.PHOTOLIBRARY);
                     },
                 },
@@ -280,22 +304,17 @@ export class NouvelleFichePage implements OnInit {
         const options: CameraOptions = {
             quality: 100,
             sourceType: source,
-            destinationType: this.camera.DestinationType.FILE_URI,
+            destinationType: this.camera.DestinationType.DATA_URL,
             encodingType: this.camera.EncodingType.JPEG,
             mediaType: this.camera.MediaType.PICTURE
         };
         this.camera.getPicture(options).then(
             (imageData) => {
-                const imageSplit = imageData.split('/');
-                const name = imageSplit[imageSplit.length - 1];
-                console.log(name);
-                this.base64.encodeFile(imageData).then((base64File: string) => {
-                    this.photos.push({
-                        nom: name,
-                        data: base64File
-                    });
-                }, (err) => {
-                    console.log(err);
+                const date = new Date();
+                const name = 'image-' + date.getTime();
+                this.photos.push({
+                    nom: name,
+                    data: 'data:image/*;base64,' + imageData
                 });
             })
             .catch(e => console.log(e));

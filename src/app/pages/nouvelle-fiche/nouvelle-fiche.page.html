@@ -25,7 +25,7 @@
                     </ion-col>
 
                     <ion-col>
-                        <ion-item class="input ion-float-right" lines="none" mode="ios" [ngClass]="ficheForm.get('depart').value ? 'green_input' : ''">
+                        <ion-item class="input ion-float-right" lines="none" mode="ios" [ngClass]="ficheForm.get('depart').value ? 'green_input' : 'orange_input'">
                             <ion-datetime mode="ios" formControlName="depart" (ionChange)="calculTime()"
                                           placeholder="Heure de départ" cancelText="Annuler"
                                           doneText="Valider" displayFormat="HH:mm" pickerFormat="HH:mm"></ion-datetime>

@@ -34,9 +34,8 @@ export class AppComponent {
   initializeApp() {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
-      this.splashScreen.hide();
+      // this.splashScreen.hide();
       this.fcm.getToken().then(token => {
-          console.log(token)
         this.userService.token = token;
       });
       this.fcm.onTokenRefresh().subscribe(token => {

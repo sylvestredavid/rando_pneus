@@ -5,7 +5,7 @@
 #import <Cordova/CDV.h>
 #import <WebKit/WebKit.h>
 #import "FCMPlugin.h"
-#import "Firebase.h"
+#import <Firebase.h>
 
 @interface FCMPlugin () {}
 @end
@@ -33,7 +33,6 @@ static FCMPlugin *fcmPluginInstance;
     }];
 }
 
-// HAS PERMISSION //
 - (void)hasPermission:(CDVInvokedUrlCommand *)command {
     [self.commandDelegate runInBackground:^{
         [AppDelegate hasPushPermission:^(NSNumber* pushPermission){
@@ -53,13 +52,11 @@ static FCMPlugin *fcmPluginInstance;
     }];
 }
 
-// START JS EVENT BRIDGE //
 - (void)startJsEventBridge:(CDVInvokedUrlCommand *)command {
     NSLog(@"start Js Event Bridge");
     jsEventBridgeCallbackId = command.callbackId;
 }
 
-// GET TOKEN //
 - (void)getToken:(CDVInvokedUrlCommand *)command {
     NSLog(@"get Token");
     [self.commandDelegate runInBackground:^{
@@ -70,7 +67,6 @@ static FCMPlugin *fcmPluginInstance;
     }];
 }
 
-// GET APNS TOKEN //
 - (void)getAPNSToken:(CDVInvokedUrlCommand *)command  {
     NSLog(@"get APNS Token");
     [self.commandDelegate runInBackground:^{
@@ -82,7 +78,6 @@ static FCMPlugin *fcmPluginInstance;
     }];
 }
 
-// CLEAR ALL NOTIFICATONS //
 - (void)clearAllNotifications:(CDVInvokedUrlCommand *)command {
   [self.commandDelegate runInBackground:^{
     NSLog(@"clear all notifications");
@@ -93,7 +88,6 @@ static FCMPlugin *fcmPluginInstance;
   }];
 }
 
-// UN/SUBSCRIBE TOPIC //
 - (void)subscribeToTopic:(CDVInvokedUrlCommand *)command {
     NSString* topic = [command.arguments objectAtIndex:0];
     NSLog(@"subscribe To Topic %@", topic);
@@ -161,6 +155,22 @@ static FCMPlugin *fcmPluginInstance;
         NSLog(@"getInitialPushPayload value: %@", payloadDictionary);
         CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:payloadDictionary];
         [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+    }];
+}
+
+- (void)deleteInstanceId:(CDVInvokedUrlCommand *)command {
+    [self.commandDelegate runInBackground:^{
+        [AppDelegate deleteInstanceId:^(NSError *error) {
+            __block CDVPluginResult *commandResult;
+            if(error == nil) {
+                NSLog(@"InstanceID deleted");
+                commandResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
+            } else {
+                NSLog(@"InstanceID deletion error: %@", error);
+                commandResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:[error description]];
+            }
+            [self.commandDelegate sendPluginResult:commandResult callbackId:command.callbackId];
+        }];
     }];
 }
 
