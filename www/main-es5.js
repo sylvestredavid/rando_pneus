@@ -141,131 +141,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<ion-app>\n    <ion-menu side=\"start\" menuId=\"first\" contentId=\"content1\">\n        <ion-header>\n            <ion-toolbar>\n                <ion-title color=\"primary\">Menu</ion-title>\n            </ion-toolbar>\n        </ion-header>\n        <ion-content>\n            <ion-list>\n                <ion-menu-toggle auto-hide=\"true\">\n                    <div *ngFor=\"let pages of pages\" class=\"itemMenu\" [routerLink]=\"pages.url\"\n                         routerDirection=\"forward\">\n                        <ion-icon class=\"iconMenu\" [name]=\"pages.icon\" slot=\"start\"></ion-icon>\n                        {{pages.title}}\n                    </div>\n                </ion-menu-toggle>\n            </ion-list>\n            <div class=\"fixed_bottom\">\n                <ion-menu-toggle auto-hide=\"true\">\n                    <p routerLink=\"/a-propos\">A propos</p>\n                </ion-menu-toggle>\n            </div>\n        </ion-content>\n    </ion-menu>\n    <ion-router-outlet id=\"content1\"></ion-router-outlet>\n</ion-app>\n";
-    /***/
-  },
-
-  /***/
-  "./plugins/cordova-plugin-fcm-with-dependecy-updated/ionic/ngx/FCM.js":
-  /*!****************************************************************************!*\
-    !*** ./plugins/cordova-plugin-fcm-with-dependecy-updated/ionic/ngx/FCM.js ***!
-    \****************************************************************************/
-
-  /*! exports provided: FCM */
-
-  /***/
-  function pluginsCordovaPluginFcmWithDependecyUpdatedIonicNgxFCMJs(module, __webpack_exports__, __webpack_require__) {
-    "use strict";
-
-    __webpack_require__.r(__webpack_exports__);
-    /* harmony export (binding) */
-
-
-    __webpack_require__.d(__webpack_exports__, "FCM", function () {
-      return FCM;
-    });
-    /* harmony import */
-
-
-    var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
-    /*! @angular/core */
-    "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
-    /* harmony import */
-
-
-    var rxjs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
-    /*! rxjs */
-    "./node_modules/rxjs/_esm2015/index.js");
-    /* harmony import */
-
-
-    var _ionic_native_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
-    /*! @ionic-native/core */
-    "./node_modules/@ionic-native/core/__ivy_ngcc__/index.js");
-
-    var __decorate = undefined && undefined.__decorate || function (decorators, target, key, desc) {
-      var c = arguments.length,
-          r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc,
-          d;
-      if (typeof Reflect === 'object' && typeof Reflect.decorate === 'function') r = Reflect.decorate(decorators, target, key, desc);else for (var i = decorators.length - 1; i >= 0; i--) {
-        if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-      }
-      return c > 3 && r && Object.defineProperty(target, key, r), r;
-    };
-
-    function FCM() {}
-
-    FCM.prototype.clearAllNotifications = function () {
-      return window.FCM.clearAllNotifications();
-    };
-
-    FCM.prototype.createNotificationChannel = function (channelConfig) {
-      return window.FCM.createNotificationChannel(channelConfig);
-    };
-
-    FCM.prototype.deleteInstanceId = function () {
-      return window.FCM.deleteInstanceId();
-    };
-
-    FCM.prototype.getAPNSToken = function () {
-      return window.FCM.getAPNSToken();
-    };
-
-    FCM.prototype.getInitialPushPayload = function () {
-      return window.FCM.getInitialPushPayload();
-    };
-
-    FCM.prototype.getToken = function () {
-      return window.FCM.getToken();
-    };
-
-    FCM.prototype.hasPermission = function () {
-      return window.FCM.hasPermission();
-    };
-
-    FCM.prototype.onNotification = function (options) {
-      var observable = new rxjs__WEBPACK_IMPORTED_MODULE_1__["Subject"]();
-
-      var handler = function handler(payload) {
-        return observable.next(payload);
-      };
-
-      window.FCM.onNotification(handler, options);
-      return observable;
-    };
-
-    FCM.prototype.onTokenRefresh = function (options) {
-      var observable = new rxjs__WEBPACK_IMPORTED_MODULE_1__["Subject"]();
-      window.FCM.onTokenRefresh(function (token) {
-        return observable.next(token);
-      }, options);
-      return observable;
-    };
-
-    FCM.prototype.requestPushPermission = function (options) {
-      return window.FCM.requestPushPermission(options);
-    };
-
-    FCM.prototype.subscribeToTopic = function (topic) {
-      return window.FCM.subscribeToTopic(topic);
-    };
-
-    FCM.prototype.unsubscribeFromTopic = function (topic) {
-      return window.FCM.unsubscribeFromTopic(topic);
-    };
-
-    FCM.pluginName = 'FCM';
-    FCM.plugin = 'cordova-plugin-fcm-with-dependecy-updated';
-    FCM.pluginRef = 'FCM';
-    FCM.repo = 'https://github.com/andrehtissot/cordova-plugin-fcm-with-dependecy-updated';
-    FCM.platforms = ['Android', 'iOS'];
-    FCM.installed = _ionic_native_core__WEBPACK_IMPORTED_MODULE_2__["IonicNativePlugin"].installed;
-    FCM.getPlugin = _ionic_native_core__WEBPACK_IMPORTED_MODULE_2__["IonicNativePlugin"].getPlugin;
-    FCM.getPluginName = _ionic_native_core__WEBPACK_IMPORTED_MODULE_2__["IonicNativePlugin"].getPluginName;
-    FCM.getPluginRef = _ionic_native_core__WEBPACK_IMPORTED_MODULE_2__["IonicNativePlugin"].getPluginRef;
-    FCM.getPluginInstallName = _ionic_native_core__WEBPACK_IMPORTED_MODULE_2__["IonicNativePlugin"].getPluginInstallName;
-    FCM.getSupportedPlatforms = _ionic_native_core__WEBPACK_IMPORTED_MODULE_2__["IonicNativePlugin"].getSupportedPlatforms;
-    FCM = __decorate([Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])()], FCM);
+    __webpack_exports__["default"] = "<ion-app>\r\n    <ion-menu side=\"start\" menuId=\"first\" contentId=\"content1\">\r\n        <ion-header>\r\n            <ion-toolbar>\r\n                <ion-title color=\"primary\">Menu</ion-title>\r\n            </ion-toolbar>\r\n        </ion-header>\r\n        <ion-content>\r\n            <ion-list>\r\n                <ion-menu-toggle auto-hide=\"true\">\r\n                    <div *ngFor=\"let pages of pages\" class=\"itemMenu\" [routerLink]=\"pages.url\"\r\n                         routerDirection=\"forward\">\r\n                        <ion-icon class=\"iconMenu\" [name]=\"pages.icon\" slot=\"start\"></ion-icon>\r\n                        {{pages.title}}\r\n                    </div>\r\n                </ion-menu-toggle>\r\n            </ion-list>\r\n            <div class=\"fixed_bottom\">\r\n                <ion-menu-toggle auto-hide=\"true\">\r\n                    <p routerLink=\"/a-propos\">A propos</p>\r\n                </ion-menu-toggle>\r\n            </div>\r\n        </ion-content>\r\n    </ion-menu>\r\n    <ion-router-outlet id=\"content1\"></ion-router-outlet>\r\n</ion-app>\r\n";
     /***/
   },
 
@@ -438,7 +314,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "ion-icon.large-button {\n  font-size: 48px;\n}\n\n.iconMenu {\n  color: #FFFFFF;\n}\n\n.itemMenu {\n  padding-top: 49px;\n  color: white;\n  padding-left: 15%;\n  font-size: 18px;\n  display: flex;\n  align-items: center;\n}\n\n.itemMenu ion-icon {\n  font-size: 48px;\n  margin-right: 7%;\n}\n\n.papatte {\n  width: 65px;\n  height: 75px;\n}\n\nion-content {\n  --background: #B9AA97;\n  position: relative;\n}\n\n.button-menu {\n  height: 48px;\n}\n\n.fixed_bottom {\n  position: fixed;\n  bottom: 44px;\n  left: 44px;\n  color: white;\n  font-size: 18px;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9kYXZpZHN5bHZlc3RyZS9EZXNrdG9wL3JhbmRvX3BuZXVzL3NyYy9hcHAvYXBwLmNvbXBvbmVudC5zY3NzIiwic3JjL2FwcC9hcHAuY29tcG9uZW50LnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBR0E7RUFDRSxlQUFBO0FDRkY7O0FET0E7RUFDRSxjQUFBO0FDSkY7O0FET0E7RUFDRSxpQkFBQTtFQUNBLFlBQUE7RUFDQSxpQkFBQTtFQUNBLGVBQUE7RUFDQSxhQUFBO0VBQ0EsbUJBQUE7QUNKRjs7QURLRTtFQUNFLGVBQUE7RUFDQSxnQkFBQTtBQ0hKOztBRE9BO0VBQ0UsV0FBQTtFQUNBLFlBQUE7QUNKRjs7QURPQTtFQUNFLHFCQUFBO0VBQ0Esa0JBQUE7QUNKRjs7QURTQTtFQUNFLFlBQUE7QUNORjs7QURTQTtFQUNFLGVBQUE7RUFDQSxZQUFBO0VBQ0EsVUFBQTtFQUNBLFlBQUE7RUFDQSxlQUFBO0FDTkYiLCJmaWxlIjoic3JjL2FwcC9hcHAuY29tcG9uZW50LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyIvLyBodHRwOi8vaW9uaWNmcmFtZXdvcmsuY29tL2RvY3MvdjIvdGhlbWluZy9cblxuLy8gaWNvbiBtZW51XG5pb24taWNvbi5sYXJnZS1idXR0b257XG4gIGZvbnQtc2l6ZSA6IDQ4cHg7XG59XG5cbi8vcGF0dGVcblxuLmljb25NZW51e1xuICBjb2xvcjojRkZGRkZGO1xufVxuXG4uaXRlbU1lbnV7XG4gIHBhZGRpbmctdG9wOiA0OXB4O1xuICBjb2xvcjogd2hpdGU7XG4gIHBhZGRpbmctbGVmdDogMTUlO1xuICBmb250LXNpemU6IDE4cHg7XG4gIGRpc3BsYXk6IGZsZXg7XG4gIGFsaWduLWl0ZW1zOiBjZW50ZXI7XG4gIGlvbi1pY29uIHtcbiAgICBmb250LXNpemU6IDQ4cHg7XG4gICAgbWFyZ2luLXJpZ2h0OiA3JTtcbiAgfVxufVxuXG4ucGFwYXR0ZSB7XG4gIHdpZHRoOiA2NXB4O1xuICBoZWlnaHQ6IDc1cHg7XG59XG5cbmlvbi1jb250ZW50IHtcbiAgLS1iYWNrZ3JvdW5kOiAjQjlBQTk3O1xuICBwb3NpdGlvbjogcmVsYXRpdmU7XG59XG5cblxuLy9sYXJnZXVyIGR1IGNvbnRlbmV1ciBkdSBidXR0b24gZHUgbWVudVxuLmJ1dHRvbi1tZW51e1xuICBoZWlnaHQ6IDQ4cHg7XG59XG5cbi5maXhlZF9ib3R0b20ge1xuICBwb3NpdGlvbjogZml4ZWQ7XG4gIGJvdHRvbTogNDRweDtcbiAgbGVmdDogNDRweDtcbiAgY29sb3I6IHdoaXRlO1xuICBmb250LXNpemU6IDE4cHg7XG59XG5cblxuLy8gQXBwIEdsb2JhbCBTYXNzXG4vLyAtLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLVxuLy8gUHV0IHN0eWxlIHJ1bGVzIGhlcmUgdGhhdCB5b3Ugd2FudCB0byBhcHBseSBnbG9iYWxseS4gVGhlc2Vcbi8vIHN0eWxlcyBhcmUgZm9yIHRoZSBlbnRpcmUgYXBwIGFuZCBub3QganVzdCBvbmUgY29tcG9uZW50LlxuLy8gQWRkaXRpb25hbGx5LCB0aGlzIGZpbGUgY2FuIGJlIGFsc28gdXNlZCBhcyBhbiBlbnRyeSBwb2ludFxuLy8gdG8gaW1wb3J0IG90aGVyIFNhc3MgZmlsZXMgdG8gYmUgaW5jbHVkZWQgaW4gdGhlIG91dHB1dCBDU1MuXG4vL1xuLy8gU2hhcmVkIFNhc3MgdmFyaWFibGVzLCB3aGljaCBjYW4gYmUgdXNlZCB0byBhZGp1c3QgSW9uaWMnc1xuLy8gZGVmYXVsdCBTYXNzIHZhcmlhYmxlcywgYmVsb25nIGluIFwidGhlbWUvdmFyaWFibGVzLnNjc3NcIi5cbi8vXG4vLyBUbyBkZWNsYXJlIHJ1bGVzIGZvciBhIHNwZWNpZmljIG1vZGUsIGNyZWF0ZSBhIGNoaWxkIHJ1bGVcbi8vIGZvciB0aGUgLm1kLCAuaW9zLCBvciAud3AgbW9kZSBjbGFzc2VzLiBUaGUgbW9kZSBjbGFzcyBpc1xuLy8gYXV0b21hdGljYWxseSBhcHBsaWVkIHRvIHRoZSA8Ym9keT4gZWxlbWVudCBpbiB0aGUgYXBwLlxuIiwiaW9uLWljb24ubGFyZ2UtYnV0dG9uIHtcbiAgZm9udC1zaXplOiA0OHB4O1xufVxuXG4uaWNvbk1lbnUge1xuICBjb2xvcjogI0ZGRkZGRjtcbn1cblxuLml0ZW1NZW51IHtcbiAgcGFkZGluZy10b3A6IDQ5cHg7XG4gIGNvbG9yOiB3aGl0ZTtcbiAgcGFkZGluZy1sZWZ0OiAxNSU7XG4gIGZvbnQtc2l6ZTogMThweDtcbiAgZGlzcGxheTogZmxleDtcbiAgYWxpZ24taXRlbXM6IGNlbnRlcjtcbn1cbi5pdGVtTWVudSBpb24taWNvbiB7XG4gIGZvbnQtc2l6ZTogNDhweDtcbiAgbWFyZ2luLXJpZ2h0OiA3JTtcbn1cblxuLnBhcGF0dGUge1xuICB3aWR0aDogNjVweDtcbiAgaGVpZ2h0OiA3NXB4O1xufVxuXG5pb24tY29udGVudCB7XG4gIC0tYmFja2dyb3VuZDogI0I5QUE5NztcbiAgcG9zaXRpb246IHJlbGF0aXZlO1xufVxuXG4uYnV0dG9uLW1lbnUge1xuICBoZWlnaHQ6IDQ4cHg7XG59XG5cbi5maXhlZF9ib3R0b20ge1xuICBwb3NpdGlvbjogZml4ZWQ7XG4gIGJvdHRvbTogNDRweDtcbiAgbGVmdDogNDRweDtcbiAgY29sb3I6IHdoaXRlO1xuICBmb250LXNpemU6IDE4cHg7XG59Il19 */";
+    __webpack_exports__["default"] = "ion-icon.large-button {\n  font-size: 48px;\n}\n\n.iconMenu {\n  color: #FFFFFF;\n}\n\n.itemMenu {\n  padding-top: 49px;\n  color: white;\n  padding-left: 15%;\n  font-size: 18px;\n  display: flex;\n  align-items: center;\n}\n\n.itemMenu ion-icon {\n  font-size: 48px;\n  margin-right: 7%;\n}\n\n.papatte {\n  width: 65px;\n  height: 75px;\n}\n\nion-content {\n  --background: #B9AA97;\n  position: relative;\n}\n\n.button-menu {\n  height: 48px;\n}\n\n.fixed_bottom {\n  position: fixed;\n  bottom: 44px;\n  left: 44px;\n  color: white;\n  font-size: 18px;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvRDpcXFByb2plY3RzXFxyYW5kb19wbmV1cy9zcmNcXGFwcFxcYXBwLmNvbXBvbmVudC5zY3NzIiwic3JjL2FwcC9hcHAuY29tcG9uZW50LnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBR0E7RUFDRSxlQUFBO0FDRkY7O0FET0E7RUFDRSxjQUFBO0FDSkY7O0FET0E7RUFDRSxpQkFBQTtFQUNBLFlBQUE7RUFDQSxpQkFBQTtFQUNBLGVBQUE7RUFDQSxhQUFBO0VBQ0EsbUJBQUE7QUNKRjs7QURLRTtFQUNFLGVBQUE7RUFDQSxnQkFBQTtBQ0hKOztBRE9BO0VBQ0UsV0FBQTtFQUNBLFlBQUE7QUNKRjs7QURPQTtFQUNFLHFCQUFBO0VBQ0Esa0JBQUE7QUNKRjs7QURTQTtFQUNFLFlBQUE7QUNORjs7QURTQTtFQUNFLGVBQUE7RUFDQSxZQUFBO0VBQ0EsVUFBQTtFQUNBLFlBQUE7RUFDQSxlQUFBO0FDTkYiLCJmaWxlIjoic3JjL2FwcC9hcHAuY29tcG9uZW50LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyIvLyBodHRwOi8vaW9uaWNmcmFtZXdvcmsuY29tL2RvY3MvdjIvdGhlbWluZy9cclxuXHJcbi8vIGljb24gbWVudVxyXG5pb24taWNvbi5sYXJnZS1idXR0b257XHJcbiAgZm9udC1zaXplIDogNDhweDtcclxufVxyXG5cclxuLy9wYXR0ZVxyXG5cclxuLmljb25NZW51e1xyXG4gIGNvbG9yOiNGRkZGRkY7XHJcbn1cclxuXHJcbi5pdGVtTWVudXtcclxuICBwYWRkaW5nLXRvcDogNDlweDtcclxuICBjb2xvcjogd2hpdGU7XHJcbiAgcGFkZGluZy1sZWZ0OiAxNSU7XHJcbiAgZm9udC1zaXplOiAxOHB4O1xyXG4gIGRpc3BsYXk6IGZsZXg7XHJcbiAgYWxpZ24taXRlbXM6IGNlbnRlcjtcclxuICBpb24taWNvbiB7XHJcbiAgICBmb250LXNpemU6IDQ4cHg7XHJcbiAgICBtYXJnaW4tcmlnaHQ6IDclO1xyXG4gIH1cclxufVxyXG5cclxuLnBhcGF0dGUge1xyXG4gIHdpZHRoOiA2NXB4O1xyXG4gIGhlaWdodDogNzVweDtcclxufVxyXG5cclxuaW9uLWNvbnRlbnQge1xyXG4gIC0tYmFja2dyb3VuZDogI0I5QUE5NztcclxuICBwb3NpdGlvbjogcmVsYXRpdmU7XHJcbn1cclxuXHJcblxyXG4vL2xhcmdldXIgZHUgY29udGVuZXVyIGR1IGJ1dHRvbiBkdSBtZW51XHJcbi5idXR0b24tbWVudXtcclxuICBoZWlnaHQ6IDQ4cHg7XHJcbn1cclxuXHJcbi5maXhlZF9ib3R0b20ge1xyXG4gIHBvc2l0aW9uOiBmaXhlZDtcclxuICBib3R0b206IDQ0cHg7XHJcbiAgbGVmdDogNDRweDtcclxuICBjb2xvcjogd2hpdGU7XHJcbiAgZm9udC1zaXplOiAxOHB4O1xyXG59XHJcblxyXG5cclxuLy8gQXBwIEdsb2JhbCBTYXNzXHJcbi8vIC0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tXHJcbi8vIFB1dCBzdHlsZSBydWxlcyBoZXJlIHRoYXQgeW91IHdhbnQgdG8gYXBwbHkgZ2xvYmFsbHkuIFRoZXNlXHJcbi8vIHN0eWxlcyBhcmUgZm9yIHRoZSBlbnRpcmUgYXBwIGFuZCBub3QganVzdCBvbmUgY29tcG9uZW50LlxyXG4vLyBBZGRpdGlvbmFsbHksIHRoaXMgZmlsZSBjYW4gYmUgYWxzbyB1c2VkIGFzIGFuIGVudHJ5IHBvaW50XHJcbi8vIHRvIGltcG9ydCBvdGhlciBTYXNzIGZpbGVzIHRvIGJlIGluY2x1ZGVkIGluIHRoZSBvdXRwdXQgQ1NTLlxyXG4vL1xyXG4vLyBTaGFyZWQgU2FzcyB2YXJpYWJsZXMsIHdoaWNoIGNhbiBiZSB1c2VkIHRvIGFkanVzdCBJb25pYydzXHJcbi8vIGRlZmF1bHQgU2FzcyB2YXJpYWJsZXMsIGJlbG9uZyBpbiBcInRoZW1lL3ZhcmlhYmxlcy5zY3NzXCIuXHJcbi8vXHJcbi8vIFRvIGRlY2xhcmUgcnVsZXMgZm9yIGEgc3BlY2lmaWMgbW9kZSwgY3JlYXRlIGEgY2hpbGQgcnVsZVxyXG4vLyBmb3IgdGhlIC5tZCwgLmlvcywgb3IgLndwIG1vZGUgY2xhc3Nlcy4gVGhlIG1vZGUgY2xhc3MgaXNcclxuLy8gYXV0b21hdGljYWxseSBhcHBsaWVkIHRvIHRoZSA8Ym9keT4gZWxlbWVudCBpbiB0aGUgYXBwLlxyXG4iLCJpb24taWNvbi5sYXJnZS1idXR0b24ge1xuICBmb250LXNpemU6IDQ4cHg7XG59XG5cbi5pY29uTWVudSB7XG4gIGNvbG9yOiAjRkZGRkZGO1xufVxuXG4uaXRlbU1lbnUge1xuICBwYWRkaW5nLXRvcDogNDlweDtcbiAgY29sb3I6IHdoaXRlO1xuICBwYWRkaW5nLWxlZnQ6IDE1JTtcbiAgZm9udC1zaXplOiAxOHB4O1xuICBkaXNwbGF5OiBmbGV4O1xuICBhbGlnbi1pdGVtczogY2VudGVyO1xufVxuLml0ZW1NZW51IGlvbi1pY29uIHtcbiAgZm9udC1zaXplOiA0OHB4O1xuICBtYXJnaW4tcmlnaHQ6IDclO1xufVxuXG4ucGFwYXR0ZSB7XG4gIHdpZHRoOiA2NXB4O1xuICBoZWlnaHQ6IDc1cHg7XG59XG5cbmlvbi1jb250ZW50IHtcbiAgLS1iYWNrZ3JvdW5kOiAjQjlBQTk3O1xuICBwb3NpdGlvbjogcmVsYXRpdmU7XG59XG5cbi5idXR0b24tbWVudSB7XG4gIGhlaWdodDogNDhweDtcbn1cblxuLmZpeGVkX2JvdHRvbSB7XG4gIHBvc2l0aW9uOiBmaXhlZDtcbiAgYm90dG9tOiA0NHB4O1xuICBsZWZ0OiA0NHB4O1xuICBjb2xvcjogd2hpdGU7XG4gIGZvbnQtc2l6ZTogMThweDtcbn0iXX0= */";
     /***/
   },
 
@@ -503,40 +379,33 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     var _angular_router__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
     /*! @angular/router */
     "./node_modules/@angular/router/__ivy_ngcc__/fesm2015/router.js");
-    /* harmony import */
-
-
-    var _plugins_cordova_plugin_fcm_with_dependecy_updated_ionic_ngx_FCM__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(
-    /*! ../../plugins/cordova-plugin-fcm-with-dependecy-updated/ionic/ngx/FCM */
-    "./plugins/cordova-plugin-fcm-with-dependecy-updated/ionic/ngx/FCM.js");
 
     var AppComponent = /*#__PURE__*/function () {
-      function AppComponent(platform, splashScreen, statusBar, fcm, userService, router) {
+      function AppComponent(platform, splashScreen, statusBar, userService, router) {
         _classCallCheck(this, AppComponent);
 
         this.platform = platform;
         this.splashScreen = splashScreen;
         this.statusBar = statusBar;
-        this.fcm = fcm;
         this.userService = userService;
         this.router = router;
         this.initializeApp();
         this.pages = [{
-          title: 'Accueil',
-          url: 'accueil',
-          icon: 'home-sharp'
+          title: "Accueil",
+          url: "accueil",
+          icon: "home-sharp"
         }, {
-          title: 'Mes fiches',
-          url: 'fiche',
-          icon: 'document-text-sharp'
+          title: "Mes fiches",
+          url: "fiche",
+          icon: "document-text-sharp"
         }, {
-          title: 'Nouvelle fiche',
-          url: 'nouvelle-fiche',
-          icon: 'pencil-sharp'
+          title: "Nouvelle fiche",
+          url: "nouvelle-fiche",
+          icon: "pencil-sharp"
         }, {
-          title: 'Réglages',
-          url: 'reglage',
-          icon: 'settings-sharp'
+          title: "Réglages",
+          url: "reglage",
+          icon: "settings-sharp"
         }];
       }
 
@@ -548,18 +417,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           this.platform.ready().then(function () {
             _this.statusBar.styleDefault(); // this.splashScreen.hide();
 
-
-            _this.fcm.getToken().then(function (token) {
-              _this.userService.token = token;
-            });
-
-            _this.fcm.onTokenRefresh().subscribe(function (token) {});
-
-            _this.fcm.onNotification().subscribe(function (notif) {
-              if (notif.wasTapped) {
-                _this.router.navigate(['fiche']);
-              } else {}
-            });
           });
         }
       }]);
@@ -575,8 +432,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         type: _ionic_native_status_bar_ngx__WEBPACK_IMPORTED_MODULE_4__["StatusBar"]
       }, {
-        type: _plugins_cordova_plugin_fcm_with_dependecy_updated_ionic_ngx_FCM__WEBPACK_IMPORTED_MODULE_7__["FCM"]
-      }, {
         type: _services_user_service__WEBPACK_IMPORTED_MODULE_5__["UserService"]
       }, {
         type: _angular_router__WEBPACK_IMPORTED_MODULE_6__["Router"]
@@ -584,7 +439,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     };
 
     AppComponent = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
-      selector: 'app-root',
+      selector: "app-root",
       template: Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"])(__webpack_require__(
       /*! raw-loader!./app.component.html */
       "./node_modules/raw-loader/dist/cjs.js!./src/app/app.component.html"))["default"],
@@ -713,42 +568,42 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony import */
 
 
-    var _plugins_cordova_plugin_fcm_with_dependecy_updated_ionic_ngx_FCM__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(
-    /*! ../../plugins/cordova-plugin-fcm-with-dependecy-updated/ionic/ngx/FCM */
-    "./plugins/cordova-plugin-fcm-with-dependecy-updated/ionic/ngx/FCM.js");
-    /* harmony import */
-
-
-    var _guards_connected_guard__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(
+    var _guards_connected_guard__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(
     /*! ./guards/connected.guard */
     "./src/app/guards/connected.guard.ts");
     /* harmony import */
 
 
-    var _guards_is_connected_guard__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(
+    var _guards_is_connected_guard__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(
     /*! ./guards/is-connected.guard */
     "./src/app/guards/is-connected.guard.ts");
     /* harmony import */
 
 
-    var _ionic_native_Camera_ngx__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(
+    var _ionic_native_Camera_ngx__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(
     /*! @ionic-native/Camera/ngx */
     "./node_modules/@ionic-native/Camera/__ivy_ngcc__/ngx/index.js");
     /* harmony import */
 
 
-    var _ionic_native_base64_ngx__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(
+    var _ionic_native_base64_ngx__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(
     /*! @ionic-native/base64/ngx */
     "./node_modules/@ionic-native/base64/__ivy_ngcc__/ngx/index.js");
+    /* harmony import */
+
+
+    var _ionic_native_onesignal_ngx__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(
+    /*! @ionic-native/onesignal/ngx */
+    "./node_modules/@ionic-native/onesignal/__ivy_ngcc__/ngx/index.js");
 
     var firebaseConfig = {
-      apiKey: 'AIzaSyDIF_Gu-dVLpN6m1PYDUZ_rgKYXMs1-NcE',
-      authDomain: 'rando-pneus.firebaseapp.com',
-      databaseURL: 'https://rando-pneus.firebaseio.com',
-      projectId: 'rando-pneus',
-      storageBucket: 'rando-pneus.appspot.com',
-      messagingSenderId: '861834275864',
-      appId: '1:861834275864:web:91203fdc810af3fe93676d'
+      apiKey: "AIzaSyDIF_Gu-dVLpN6m1PYDUZ_rgKYXMs1-NcE",
+      authDomain: "rando-pneus.firebaseapp.com",
+      databaseURL: "https://rando-pneus.firebaseio.com",
+      projectId: "rando-pneus",
+      storageBucket: "rando-pneus.appspot.com",
+      messagingSenderId: "861834275864",
+      appId: "1:861834275864:web:91203fdc810af3fe93676d"
     };
 
     var AppModule = function AppModule() {
@@ -759,13 +614,13 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       declarations: [_app_component__WEBPACK_IMPORTED_MODULE_7__["AppComponent"]],
       entryComponents: [],
       imports: [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_2__["BrowserModule"], _angular_fire__WEBPACK_IMPORTED_MODULE_11__["AngularFireModule"].initializeApp(firebaseConfig), _angular_fire_firestore__WEBPACK_IMPORTED_MODULE_12__["AngularFirestoreModule"], _angular_fire_storage__WEBPACK_IMPORTED_MODULE_13__["AngularFireStorageModule"], _angular_fire_auth__WEBPACK_IMPORTED_MODULE_14__["AngularFireAuthModule"], _angular_fire_database__WEBPACK_IMPORTED_MODULE_15__["AngularFireDatabaseModule"], _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonicModule"].forRoot(), _app_routing_module__WEBPACK_IMPORTED_MODULE_8__["AppRoutingModule"], _angular_common_http__WEBPACK_IMPORTED_MODULE_9__["HttpClientModule"], _ionic_storage__WEBPACK_IMPORTED_MODULE_10__["IonicStorageModule"].forRoot({
-        name: '__mydb',
-        driverOrder: ['sqlite', 'websql', 'indexeddb']
+        name: "__mydb",
+        driverOrder: ["sqlite", "websql", "indexeddb"]
       })],
-      providers: [_ionic_native_status_bar_ngx__WEBPACK_IMPORTED_MODULE_6__["StatusBar"], _ionic_native_Camera_ngx__WEBPACK_IMPORTED_MODULE_19__["Camera"], _guards_connected_guard__WEBPACK_IMPORTED_MODULE_17__["ConnectedGuard"], _guards_is_connected_guard__WEBPACK_IMPORTED_MODULE_18__["IsConnectedGuard"], _ionic_native_splash_screen_ngx__WEBPACK_IMPORTED_MODULE_5__["SplashScreen"], _ionic_native_base64_ngx__WEBPACK_IMPORTED_MODULE_20__["Base64"], _plugins_cordova_plugin_fcm_with_dependecy_updated_ionic_ngx_FCM__WEBPACK_IMPORTED_MODULE_16__["FCM"], {
+      providers: [_ionic_native_status_bar_ngx__WEBPACK_IMPORTED_MODULE_6__["StatusBar"], _ionic_native_Camera_ngx__WEBPACK_IMPORTED_MODULE_18__["Camera"], _guards_connected_guard__WEBPACK_IMPORTED_MODULE_16__["ConnectedGuard"], _guards_is_connected_guard__WEBPACK_IMPORTED_MODULE_17__["IsConnectedGuard"], _ionic_native_splash_screen_ngx__WEBPACK_IMPORTED_MODULE_5__["SplashScreen"], _ionic_native_base64_ngx__WEBPACK_IMPORTED_MODULE_19__["Base64"], {
         provide: _angular_router__WEBPACK_IMPORTED_MODULE_3__["RouteReuseStrategy"],
         useClass: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonicRouteStrategy"]
-      }],
+      }, _ionic_native_onesignal_ngx__WEBPACK_IMPORTED_MODULE_20__["OneSignal"]],
       bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_7__["AppComponent"]]
     })], AppModule);
     /***/
@@ -1250,7 +1105,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
   /***/
   function _(module, exports, __webpack_require__) {
     module.exports = __webpack_require__(
-    /*! /Users/davidsylvestre/Desktop/rando_pneus/src/main.ts */
+    /*! D:\Projects\rando_pneus\src\main.ts */
     "./src/main.ts");
     /***/
   }

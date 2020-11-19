@@ -48,17 +48,21 @@ export class LoginPage {
         comiteo: "app-generic-test",
       });
 
-      this.oneSignal
-        .getPermissionSubscriptionState()
-        .then(() => {
-          alert("permission ok");
-        })
-        .catch(() => "permission ko");
+      this.oneSignal.getPermissionSubscriptionState();
 
       this.oneSignal.endInit();
     } catch (e) {
       console.warn("cordova_not_available");
     }
+  }
+
+  appendDeviceToFirebase(user) {
+    this.oneSignal
+      .getIds()
+      .then((onfulfilled) => {
+        this.userService.addToken(user.id, onfulfilled.userId).subscribe();
+      })
+      .catch(() => {});
   }
 
   submit() {
@@ -67,7 +71,7 @@ export class LoginPage {
       (user) => {
         localStorage.setItem("userId", "" + user.id);
         this.userService.storUser(user);
-        this.userService.addToken(user.id, this.userService.token).subscribe();
+        this.appendDeviceToFirebase(user);
         this.ficheFirebaseService.getFiches(user.id);
 
         this.router.navigate(["accueil"]);

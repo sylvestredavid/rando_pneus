@@ -9,7 +9,7 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<ion-header>\n  <ion-toolbar>\n    <ion-buttons slot=\"start\">\n    </ion-buttons>\n    <img class=\"papatte\" src=\"./assets/img/patte.png\" align=\"middle\" alt=\"\">\n  </ion-toolbar>\n</ion-header>\n<ion-content id=\"content\">\n  <div id=\"flex\">\n\n    <ion-icon class=\"person\" name=\"person\"></ion-icon>\n    <div id=\"login\">\n\n      <form [formGroup]=\"loginForm\" (ngSubmit)=\"submit()\">\n        <ion-input type=\"text\" placeholder=\"Identifiant\" formControlName=\"login\"></ion-input>\n        <ion-input type=\"password\" placeholder=\"Mot de passe\" formControlName=\"password\"></ion-input>\n        <ion-button color=\"primary\" expand=\"full\" shape=\"\" type=\"submit\" [disabled]=\"!loginForm.valid\">Valider</ion-button>\n      </form>\n    </div>\n  </div>\n</ion-content>\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<ion-header>\r\n  <ion-toolbar>\r\n    <ion-buttons slot=\"start\">\r\n    </ion-buttons>\r\n    <img class=\"papatte\" src=\"./assets/img/patte.png\" align=\"middle\" alt=\"\">\r\n  </ion-toolbar>\r\n</ion-header>\r\n<ion-content id=\"content\">\r\n  <div id=\"flex\">\r\n\r\n    <ion-icon class=\"person\" name=\"person\"></ion-icon>\r\n    <div id=\"login\">\r\n\r\n      <form [formGroup]=\"loginForm\" (ngSubmit)=\"submit()\">\r\n        <ion-input type=\"text\" placeholder=\"Identifiant\" formControlName=\"login\"></ion-input>\r\n        <ion-input type=\"password\" placeholder=\"Mot de passe\" formControlName=\"password\"></ion-input>\r\n        <ion-button color=\"primary\" expand=\"full\" shape=\"\" type=\"submit\" [disabled]=\"!loginForm.valid\">Valider</ion-button>\r\n      </form>\r\n    </div>\r\n  </div>\r\n</ion-content>\r\n");
 
 /***/ }),
 
@@ -83,9 +83,9 @@ LoginPageModule = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
             _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormsModule"],
             _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonicModule"],
             _login_routing_module__WEBPACK_IMPORTED_MODULE_5__["LoginPageRoutingModule"],
-            _angular_forms__WEBPACK_IMPORTED_MODULE_3__["ReactiveFormsModule"]
+            _angular_forms__WEBPACK_IMPORTED_MODULE_3__["ReactiveFormsModule"],
         ],
-        declarations: [_login_page__WEBPACK_IMPORTED_MODULE_6__["LoginPage"]]
+        declarations: [_login_page__WEBPACK_IMPORTED_MODULE_6__["LoginPage"]],
     })
 ], LoginPageModule);
 
@@ -102,7 +102,7 @@ LoginPageModule = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("#flex {\n  width: 100%;\n  height: 100%;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  flex-direction: column;\n}\n\n#login {\n  max-width: 50%;\n}\n\n#login ion-input {\n  width: 300px;\n  height: 48px;\n  border: 1px solid #B9AA97;\n  margin-bottom: 24px;\n  padding-left: 5px !important;\n}\n\n#login ion-input input {\n  margin: 15px;\n}\n\n.person {\n  color: #747474;\n  font-size: 8em;\n}\n\nion-button:disabled {\n  background: red;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9kYXZpZHN5bHZlc3RyZS9EZXNrdG9wL3JhbmRvX3BuZXVzL3NyYy9hcHAvcGFnZXMvbG9naW4vbG9naW4ucGFnZS5zY3NzIiwic3JjL2FwcC9wYWdlcy9sb2dpbi9sb2dpbi5wYWdlLnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDRSxXQUFBO0VBQ0EsWUFBQTtFQUNBLGFBQUE7RUFDQSxtQkFBQTtFQUNBLHVCQUFBO0VBQ0Esc0JBQUE7QUNDRjs7QURFQTtFQUNFLGNBQUE7QUNDRjs7QURFQTtFQUNFLFlBQUE7RUFDQSxZQUFBO0VBQ0EseUJBQUE7RUFDQSxtQkFBQTtFQUNBLDRCQUFBO0FDQ0Y7O0FERUE7RUFDRSxZQUFBO0FDQ0Y7O0FERUE7RUFDRSxjQUFBO0VBQ0EsY0FBQTtBQ0NGOztBREVBO0VBQ0UsZUFBQTtBQ0NGIiwiZmlsZSI6InNyYy9hcHAvcGFnZXMvbG9naW4vbG9naW4ucGFnZS5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiI2ZsZXgge1xuICB3aWR0aDogMTAwJTtcbiAgaGVpZ2h0OiAxMDAlO1xuICBkaXNwbGF5OiBmbGV4O1xuICBhbGlnbi1pdGVtczogY2VudGVyO1xuICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjtcbiAgZmxleC1kaXJlY3Rpb246IGNvbHVtbjtcbn1cblxuI2xvZ2luIHtcbiAgbWF4LXdpZHRoOiA1MCU7XG59XG5cbiNsb2dpbiBpb24taW5wdXQge1xuICB3aWR0aDogMzAwcHg7XG4gIGhlaWdodDogNDhweDtcbiAgYm9yZGVyOiAxcHggc29saWQgI0I5QUE5NztcbiAgbWFyZ2luLWJvdHRvbTogMjRweDtcbiAgcGFkZGluZy1sZWZ0OiA1cHggIWltcG9ydGFudDtcbn1cblxuI2xvZ2luIGlvbi1pbnB1dCBpbnB1dCB7XG4gIG1hcmdpbjogMTVweDtcbn1cblxuLnBlcnNvbiB7XG4gIGNvbG9yOiAjNzQ3NDc0O1xuICBmb250LXNpemU6IDhlbTtcbn1cblxuaW9uLWJ1dHRvbjpkaXNhYmxlZCB7XG4gIGJhY2tncm91bmQ6IHJlZFxufVxuIiwiI2ZsZXgge1xuICB3aWR0aDogMTAwJTtcbiAgaGVpZ2h0OiAxMDAlO1xuICBkaXNwbGF5OiBmbGV4O1xuICBhbGlnbi1pdGVtczogY2VudGVyO1xuICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjtcbiAgZmxleC1kaXJlY3Rpb246IGNvbHVtbjtcbn1cblxuI2xvZ2luIHtcbiAgbWF4LXdpZHRoOiA1MCU7XG59XG5cbiNsb2dpbiBpb24taW5wdXQge1xuICB3aWR0aDogMzAwcHg7XG4gIGhlaWdodDogNDhweDtcbiAgYm9yZGVyOiAxcHggc29saWQgI0I5QUE5NztcbiAgbWFyZ2luLWJvdHRvbTogMjRweDtcbiAgcGFkZGluZy1sZWZ0OiA1cHggIWltcG9ydGFudDtcbn1cblxuI2xvZ2luIGlvbi1pbnB1dCBpbnB1dCB7XG4gIG1hcmdpbjogMTVweDtcbn1cblxuLnBlcnNvbiB7XG4gIGNvbG9yOiAjNzQ3NDc0O1xuICBmb250LXNpemU6IDhlbTtcbn1cblxuaW9uLWJ1dHRvbjpkaXNhYmxlZCB7XG4gIGJhY2tncm91bmQ6IHJlZDtcbn0iXX0= */");
+/* harmony default export */ __webpack_exports__["default"] = ("#flex {\n  width: 100%;\n  height: 100%;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  flex-direction: column;\n}\n\n#login {\n  max-width: 50%;\n}\n\n#login ion-input {\n  width: 300px;\n  height: 48px;\n  border: 1px solid #B9AA97;\n  margin-bottom: 24px;\n  padding-left: 5px !important;\n}\n\n#login ion-input input {\n  margin: 15px;\n}\n\n.person {\n  color: #747474;\n  font-size: 8em;\n}\n\nion-button:disabled {\n  background: red;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvcGFnZXMvbG9naW4vRDpcXFByb2plY3RzXFxyYW5kb19wbmV1cy9zcmNcXGFwcFxccGFnZXNcXGxvZ2luXFxsb2dpbi5wYWdlLnNjc3MiLCJzcmMvYXBwL3BhZ2VzL2xvZ2luL2xvZ2luLnBhZ2Uuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNFLFdBQUE7RUFDQSxZQUFBO0VBQ0EsYUFBQTtFQUNBLG1CQUFBO0VBQ0EsdUJBQUE7RUFDQSxzQkFBQTtBQ0NGOztBREVBO0VBQ0UsY0FBQTtBQ0NGOztBREVBO0VBQ0UsWUFBQTtFQUNBLFlBQUE7RUFDQSx5QkFBQTtFQUNBLG1CQUFBO0VBQ0EsNEJBQUE7QUNDRjs7QURFQTtFQUNFLFlBQUE7QUNDRjs7QURFQTtFQUNFLGNBQUE7RUFDQSxjQUFBO0FDQ0Y7O0FERUE7RUFDRSxlQUFBO0FDQ0YiLCJmaWxlIjoic3JjL2FwcC9wYWdlcy9sb2dpbi9sb2dpbi5wYWdlLnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyIjZmxleCB7XHJcbiAgd2lkdGg6IDEwMCU7XHJcbiAgaGVpZ2h0OiAxMDAlO1xyXG4gIGRpc3BsYXk6IGZsZXg7XHJcbiAgYWxpZ24taXRlbXM6IGNlbnRlcjtcclxuICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjtcclxuICBmbGV4LWRpcmVjdGlvbjogY29sdW1uO1xyXG59XHJcblxyXG4jbG9naW4ge1xyXG4gIG1heC13aWR0aDogNTAlO1xyXG59XHJcblxyXG4jbG9naW4gaW9uLWlucHV0IHtcclxuICB3aWR0aDogMzAwcHg7XHJcbiAgaGVpZ2h0OiA0OHB4O1xyXG4gIGJvcmRlcjogMXB4IHNvbGlkICNCOUFBOTc7XHJcbiAgbWFyZ2luLWJvdHRvbTogMjRweDtcclxuICBwYWRkaW5nLWxlZnQ6IDVweCAhaW1wb3J0YW50O1xyXG59XHJcblxyXG4jbG9naW4gaW9uLWlucHV0IGlucHV0IHtcclxuICBtYXJnaW46IDE1cHg7XHJcbn1cclxuXHJcbi5wZXJzb24ge1xyXG4gIGNvbG9yOiAjNzQ3NDc0O1xyXG4gIGZvbnQtc2l6ZTogOGVtO1xyXG59XHJcblxyXG5pb24tYnV0dG9uOmRpc2FibGVkIHtcclxuICBiYWNrZ3JvdW5kOiByZWRcclxufVxyXG4iLCIjZmxleCB7XG4gIHdpZHRoOiAxMDAlO1xuICBoZWlnaHQ6IDEwMCU7XG4gIGRpc3BsYXk6IGZsZXg7XG4gIGFsaWduLWl0ZW1zOiBjZW50ZXI7XG4gIGp1c3RpZnktY29udGVudDogY2VudGVyO1xuICBmbGV4LWRpcmVjdGlvbjogY29sdW1uO1xufVxuXG4jbG9naW4ge1xuICBtYXgtd2lkdGg6IDUwJTtcbn1cblxuI2xvZ2luIGlvbi1pbnB1dCB7XG4gIHdpZHRoOiAzMDBweDtcbiAgaGVpZ2h0OiA0OHB4O1xuICBib3JkZXI6IDFweCBzb2xpZCAjQjlBQTk3O1xuICBtYXJnaW4tYm90dG9tOiAyNHB4O1xuICBwYWRkaW5nLWxlZnQ6IDVweCAhaW1wb3J0YW50O1xufVxuXG4jbG9naW4gaW9uLWlucHV0IGlucHV0IHtcbiAgbWFyZ2luOiAxNXB4O1xufVxuXG4ucGVyc29uIHtcbiAgY29sb3I6ICM3NDc0NzQ7XG4gIGZvbnQtc2l6ZTogOGVtO1xufVxuXG5pb24tYnV0dG9uOmRpc2FibGVkIHtcbiAgYmFja2dyb3VuZDogcmVkO1xufSJdfQ== */");
 
 /***/ }),
 
@@ -123,6 +123,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _services_user_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../services/user.service */ "./src/app/services/user.service.ts");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/__ivy_ngcc__/fesm2015/router.js");
 /* harmony import */ var _services_fiche_firebase_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../services/fiche-firebase.service */ "./src/app/services/fiche-firebase.service.ts");
+/* harmony import */ var _ionic_native_onesignal_ngx__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @ionic-native/onesignal/ngx */ "./node_modules/@ionic-native/onesignal/__ivy_ngcc__/ngx/index.js");
+
 
 
 
@@ -131,30 +133,65 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let LoginPage = class LoginPage {
-    constructor(menu, router, formBuilder, userService, ficheFirebaseService) {
+    constructor(oneSignal, menu, router, formBuilder, userService, ficheFirebaseService) {
+        this.oneSignal = oneSignal;
         this.menu = menu;
         this.router = router;
         this.formBuilder = formBuilder;
         this.userService = userService;
         this.ficheFirebaseService = ficheFirebaseService;
         this.loginForm = this.formBuilder.group({
-            login: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required],
-            password: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required]
+            login: ["", _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required],
+            password: ["", _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required],
         });
     }
+    /*
+     * @function oneSignalNotificationPush()
+     * @summary Init oneSignal notification push
+     */
+    initOneSignalNotificationPush() {
+        try {
+            this.oneSignal.startInit("5ed634ba-df2d-4ea7-8fd2-bbfcd32af902", "861834275864");
+            this.oneSignal.inFocusDisplaying(this.oneSignal.OSInFocusDisplayOption.Notification);
+            this.oneSignal.sendTags({
+                comiteo: "app-generic-test",
+            });
+            this.oneSignal
+                .getPermissionSubscriptionState()
+                .then(() => {
+                alert("permission ok");
+            })
+                .catch(() => "permission ko");
+            this.oneSignal.endInit();
+        }
+        catch (e) {
+            console.warn("cordova_not_available");
+        }
+    }
+    appendDeviceToFirebase(user) {
+        this.oneSignal
+            .getIds()
+            .then((onfulfilled) => {
+            alert(onfulfilled.userId);
+            this.userService.addToken(user.id, onfulfilled.userId).subscribe();
+        })
+            .catch(() => { });
+    }
     submit() {
-        this.userService.login(this.loginForm.value).subscribe(user => {
-            localStorage.setItem('userId', '' + user.id);
+        this.initOneSignalNotificationPush();
+        this.userService.login(this.loginForm.value).subscribe((user) => {
+            localStorage.setItem("userId", "" + user.id);
             this.userService.storUser(user);
-            this.userService.addToken(user.id, this.userService.token).subscribe();
+            this.appendDeviceToFirebase(user);
             this.ficheFirebaseService.getFiches(user.id);
-            this.router.navigate(['accueil']);
-        }, err => alert(err.error));
+            this.router.navigate(["accueil"]);
+        }, (err) => alert(err.error));
         // this.router.navigate(['accueil']);
         // this.ficheFirebaseService.getFiches();
     }
 };
 LoginPage.ctorParameters = () => [
+    { type: _ionic_native_onesignal_ngx__WEBPACK_IMPORTED_MODULE_7__["OneSignal"] },
     { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["MenuController"] },
     { type: _angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"] },
     { type: _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormBuilder"] },
@@ -163,7 +200,7 @@ LoginPage.ctorParameters = () => [
 ];
 LoginPage = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
-        selector: 'app-login',
+        selector: "app-login",
         template: Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"])(__webpack_require__(/*! raw-loader!./login.page.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/pages/login/login.page.html")).default,
         styles: [Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"])(__webpack_require__(/*! ./login.page.scss */ "./src/app/pages/login/login.page.scss")).default]
     })
