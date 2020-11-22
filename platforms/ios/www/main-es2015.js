@@ -286,106 +286,6 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./plugins/cordova-plugin-fcm-with-dependecy-updated/ionic/ngx/FCM.js":
-/*!****************************************************************************!*\
-  !*** ./plugins/cordova-plugin-fcm-with-dependecy-updated/ionic/ngx/FCM.js ***!
-  \****************************************************************************/
-/*! exports provided: FCM */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FCM", function() { return FCM; });
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
-/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm2015/index.js");
-/* harmony import */ var _ionic_native_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @ionic-native/core */ "./node_modules/@ionic-native/core/__ivy_ngcc__/index.js");
-var __decorate =
-    (undefined && undefined.__decorate) ||
-    function (decorators, target, key, desc) {
-        var c = arguments.length,
-            r =
-                c < 3
-                    ? target
-                    : desc === null
-                    ? (desc = Object.getOwnPropertyDescriptor(target, key))
-                    : desc,
-            d
-        if (typeof Reflect === 'object' && typeof Reflect.decorate === 'function')
-            r = Reflect.decorate(decorators, target, key, desc)
-        else
-            for (var i = decorators.length - 1; i >= 0; i--)
-                if ((d = decorators[i]))
-                    r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r
-        return c > 3 && r && Object.defineProperty(target, key, r), r
-    }
-
-
-
-
-function FCM() {}
-FCM.prototype.clearAllNotifications = function () {
-    return window.FCM.clearAllNotifications()
-}
-FCM.prototype.createNotificationChannel = function (channelConfig) {
-    return window.FCM.createNotificationChannel(channelConfig)
-}
-FCM.prototype.deleteInstanceId = function () {
-    return window.FCM.deleteInstanceId()
-}
-FCM.prototype.getAPNSToken = function () {
-    return window.FCM.getAPNSToken()
-}
-FCM.prototype.getInitialPushPayload = function () {
-    return window.FCM.getInitialPushPayload()
-}
-FCM.prototype.getToken = function () {
-    return window.FCM.getToken()
-}
-FCM.prototype.hasPermission = function () {
-    return window.FCM.hasPermission()
-}
-FCM.prototype.onNotification = function (options) {
-    var observable = new rxjs__WEBPACK_IMPORTED_MODULE_1__["Subject"]()
-    var handler = function (payload) {
-        return observable.next(payload)
-    }
-    window.FCM.onNotification(handler, options)
-    return observable
-}
-FCM.prototype.onTokenRefresh = function (options) {
-    var observable = new rxjs__WEBPACK_IMPORTED_MODULE_1__["Subject"]()
-    window.FCM.onTokenRefresh(function (token) {
-        return observable.next(token)
-    }, options)
-    return observable
-}
-FCM.prototype.requestPushPermission = function (options) {
-    return window.FCM.requestPushPermission(options)
-}
-FCM.prototype.subscribeToTopic = function (topic) {
-    return window.FCM.subscribeToTopic(topic)
-}
-FCM.prototype.unsubscribeFromTopic = function (topic) {
-    return window.FCM.unsubscribeFromTopic(topic)
-}
-FCM.pluginName = 'FCM'
-FCM.plugin = 'cordova-plugin-fcm-with-dependecy-updated'
-FCM.pluginRef = 'FCM'
-FCM.repo = 'https://github.com/andrehtissot/cordova-plugin-fcm-with-dependecy-updated'
-FCM.platforms = ['Android', 'iOS']
-FCM.installed = _ionic_native_core__WEBPACK_IMPORTED_MODULE_2__["IonicNativePlugin"].installed
-FCM.getPlugin = _ionic_native_core__WEBPACK_IMPORTED_MODULE_2__["IonicNativePlugin"].getPlugin
-FCM.getPluginName = _ionic_native_core__WEBPACK_IMPORTED_MODULE_2__["IonicNativePlugin"].getPluginName
-FCM.getPluginRef = _ionic_native_core__WEBPACK_IMPORTED_MODULE_2__["IonicNativePlugin"].getPluginRef
-FCM.getPluginInstallName = _ionic_native_core__WEBPACK_IMPORTED_MODULE_2__["IonicNativePlugin"].getPluginInstallName
-FCM.getSupportedPlatforms = _ionic_native_core__WEBPACK_IMPORTED_MODULE_2__["IonicNativePlugin"].getSupportedPlatforms
-FCM = __decorate([Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])()], FCM)
-
-
-
-
-/***/ }),
-
 /***/ "./src/app/app-routing.module.ts":
 /*!***************************************!*\
   !*** ./src/app/app-routing.module.ts ***!
@@ -489,8 +389,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ionic_native_status_bar_ngx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ionic-native/status-bar/ngx */ "./node_modules/@ionic-native/status-bar/__ivy_ngcc__/ngx/index.js");
 /* harmony import */ var _services_user_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./services/user.service */ "./src/app/services/user.service.ts");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/__ivy_ngcc__/fesm2015/router.js");
-/* harmony import */ var _plugins_cordova_plugin_fcm_with_dependecy_updated_ionic_ngx_FCM__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../plugins/cordova-plugin-fcm-with-dependecy-updated/ionic/ngx/FCM */ "./plugins/cordova-plugin-fcm-with-dependecy-updated/ionic/ngx/FCM.js");
-
 
 
 
@@ -499,37 +397,24 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let AppComponent = class AppComponent {
-    constructor(platform, splashScreen, statusBar, fcm, userService, router) {
+    constructor(platform, splashScreen, statusBar, userService, router) {
         this.platform = platform;
         this.splashScreen = splashScreen;
         this.statusBar = statusBar;
-        this.fcm = fcm;
         this.userService = userService;
         this.router = router;
         this.initializeApp();
         this.pages = [
-            { title: 'Accueil', url: 'accueil', icon: 'home-sharp' },
-            { title: 'Mes fiches', url: 'fiche', icon: 'document-text-sharp' },
-            { title: 'Nouvelle fiche', url: 'nouvelle-fiche', icon: 'pencil-sharp' },
-            { title: 'Réglages', url: 'reglage', icon: 'settings-sharp' }
+            { title: "Accueil", url: "accueil", icon: "home-sharp" },
+            { title: "Mes fiches", url: "fiche", icon: "document-text-sharp" },
+            { title: "Nouvelle fiche", url: "nouvelle-fiche", icon: "pencil-sharp" },
+            { title: "Réglages", url: "reglage", icon: "settings-sharp" },
         ];
     }
     initializeApp() {
         this.platform.ready().then(() => {
             this.statusBar.styleDefault();
             // this.splashScreen.hide();
-            this.fcm.getToken().then(token => {
-                this.userService.token = token;
-            });
-            this.fcm.onTokenRefresh().subscribe(token => {
-            });
-            this.fcm.onNotification().subscribe(notif => {
-                if (notif.wasTapped) {
-                    this.router.navigate(['fiche']);
-                }
-                else {
-                }
-            });
         });
     }
 };
@@ -537,13 +422,12 @@ AppComponent.ctorParameters = () => [
     { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["Platform"] },
     { type: _ionic_native_splash_screen_ngx__WEBPACK_IMPORTED_MODULE_3__["SplashScreen"] },
     { type: _ionic_native_status_bar_ngx__WEBPACK_IMPORTED_MODULE_4__["StatusBar"] },
-    { type: _plugins_cordova_plugin_fcm_with_dependecy_updated_ionic_ngx_FCM__WEBPACK_IMPORTED_MODULE_7__["FCM"] },
     { type: _services_user_service__WEBPACK_IMPORTED_MODULE_5__["UserService"] },
     { type: _angular_router__WEBPACK_IMPORTED_MODULE_6__["Router"] }
 ];
 AppComponent = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
-        selector: 'app-root',
+        selector: "app-root",
         template: Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"])(__webpack_require__(/*! raw-loader!./app.component.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/app.component.html")).default,
         styles: [Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"])(__webpack_require__(/*! ./app.component.scss */ "./src/app/app.component.scss")).default]
     })
@@ -579,11 +463,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_fire_storage__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @angular/fire/storage */ "./node_modules/@angular/fire/__ivy_ngcc__/storage/es2015/index.js");
 /* harmony import */ var _angular_fire_auth__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @angular/fire/auth */ "./node_modules/@angular/fire/__ivy_ngcc__/auth/es2015/index.js");
 /* harmony import */ var _angular_fire_database__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! @angular/fire/database */ "./node_modules/@angular/fire/__ivy_ngcc__/database/es2015/index.js");
-/* harmony import */ var _plugins_cordova_plugin_fcm_with_dependecy_updated_ionic_ngx_FCM__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ../../plugins/cordova-plugin-fcm-with-dependecy-updated/ionic/ngx/FCM */ "./plugins/cordova-plugin-fcm-with-dependecy-updated/ionic/ngx/FCM.js");
-/* harmony import */ var _guards_connected_guard__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./guards/connected.guard */ "./src/app/guards/connected.guard.ts");
-/* harmony import */ var _guards_is_connected_guard__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./guards/is-connected.guard */ "./src/app/guards/is-connected.guard.ts");
-/* harmony import */ var _ionic_native_Camera_ngx__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! @ionic-native/Camera/ngx */ "./node_modules/@ionic-native/Camera/__ivy_ngcc__/ngx/index.js");
-/* harmony import */ var _ionic_native_base64_ngx__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! @ionic-native/base64/ngx */ "./node_modules/@ionic-native/base64/__ivy_ngcc__/ngx/index.js");
+/* harmony import */ var _guards_connected_guard__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./guards/connected.guard */ "./src/app/guards/connected.guard.ts");
+/* harmony import */ var _guards_is_connected_guard__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./guards/is-connected.guard */ "./src/app/guards/is-connected.guard.ts");
+/* harmony import */ var _ionic_native_Camera_ngx__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! @ionic-native/Camera/ngx */ "./node_modules/@ionic-native/Camera/__ivy_ngcc__/ngx/index.js");
+/* harmony import */ var _ionic_native_base64_ngx__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! @ionic-native/base64/ngx */ "./node_modules/@ionic-native/base64/__ivy_ngcc__/ngx/index.js");
+/* harmony import */ var _ionic_native_onesignal_ngx__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! @ionic-native/onesignal/ngx */ "./node_modules/@ionic-native/onesignal/__ivy_ngcc__/ngx/index.js");
 
 
 
@@ -606,13 +490,13 @@ __webpack_require__.r(__webpack_exports__);
 
 
 const firebaseConfig = {
-    apiKey: 'AIzaSyDIF_Gu-dVLpN6m1PYDUZ_rgKYXMs1-NcE',
-    authDomain: 'rando-pneus.firebaseapp.com',
-    databaseURL: 'https://rando-pneus.firebaseio.com',
-    projectId: 'rando-pneus',
-    storageBucket: 'rando-pneus.appspot.com',
-    messagingSenderId: '861834275864',
-    appId: '1:861834275864:web:91203fdc810af3fe93676d',
+    apiKey: "AIzaSyDIF_Gu-dVLpN6m1PYDUZ_rgKYXMs1-NcE",
+    authDomain: "rando-pneus.firebaseapp.com",
+    databaseURL: "https://rando-pneus.firebaseio.com",
+    projectId: "rando-pneus",
+    storageBucket: "rando-pneus.appspot.com",
+    messagingSenderId: "861834275864",
+    appId: "1:861834275864:web:91203fdc810af3fe93676d",
 };
 let AppModule = class AppModule {
 };
@@ -631,21 +515,21 @@ AppModule = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
             _app_routing_module__WEBPACK_IMPORTED_MODULE_8__["AppRoutingModule"],
             _angular_common_http__WEBPACK_IMPORTED_MODULE_9__["HttpClientModule"],
             _ionic_storage__WEBPACK_IMPORTED_MODULE_10__["IonicStorageModule"].forRoot({
-                name: '__mydb',
-                driverOrder: ['sqlite', 'websql', 'indexeddb']
-            })
+                name: "__mydb",
+                driverOrder: ["sqlite", "websql", "indexeddb"],
+            }),
         ],
         providers: [
             _ionic_native_status_bar_ngx__WEBPACK_IMPORTED_MODULE_6__["StatusBar"],
-            _ionic_native_Camera_ngx__WEBPACK_IMPORTED_MODULE_19__["Camera"],
-            _guards_connected_guard__WEBPACK_IMPORTED_MODULE_17__["ConnectedGuard"],
-            _guards_is_connected_guard__WEBPACK_IMPORTED_MODULE_18__["IsConnectedGuard"],
+            _ionic_native_Camera_ngx__WEBPACK_IMPORTED_MODULE_18__["Camera"],
+            _guards_connected_guard__WEBPACK_IMPORTED_MODULE_16__["ConnectedGuard"],
+            _guards_is_connected_guard__WEBPACK_IMPORTED_MODULE_17__["IsConnectedGuard"],
             _ionic_native_splash_screen_ngx__WEBPACK_IMPORTED_MODULE_5__["SplashScreen"],
-            _ionic_native_base64_ngx__WEBPACK_IMPORTED_MODULE_20__["Base64"],
-            _plugins_cordova_plugin_fcm_with_dependecy_updated_ionic_ngx_FCM__WEBPACK_IMPORTED_MODULE_16__["FCM"],
-            { provide: _angular_router__WEBPACK_IMPORTED_MODULE_3__["RouteReuseStrategy"], useClass: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonicRouteStrategy"] }
+            _ionic_native_base64_ngx__WEBPACK_IMPORTED_MODULE_19__["Base64"],
+            { provide: _angular_router__WEBPACK_IMPORTED_MODULE_3__["RouteReuseStrategy"], useClass: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonicRouteStrategy"] },
+            _ionic_native_onesignal_ngx__WEBPACK_IMPORTED_MODULE_20__["OneSignal"],
         ],
-        bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_7__["AppComponent"]]
+        bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_7__["AppComponent"]],
     })
 ], AppModule);
 

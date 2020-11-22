@@ -31,9 +31,6 @@
     <feature name="Device">
         <param name="ios-package" value="CDVDevice" />
     </feature>
-    <feature name="FCMPlugin">
-        <param name="ios-package" value="FCMPlugin" />
-    </feature>
     <feature name="CDVIonicKeyboard">
         <param name="ios-package" onload="true" value="CDVIonicKeyboard" />
     </feature>
@@ -47,6 +44,9 @@
     </feature>
     <feature name="SQLitePlugin">
         <param name="ios-package" value="SQLitePlugin" />
+    </feature>
+    <feature name="OneSignalPush">
+        <param name="ios-package" value="OneSignalPush" />
     </feature>
     <name>Rando-Pneus</name>
     <description>Application Rando-Pneus</description>
@@ -110,6 +110,11 @@
     <splash height="2208" src="resources/ios/splash/Default-736h.png" width="1242" />
     <splash height="2436" src="resources/ios/splash/Default-2436h.png" width="1125" />
     <splash height="2732" src="resources/ios/splash/Default@2x~universal~anyany.png" width="2732" />
+    <icon height="216" src="resources/ios/icon/icon-108@2x.png" width="216" />
+    <splash height="2688" src="resources/ios/splash/Default-2688h~iphone.png" width="1242" />
+    <splash height="1242" src="resources/ios/splash/Default-Landscape-2688h~iphone.png" width="2688" />
+    <splash height="1792" src="resources/ios/splash/Default-1792h~iphone.png" width="828" />
+    <splash height="828" src="resources/ios/splash/Default-Landscape-1792h~iphone.png" width="1792" />
     <preference name="AllowInlineMediaPlayback" value="false" />
     <preference name="BackupWebStorage" value="none" />
     <preference name="DisallowOverscroll" value="false" />

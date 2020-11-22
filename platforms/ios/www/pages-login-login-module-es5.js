@@ -239,37 +239,76 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     var _services_fiche_firebase_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
     /*! ../../services/fiche-firebase.service */
     "./src/app/services/fiche-firebase.service.ts");
+    /* harmony import */
+
+
+    var _ionic_native_onesignal_ngx__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(
+    /*! @ionic-native/onesignal/ngx */
+    "./node_modules/@ionic-native/onesignal/__ivy_ngcc__/ngx/index.js");
 
     var LoginPage = /*#__PURE__*/function () {
-      function LoginPage(menu, router, formBuilder, userService, ficheFirebaseService) {
+      function LoginPage(oneSignal, menu, router, formBuilder, userService, ficheFirebaseService) {
         _classCallCheck(this, LoginPage);
 
+        this.oneSignal = oneSignal;
         this.menu = menu;
         this.router = router;
         this.formBuilder = formBuilder;
         this.userService = userService;
         this.ficheFirebaseService = ficheFirebaseService;
         this.loginForm = this.formBuilder.group({
-          login: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required],
-          password: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required]
+          login: ["", _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required],
+          password: ["", _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required]
         });
       }
+      /*
+       * @function oneSignalNotificationPush()
+       * @summary Init oneSignal notification push
+       */
+
 
       _createClass(LoginPage, [{
-        key: "submit",
-        value: function submit() {
+        key: "initOneSignalNotificationPush",
+        value: function initOneSignalNotificationPush() {
+          try {
+            this.oneSignal.startInit("5ed634ba-df2d-4ea7-8fd2-bbfcd32af902", "861834275864");
+            this.oneSignal.inFocusDisplaying(this.oneSignal.OSInFocusDisplayOption.Notification);
+            this.oneSignal.sendTags({
+              comiteo: "app-generic-test"
+            });
+            this.oneSignal.getPermissionSubscriptionState();
+            this.oneSignal.endInit();
+          } catch (e) {
+            console.warn("cordova_not_available");
+          }
+        }
+      }, {
+        key: "appendDeviceToFirebase",
+        value: function appendDeviceToFirebase(user) {
           var _this = this;
 
+          this.oneSignal.getIds().then(function (onfulfilled) {
+            alert(onfulfilled.userId);
+
+            _this.userService.addToken(user.id, onfulfilled.userId).subscribe();
+          })["catch"](function () {});
+        }
+      }, {
+        key: "submit",
+        value: function submit() {
+          var _this2 = this;
+
+          this.initOneSignalNotificationPush();
           this.userService.login(this.loginForm.value).subscribe(function (user) {
-            localStorage.setItem('userId', '' + user.id);
+            localStorage.setItem("userId", "" + user.id);
 
-            _this.userService.storUser(user);
+            _this2.userService.storUser(user);
 
-            _this.userService.addToken(user.id, _this.userService.token).subscribe();
+            _this2.appendDeviceToFirebase(user);
 
-            _this.ficheFirebaseService.getFiches(user.id);
+            _this2.ficheFirebaseService.getFiches(user.id);
 
-            _this.router.navigate(['accueil']);
+            _this2.router.navigate(["accueil"]);
           }, function (err) {
             return alert(err.error);
           }); // this.router.navigate(['accueil']);
@@ -282,6 +321,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
     LoginPage.ctorParameters = function () {
       return [{
+        type: _ionic_native_onesignal_ngx__WEBPACK_IMPORTED_MODULE_7__["OneSignal"]
+      }, {
         type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["MenuController"]
       }, {
         type: _angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"]
@@ -295,7 +336,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     };
 
     LoginPage = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
-      selector: 'app-login',
+      selector: "app-login",
       template: Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"])(__webpack_require__(
       /*! raw-loader!./login.page.html */
       "./node_modules/raw-loader/dist/cjs.js!./src/app/pages/login/login.page.html"))["default"],

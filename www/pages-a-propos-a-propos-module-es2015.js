@@ -9,7 +9,7 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<ion-header>\r\n    <ion-toolbar>\r\n        <ion-buttons slot=\"start\">\r\n            <ion-menu-button class=\"menu_button\"></ion-menu-button>\r\n        </ion-buttons>\r\n        <img class=\"papatte\" src=\"./assets/img/patte.png\" align=\"middle\" alt=\"\">\r\n    </ion-toolbar>\r\n</ion-header>\r\n\r\n<ion-content>\r\n  <div>\r\n    <p>Version 1.5</p>\r\n    <p>Rando-tech</p>\r\n    <p>Conception : Wave’s Agency</p>\r\n  </div>\r\n</ion-content>\r\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<ion-header>\n    <ion-toolbar>\n        <ion-buttons slot=\"start\">\n            <ion-menu-button class=\"menu_button\"></ion-menu-button>\n        </ion-buttons>\n        <img class=\"papatte\" src=\"./assets/img/patte.png\" align=\"middle\" alt=\"\">\n    </ion-toolbar>\n</ion-header>\n\n<ion-content>\n  <div>\n    <p>Version 1.5</p>\n    <p>Rando-tech</p>\n    <p>Conception : Wave’s Agency</p>\n  </div>\n</ion-content>\n");
 
 /***/ }),
 
@@ -101,7 +101,7 @@ AProposPageModule = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("div {\n  color: #999999;\n  margin: 80px 0 0 80px;\n}\n\np {\n  margin-bottom: 30px;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvcGFnZXMvYS1wcm9wb3MvRDpcXFByb2plY3RzXFxyYW5kb19wbmV1cy9zcmNcXGFwcFxccGFnZXNcXGEtcHJvcG9zXFxhLXByb3Bvcy5wYWdlLnNjc3MiLCJzcmMvYXBwL3BhZ2VzL2EtcHJvcG9zL2EtcHJvcG9zLnBhZ2Uuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNFLGNBQUE7RUFDQSxxQkFBQTtBQ0NGOztBRENDO0VBQ0UsbUJBQUE7QUNFSCIsImZpbGUiOiJzcmMvYXBwL3BhZ2VzL2EtcHJvcG9zL2EtcHJvcG9zLnBhZ2Uuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbImRpdiB7XHJcbiAgY29sb3I6ICM5OTk5OTk7XHJcbiAgbWFyZ2luOiA4MHB4IDAgMCA4MHB4O1xyXG59XHJcbiBwe1xyXG4gICBtYXJnaW4tYm90dG9tOiAzMHB4O1xyXG4gfVxyXG4iLCJkaXYge1xuICBjb2xvcjogIzk5OTk5OTtcbiAgbWFyZ2luOiA4MHB4IDAgMCA4MHB4O1xufVxuXG5wIHtcbiAgbWFyZ2luLWJvdHRvbTogMzBweDtcbn0iXX0= */");
+/* harmony default export */ __webpack_exports__["default"] = ("div {\n  color: #999999;\n  margin: 80px 0 0 80px;\n}\n\np {\n  margin-bottom: 30px;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9kYXZpZHN5bHZlc3RyZS9EZXNrdG9wL3JhbmRvX3BuZXVzL3NyYy9hcHAvcGFnZXMvYS1wcm9wb3MvYS1wcm9wb3MucGFnZS5zY3NzIiwic3JjL2FwcC9wYWdlcy9hLXByb3Bvcy9hLXByb3Bvcy5wYWdlLnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDRSxjQUFBO0VBQ0EscUJBQUE7QUNDRjs7QURDQztFQUNFLG1CQUFBO0FDRUgiLCJmaWxlIjoic3JjL2FwcC9wYWdlcy9hLXByb3Bvcy9hLXByb3Bvcy5wYWdlLnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyJkaXYge1xuICBjb2xvcjogIzk5OTk5OTtcbiAgbWFyZ2luOiA4MHB4IDAgMCA4MHB4O1xufVxuIHB7XG4gICBtYXJnaW4tYm90dG9tOiAzMHB4O1xuIH1cbiIsImRpdiB7XG4gIGNvbG9yOiAjOTk5OTk5O1xuICBtYXJnaW46IDgwcHggMCAwIDgwcHg7XG59XG5cbnAge1xuICBtYXJnaW4tYm90dG9tOiAzMHB4O1xufSJdfQ== */");
 
 /***/ }),
 

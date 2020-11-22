@@ -77,31 +77,25 @@
 
               <ion-select class="selectorTrio  trio" formControlName="dimension" placeholder="Dimension">
                 <ion-select-option value="0">Aucune</ion-select-option>
-                <ion-select-option value="12 x 22.5 AM09 HANKOOK">pneu 12 x 22.5 AM09 HANKOOK
-                </ion-select-option>
-                <ion-select-option value="13 x 22.5 AM09 HANKOOK">pneu 13 x 22.5 AM09 HANKOOK
-                </ion-select-option>
-                <ion-select-option value="12 x 22.5 DM09 HANKOOK">pneu 12 x 22.5 DM09 HANKOOK
-                </ion-select-option>
-                <ion-select-option value="13 x 22.5 DM09 HANKOOK">pneu 13 x 22.5 DM09 HANKOOK
-                </ion-select-option>
-                <ion-select-option value="12 x 22.5 RECHAPE">pneu 12 x 22.5 RECHAPE</ion-select-option>
-                <ion-select-option value="10 x 16.5 NHS">pneu 10 x 16.5 NHS</ion-select-option>
-                <ion-select-option value="385/65 x 22.5 TM15 HANKOOK">pneu 385/65 x 22.5 TM15 HANKOOK
-                </ion-select-option>
-                <ion-select-option value="385/65 x 22.5 HT3 CONTINENTAL">pneu 385/65 x 22.5 HT3
-                  CONTINENTAL
-                </ion-select-option>
-                <ion-select-option value="315/80 x 22.5 HS3 CONTINENTAL">pneu 315/80 x 22.5 HS3
-                  CONTINENTAL
-                </ion-select-option>
-                <ion-select-option value="315/70 x 22.5 HS3 CONTINENTAL">pneu 315/70 x 22.5 HS3
-                  CONTINENTAL
-                </ion-select-option>
-                <ion-select-option value="155 x 13 KUHMO">pneu 155 x 13 KUHMO</ion-select-option>
-                <ion-select-option value="195/75 x 16 RA18 HANKOOK">pneu 195/75 x 16 RA18 HANKOOK
-                </ion-select-option>
-
+                <ion-select-option value="PNEU 10 X 16.5">PNEU 10 X 16.5</ion-select-option>
+                <ion-select-option value="PNEU 12 X 16.5">PNEU 12 X 16.5</ion-select-option>
+                <ion-select-option value="PNEU 15.5/80 X 24">PNEU 15.5/80 X 24</ion-select-option>
+                <ion-select-option value="PNEU 12.5 X 20">PNEU 12.5 X 20</ion-select-option>
+                <ion-select-option value="PNEU 11.5/80 X 15.3">PNEU 11.5/80 X 15.3</ion-select-option>
+                <ion-select-option value="PNEU 14.5 X 20">PNEU 14.5 X 20</ion-select-option>
+                <ion-select-option value="PNEU 1000 X 20">PNEU 1000 X 20</ion-select-option>
+                <ion-select-option value="PNEU 900 X 20">PNEU 900 X 20</ion-select-option>
+                <ion-select-option value="PNEU 10.5/80 X 18">PNEU 10.5/80 X 18</ion-select-option>
+                <ion-select-option value="PNEU 12.5/80 X 18">PNEU 12.5/80 X 18</ion-select-option>
+                <ion-select-option value="PNEU 700 X 12">PNEU 700 X 12</ion-select-option>
+                <ion-select-option value="PNEU 13 X 22.5">PNEU 13 X 22.5</ion-select-option>
+                <ion-select-option value="PNEU 12 X 22.5">PNEU 12 X 22.5</ion-select-option>
+                <ion-select-option value="PNEU 11 X 22.5">PNEU 11 X 22.5</ion-select-option>
+                <ion-select-option value="PNEU 315/70 X 22.5">PNEU 315/70 X 22.5</ion-select-option>
+                <ion-select-option value="PNEU 315/80 X 22.5">PNEU 315/80 X 22.5</ion-select-option>
+                <ion-select-option value="PNEU 385/65 X 22.5">PNEU 385/65 X 22.5</ion-select-option>
+                <ion-select-option value="PNEU 385/55 X 22.5">PNEU 385/55 X 22.5</ion-select-option>
+                <ion-select-option value="PNEU 445/65 X 22.5">PNEU 445/65 X 22.5</ion-select-option>
               </ion-select>
             </ion-item>
           </ion-col>
@@ -213,6 +207,11 @@
             <ion-col>
               <ion-item class="input" lines="none" mode="ios" [ngClass]="ficheForm.get('emplatre').get('nom').value ? 'label_plein' : ''">
                 <ion-select class="selector" formControlName="nom" placeholder="Emplâtre">
+                  <ion-select-option value="Emplâtre PN02">Emplâtre PN02</ion-select-option>
+                  <ion-select-option value="Emplâtre PN03">Emplâtre PN03</ion-select-option>
+                  <ion-select-option value="Emplâtre PN04">Emplâtre PN04</ion-select-option>
+                  <ion-select-option value="Emplâtre PN05">Emplâtre PN05</ion-select-option>
+                  <ion-select-option value="Emplâtre PN06">Emplâtre PN06</ion-select-option>
                   <ion-select-option value="Emplâtre 110 TL">Emplâtre 110 TL</ion-select-option>
                   <ion-select-option value="Emplâtre 120 TL">Emplâtre 120 TL</ion-select-option>
                   <ion-select-option value="Emplâtre 125 TL">Emplâtre 125 TL</ion-select-option>
@@ -220,12 +219,10 @@
                   <ion-select-option value="Emplâtre 140 TL">Emplâtre 140 TL</ion-select-option>
                   <ion-select-option value="Emplâtre 142 TL">Emplâtre 142 TL</ion-select-option>
                   <ion-select-option value="Emplâtre 145 TL">Emplâtre 145 TL</ion-select-option>
-                  <!--  <ion-select-option value="G159">Emplâtre 146 TL</ion-select-option>
-                  <ion-select-option value="G169">Emplâtre PN02L</ion-select-option>
-                  <ion-select-option value="G170">Emplâtre PN03</ion-select-option>
-                  <ion-select-option value="G171">Emplâtre PN04</ion-select-option>
-                  <ion-select-option value="G172">Emplâtre PN05</ion-select-option>
-                  <ion-select-option value="G173">Emplâtre PN06</ion-select-option> -->
+                  <ion-select-option value="Rustine 2">Rustine 2</ion-select-option>
+                  <ion-select-option value="Rustine 3">Rustine 3</ion-select-option>
+                  <ion-select-option value="Rustine 4">Rustine 4</ion-select-option>
+                  <ion-select-option value="Rustine 5">Rustine 5</ion-select-option>
                 </ion-select>
               </ion-item>
             </ion-col>

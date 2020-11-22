@@ -83,9 +83,9 @@ LoginPageModule = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
             _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormsModule"],
             _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonicModule"],
             _login_routing_module__WEBPACK_IMPORTED_MODULE_5__["LoginPageRoutingModule"],
-            _angular_forms__WEBPACK_IMPORTED_MODULE_3__["ReactiveFormsModule"]
+            _angular_forms__WEBPACK_IMPORTED_MODULE_3__["ReactiveFormsModule"],
         ],
-        declarations: [_login_page__WEBPACK_IMPORTED_MODULE_6__["LoginPage"]]
+        declarations: [_login_page__WEBPACK_IMPORTED_MODULE_6__["LoginPage"]],
     })
 ], LoginPageModule);
 
@@ -123,6 +123,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _services_user_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../services/user.service */ "./src/app/services/user.service.ts");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/__ivy_ngcc__/fesm2015/router.js");
 /* harmony import */ var _services_fiche_firebase_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../services/fiche-firebase.service */ "./src/app/services/fiche-firebase.service.ts");
+/* harmony import */ var _ionic_native_onesignal_ngx__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @ionic-native/onesignal/ngx */ "./node_modules/@ionic-native/onesignal/__ivy_ngcc__/ngx/index.js");
+
 
 
 
@@ -131,30 +133,60 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let LoginPage = class LoginPage {
-    constructor(menu, router, formBuilder, userService, ficheFirebaseService) {
+    constructor(oneSignal, menu, router, formBuilder, userService, ficheFirebaseService) {
+        this.oneSignal = oneSignal;
         this.menu = menu;
         this.router = router;
         this.formBuilder = formBuilder;
         this.userService = userService;
         this.ficheFirebaseService = ficheFirebaseService;
         this.loginForm = this.formBuilder.group({
-            login: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required],
-            password: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required]
+            login: ["", _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required],
+            password: ["", _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required],
         });
     }
+    /*
+     * @function oneSignalNotificationPush()
+     * @summary Init oneSignal notification push
+     */
+    initOneSignalNotificationPush() {
+        try {
+            this.oneSignal.startInit("5ed634ba-df2d-4ea7-8fd2-bbfcd32af902", "861834275864");
+            this.oneSignal.inFocusDisplaying(this.oneSignal.OSInFocusDisplayOption.Notification);
+            this.oneSignal.sendTags({
+                comiteo: "app-generic-test",
+            });
+            this.oneSignal.getPermissionSubscriptionState();
+            this.oneSignal.endInit();
+        }
+        catch (e) {
+            console.warn("cordova_not_available");
+        }
+    }
+    appendDeviceToFirebase(user) {
+        this.oneSignal
+            .getIds()
+            .then((onfulfilled) => {
+            alert(onfulfilled.userId);
+            this.userService.addToken(user.id, onfulfilled.userId).subscribe();
+        })
+            .catch(() => { });
+    }
     submit() {
-        this.userService.login(this.loginForm.value).subscribe(user => {
-            localStorage.setItem('userId', '' + user.id);
+        this.initOneSignalNotificationPush();
+        this.userService.login(this.loginForm.value).subscribe((user) => {
+            localStorage.setItem("userId", "" + user.id);
             this.userService.storUser(user);
-            this.userService.addToken(user.id, this.userService.token).subscribe();
+            this.appendDeviceToFirebase(user);
             this.ficheFirebaseService.getFiches(user.id);
-            this.router.navigate(['accueil']);
-        }, err => alert(err.error));
+            this.router.navigate(["accueil"]);
+        }, (err) => alert(err.error));
         // this.router.navigate(['accueil']);
         // this.ficheFirebaseService.getFiches();
     }
 };
 LoginPage.ctorParameters = () => [
+    { type: _ionic_native_onesignal_ngx__WEBPACK_IMPORTED_MODULE_7__["OneSignal"] },
     { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["MenuController"] },
     { type: _angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"] },
     { type: _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormBuilder"] },
@@ -163,7 +195,7 @@ LoginPage.ctorParameters = () => [
 ];
 LoginPage = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
-        selector: 'app-login',
+        selector: "app-login",
         template: Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"])(__webpack_require__(/*! raw-loader!./login.page.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/pages/login/login.page.html")).default,
         styles: [Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"])(__webpack_require__(/*! ./login.page.scss */ "./src/app/pages/login/login.page.scss")).default]
     })
