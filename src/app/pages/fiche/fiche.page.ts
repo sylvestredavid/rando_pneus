@@ -7,6 +7,7 @@ import {FicheModel} from '../../models/fiche.model';
 import {MOCK_FICHES} from '../../models/fiches.mock';
 import {FicheFirebaseService} from '../../services/fiche-firebase.service';
 import {Subscription} from 'rxjs';
+import {LZStringService} from 'ng-lz-string';
 
 @Component({
     selector: 'app-fiche',
@@ -23,23 +24,25 @@ export class FichePage implements OnInit, OnDestroy {
                 private ficheService: FicheService,
                 public events: Events,
                 public loadingCtrl: LoadingController,
-                private ficheFirebaseService: FicheFirebaseService) {
+                private ficheFirebaseService: FicheFirebaseService,
+                private lz: LZStringService) {
 
         events.destroy('ficheEnvoyed');
     }
 
    async getFiches() {
-        const loading = await this.loadingCtrl.create({
-            message: 'Récupération des fiches en cours...'
-        });
-        if(!this.fiches) {
-            await loading.present();
-        }
+        // const loading = await this.loadingCtrl.create({
+        //     message: 'Récupération des fiches en cours...'
+        // });
+        // if(!this.fiches) {
+        //     await loading.present();
+        // }
 
         this.sub = this.ficheFirebaseService.fiches$.subscribe(
             fichesF => {
-                this.fiches = fichesF;
-                loading.dismiss();
+                console.log(fichesF.length);
+                this.fiches = fichesF
+                // loading.dismiss();
             }
         );
 
@@ -105,5 +108,14 @@ export class FichePage implements OnInit, OnDestroy {
 
     ngOnDestroy(): void {
         this.sub.unsubscribe();
+    }
+
+    showMore() {
+        const lastId = this.fiches[this.fiches.length - 1].id;
+        this.ficheFirebaseService.moreFiches(23, lastId).subscribe(
+            f => {
+                this.fiches.push(...f);
+            }
+        )
     }
 }

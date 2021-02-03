@@ -282,7 +282,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
                   case 6:
                     this.sub = this.ficheFirebaseService.fiches$.subscribe(function (fichesF) {
-                      _this.fiches = fichesF;
+                      _this.fiches = fichesF.reverse();
                       loading.dismiss();
                     }); // this.fiches = MOCK_FICHES
 

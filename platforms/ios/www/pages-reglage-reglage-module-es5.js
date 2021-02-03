@@ -245,49 +245,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       _createClass(ReglagePage, [{
         key: "deconnexion",
         value: function deconnexion() {
-          event.stopPropagation();
-          this.showConfirm();
-        }
-      }, {
-        key: "showConfirm",
-        value: function showConfirm() {
-          return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
-            var _this2 = this;
-
-            var confirm;
-            return regeneratorRuntime.wrap(function _callee$(_context) {
-              while (1) {
-                switch (_context.prev = _context.next) {
-                  case 0:
-                    _context.next = 2;
-                    return this.alertCtrl.create({
-                      header: 'Confirmation',
-                      message: 'Il est vivement déconseillé de vous déconnecter, cela supprimera toutes vos fiches. Souhaitez-vous malgré tout vous déconnecter ?',
-                      buttons: [{
-                        text: 'Oui',
-                        handler: function handler() {
-                          localStorage.removeItem('userId');
-
-                          _this2.router.navigate(['']); // this.userService.deleteAll().then(() => this.router.navigate(['']));
-
-                        }
-                      }, {
-                        text: 'Annuler'
-                      }]
-                    });
-
-                  case 2:
-                    confirm = _context.sent;
-                    _context.next = 5;
-                    return confirm.present();
-
-                  case 5:
-                  case "end":
-                    return _context.stop();
-                }
-              }
-            }, _callee, this);
-          }));
+          localStorage.removeItem('userId');
+          this.router.navigate(['']);
         }
       }, {
         key: "change",

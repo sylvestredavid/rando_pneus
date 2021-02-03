@@ -14,6 +14,9 @@ import {Camera, CameraOptions} from '@ionic-native/Camera/ngx';
 import {ActionSheetController, AlertController, LoadingController} from '@ionic/angular';
 import {Base64} from '@ionic-native/base64/ngx';
 import {Subscription} from 'rxjs';
+import {LZStringService} from 'ng-lz-string';
+import {File} from '@ionic-native/file/ngx';
+import {AngularFireStorage} from '@angular/fire/storage';
 
 @Component({
     selector: 'app-edit-fiche',
@@ -48,6 +51,9 @@ export class EditFichePage implements OnInit, AfterViewInit, OnDestroy {
                 private utilsService: UtilsService,
                 public loadingCtrl: LoadingController,
                 private actionSheetController: ActionSheetController,
+                private lz: LZStringService,
+                private file: File,
+                private afStorage: AngularFireStorage,
                 private ficheFirebaseService: FicheFirebaseService) {
         this.id = this.route.snapshot.params.id;
     }
@@ -58,11 +64,6 @@ export class EditFichePage implements OnInit, AfterViewInit, OnDestroy {
     }
 
     ngAfterViewInit() {
-        setTimeout(() => {
-            this.signatureClient.signaturePad.fromDataURL(this.fiche.signatureClient);
-            this.signatureResponsable.signaturePad.fromDataURL(this.fiche.signatureResponsable);
-
-        }, 500);
 
     }
 
@@ -125,6 +126,11 @@ export class EditFichePage implements OnInit, AfterViewInit, OnDestroy {
             pression: [this.fiche.pression],
             serrage: [this.fiche.serrage]
         });
+        setTimeout(() => {
+            this.signatureClient.signaturePad.fromDataURL(this.lz.decompress(this.fiche.signatureClient));
+            this.signatureResponsable.signaturePad.fromDataURL(this.lz.decompress(this.fiche.signatureResponsable));
+
+        }, 1000);
     }
 
 
@@ -137,8 +143,8 @@ export class EditFichePage implements OnInit, AfterViewInit, OnDestroy {
             message: 'Modification de la fiche en cours...'
         });
         await loading.present();
-        this.ficheForm.value.signatureClient = this.signatureClient.getSignature(); //
-        this.ficheForm.value.signatureResponsable = this.signatureResponsable.getSignature(); //
+        this.ficheForm.value.signatureClient = this.lz.compress(this.signatureClient.getSignature()); //
+        this.ficheForm.value.signatureResponsable = this.lz.compress(this.signatureResponsable.getSignature()); //
         this.ficheForm.value.photos = this.photos;
         const fiche = this.ficheForm.value;
         fiche.id = this.fiche.id;
@@ -382,14 +388,45 @@ export class EditFichePage implements OnInit, AfterViewInit, OnDestroy {
         };
         this.camera.getPicture(options).then(
             (imageData) => {
-                const date = new Date();
-                const name = 'image-' + date.getTime();
-                this.photos.push({
-                    nom: name,
-                    data: 'data:image/*;base64,' + imageData
-                });
+                this.file.resolveLocalFilesystemUrl(imageData)
+                    .then((entry: any) => {
+                        entry.file(file => this.readFile(file));
+                    })
+                    .catch(err => {
+                        alert('Error while reading file.');
+                    });
+                // const date = new Date();
+                // const name = 'image-' + date.getTime();
+                // this.photos.push({
+                //     nom: name,
+                //     data: 'data:image/*;base64,' + imageData
+                // });
             })
             .catch(e => console.log(e));
+    }
+
+    readFile(file: any) {
+        const reader = new FileReader();
+        reader.onload = () => {
+            const imgBlob = new Blob([reader.result], {
+                type: file.type
+            });
+            const date = new Date();
+            const name = 'image-' + date.getTime();
+            this.afStorage.ref('photos/' + localStorage.getItem('userId') + '/' + name)
+                .put(imgBlob)
+                .then((ok: any) => {
+                    this.afStorage.ref(ok.metadata.fullPath).getDownloadURL().subscribe(
+                        path => {
+                            this.photos.push({
+                                nom: name,
+                                data: path
+                            });
+                        }
+                    );
+                });
+        };
+        reader.readAsArrayBuffer(file);
     }
 
     async deletePhoto(i: number) {
@@ -400,6 +437,7 @@ export class EditFichePage implements OnInit, AfterViewInit, OnDestroy {
                 {
                     text: 'Valider',
                     handler: () => {
+                        this.afStorage.storage.refFromURL(this.photos[i].data).delete();
                         this.photos.splice(i, 1);
                     }
                 },

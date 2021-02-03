@@ -20,30 +20,8 @@ export class ReglagePage {
     }
 
     deconnexion() {
-        event.stopPropagation();
-        this.showConfirm();
-    }
-
-
-    async showConfirm() {
-        const confirm = await this.alertCtrl.create({
-            header: 'Confirmation',
-            message: 'Il est vivement déconseillé de vous déconnecter, cela supprimera toutes vos fiches. Souhaitez-vous malgré tout vous déconnecter ?',
-            buttons: [
-                {
-                    text: 'Oui',
-                    handler: () => {
-                        localStorage.removeItem('userId');
-                        this.router.navigate(['']);
-                        // this.userService.deleteAll().then(() => this.router.navigate(['']));
-                    }
-                },
-                {
-                    text: 'Annuler'
-                }
-            ]
-        });
-        await confirm.present();
+        localStorage.removeItem('userId');
+        this.router.navigate(['']);
     }
 
     change(elem) {

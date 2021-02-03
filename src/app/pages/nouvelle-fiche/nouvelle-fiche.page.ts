@@ -13,6 +13,9 @@ import {FicheModel} from '../../models/fiche.model';
 import {Camera, CameraOptions} from '@ionic-native/Camera/ngx';
 import {Base64} from '@ionic-native/base64/ngx';
 import {UtilsService} from '../../services/utils.service';
+import {File} from '@ionic-native/file/ngx';
+import {AngularFireStorage} from '@angular/fire/storage';
+import {LZStringService} from 'ng-lz-string';
 
 
 @Component({
@@ -45,6 +48,9 @@ export class NouvelleFichePage implements OnInit {
                 private utilsService: UtilsService,
                 private actionSheetController: ActionSheetController,
                 public loadingCtrl: LoadingController,
+                private file: File,
+                private lz: LZStringService,
+                private afStorage: AngularFireStorage,
                 private ficheFirebaseService: FicheFirebaseService) {
         events.subscribe('ficheEnvoyed', () => { // quand une fiche est envoyée on retourne sur fichePage
             this.router.navigate(['fiche']);
@@ -147,8 +153,8 @@ export class NouvelleFichePage implements OnInit {
         });
 
         await loading.present();
-        this.ficheForm.value.signatureClient = this.signatureClient.getSignature(); // recupere les coordoonnees
-        this.ficheForm.value.signatureResponsable = this.signatureResponsable.getSignature();
+        this.ficheForm.value.signatureClient = this.lz.compress(this.signatureClient.getSignature()); // recupere les coordoonnees
+        this.ficheForm.value.signatureResponsable = this.lz.compress(this.signatureResponsable.getSignature());
         this.ficheForm.value.aEnvoyer = true;
         this.ficheForm.value.envoye = false;
         this.ficheForm.value.vue = true;
@@ -178,7 +184,7 @@ export class NouvelleFichePage implements OnInit {
             .catch(err => {
                 loading.dismiss();
                 this.presentAlert();
-            })
+            });
 
     }
 
@@ -417,14 +423,45 @@ export class NouvelleFichePage implements OnInit {
         };
         this.camera.getPicture(options).then(
             (imageData) => {
-                const date = new Date();
-                const name = 'image-' + date.getTime();
-                this.photos.push({
-                    nom: name,
-                    data: 'data:image/*;base64,' + imageData
-                });
+                this.file.resolveLocalFilesystemUrl(imageData)
+                    .then((entry: any) => {
+                        entry.file(file => this.readFile(file));
+                    })
+                    .catch(err => {
+                        alert('Error while reading file.');
+                    });
+                // const date = new Date();
+                // const name = 'image-' + date.getTime();
+                // this.photos.push({
+                //     nom: name,
+                //     data: 'data:image/*;base64,' + imageData
+                // });
             })
             .catch(e => console.log(e));
+    }
+
+    readFile(file: any) {
+        const reader = new FileReader();
+        reader.onload = () => {
+            const imgBlob = new Blob([reader.result], {
+                type: file.type
+            });
+            const date = new Date();
+            const name = 'image-' + date.getTime();
+            this.afStorage.ref('photos/' + localStorage.getItem('userId') + '/' + name)
+                .put(imgBlob)
+                .then((ok: any) => {
+                    this.afStorage.ref(ok.metadata.fullPath).getDownloadURL().subscribe(
+                        path => {
+                            this.photos.push({
+                                nom: name,
+                                data: path
+                            });
+                        }
+                    );
+                });
+        };
+        reader.readAsArrayBuffer(file);
     }
 
     async deletePhoto(i: number) {
@@ -435,6 +472,7 @@ export class NouvelleFichePage implements OnInit {
                 {
                     text: 'Valider',
                     handler: () => {
+                        this.afStorage.storage.refFromURL(this.photos[i].data).delete();
                         this.photos.splice(i, 1);
                     }
                 },

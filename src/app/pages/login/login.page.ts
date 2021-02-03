@@ -50,6 +50,12 @@ export class LoginPage {
 
       this.oneSignal.getPermissionSubscriptionState();
 
+      this.oneSignal.handleNotificationOpened().subscribe(
+          () => {
+            this.router.navigate(["fiche"]);
+          }
+      )
+
       this.oneSignal.endInit();
     } catch (e) {
       console.warn("cordova_not_available");

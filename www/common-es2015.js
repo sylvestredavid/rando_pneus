@@ -469,7 +469,7 @@ let FicheService = class FicheService {
         this.http = http;
         this.alertCtrl = alertCtrl;
         this.ficheFirebaseService = ficheFirebaseService;
-        this.url = 'https://www.rando-pneus.fr/api/mailTest.php'; // URL to web api
+        this.url = 'https://www.rando-pneus.fr/api/mail.php'; // URL to web api
         this.headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]({ 'Content-Type': 'application/json' });
         this.fiche = [];
     }

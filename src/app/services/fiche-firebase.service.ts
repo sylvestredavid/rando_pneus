@@ -15,9 +15,15 @@ export class FicheFirebaseService {
   }
 
   getFiches(userId: number) {
-    this.ficheList = this.af.list<FicheModel>('fiches',
-        ref => ref.orderByChild('userId').equalTo('' + userId));
+    console.log('getFiches')
+    this.ficheList = this.af.list<FicheModel>('fiches');
     this.fiches$ = this.ficheList.valueChanges();
+  }
+
+  moreFiches(userId: number, lastId: string) {
+    console.log(lastId)
+    return this.af.list<FicheModel>('fiches',
+        ref => ref/*.orderByChild('userId').equalTo('' + userId)*/.orderByKey().startAt(lastId).limitToLast(10)).valueChanges();
   }
 
   addFiche(fiche: any) {

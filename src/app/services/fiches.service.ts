@@ -6,20 +6,22 @@ import {AlertController, LoadingController} from '@ionic/angular';
 import {Events} from './events';
 import { Storage } from '@ionic/storage';
 import {FicheFirebaseService} from './fiche-firebase.service';
+import {LZStringService} from 'ng-lz-string';
 
 
 @Injectable({
     providedIn: 'root'
 })
 export class FicheService {
-    private url = 'https://www.rando-pneus.fr/api/mailTest.php';  // URL to web api
+    private url = 'https://www.rando-pneus.fr/api/mail.php';  // URL to web api
     private headers = new HttpHeaders({'Content-Type': 'application/json'});
 
     fiche: any;
     user: UserModel;
 
     constructor(public events: Events, public loadingCtrl: LoadingController, public storage: Storage, public http: HttpClient,
-                public alertCtrl: AlertController, private ficheFirebaseService: FicheFirebaseService) {
+                public alertCtrl: AlertController, private ficheFirebaseService: FicheFirebaseService,
+                private lz: LZStringService) {
         this.fiche = [];
     }
 
@@ -47,31 +49,25 @@ export class FicheService {
 
 
     async sendFiche(fiche: FicheModel) {
-        const loading = await this.loadingCtrl.create({
-            message: 'Envoi en cours...'
-        });
-
-        await loading.present();
-
         const ficheClean: any = fiche;
         const user = await this.storage.get('user');
         // ficheClean.signatureClient = encodeURIComponent(window.btoa(ficheClean.signatureClient));
         // ficheClean.signatureResponsable = encodeURIComponent(window.btoa(ficheClean.signatureResponsable));
         ficheClean.nom = user && user.nom ? user.nom : fiche.nomClient;
         ficheClean.prenom = user && user.prenom ? user.prenom : '';
+        ficheClean.signatureClient = this.lz.decompress(fiche.signatureClient);
+        ficheClean.signatureResponsable = this.lz.decompress(fiche.signatureResponsable);
         /************************/
         return this.http
             .post(this.url, JSON.stringify(ficheClean), {headers: this.headers})
             .subscribe(
                 res => {
                     if (res) {
-                        loading.dismiss(); // fin du loading
                         this.presentAlert('Demande envoyée !', 'Votre fiche a bien été envoyée.', ficheClean, true);
                     }
                 },
                 error => {
                     console.log(error)
-                    loading.dismiss(); // fin du loading
                     this.presentAlert('Erreur',
                         'Votre fiche n\'a pas été envoyée, elle sera envoyée lorsque le serveur sera joignable.', ficheClean, false);
                 }

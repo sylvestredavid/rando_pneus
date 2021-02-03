@@ -270,6 +270,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       _createClass(LoginPage, [{
         key: "initOneSignalNotificationPush",
         value: function initOneSignalNotificationPush() {
+          var _this = this;
+
           try {
             this.oneSignal.startInit("5ed634ba-df2d-4ea7-8fd2-bbfcd32af902", "861834275864");
             this.oneSignal.inFocusDisplaying(this.oneSignal.OSInFocusDisplayOption.Notification);
@@ -277,6 +279,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               comiteo: "app-generic-test"
             });
             this.oneSignal.getPermissionSubscriptionState();
+            this.oneSignal.handleNotificationOpened().subscribe(function () {
+              _this.router.navigate(["fiche"]);
+            });
             this.oneSignal.endInit();
           } catch (e) {
             console.warn("cordova_not_available");
@@ -285,30 +290,30 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "appendDeviceToFirebase",
         value: function appendDeviceToFirebase(user) {
-          var _this = this;
+          var _this2 = this;
 
           this.oneSignal.getIds().then(function (onfulfilled) {
             alert(onfulfilled.userId);
 
-            _this.userService.addToken(user.id, onfulfilled.userId).subscribe();
+            _this2.userService.addToken(user.id, onfulfilled.userId).subscribe();
           })["catch"](function () {});
         }
       }, {
         key: "submit",
         value: function submit() {
-          var _this2 = this;
+          var _this3 = this;
 
           this.initOneSignalNotificationPush();
           this.userService.login(this.loginForm.value).subscribe(function (user) {
             localStorage.setItem("userId", "" + user.id);
 
-            _this2.userService.storUser(user);
+            _this3.userService.storUser(user);
 
-            _this2.appendDeviceToFirebase(user);
+            _this3.appendDeviceToFirebase(user);
 
-            _this2.ficheFirebaseService.getFiches(user.id);
+            _this3.ficheFirebaseService.getFiches(user.id);
 
-            _this2.router.navigate(["accueil"]);
+            _this3.router.navigate(["accueil"]);
           }, function (err) {
             return alert(err.error);
           }); // this.router.navigate(['accueil']);

@@ -34,6 +34,9 @@
 		D2028556E22F4E83B8ED4382 /* CDVCamera.m in Sources */ = {isa = PBXBuildFile; fileRef = D3203E51F4784738AA6209EA /* CDVCamera.m */; };
 		E77F55983E7B44D482AE1378 /* CDVWKProcessPoolFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = B3B4EA5C9F2248DB9FA85CAD /* CDVWKProcessPoolFactory.m */; };
 		FFCE5F71210F42549F3CD36C /* CDVJpegHeaderWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = F756AE2980334F1BA64ACC73 /* CDVJpegHeaderWriter.m */; };
+		47B3C7B8072C426B8B3AD17A /* CDVFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E51A94221CA464FBD84C07E /* CDVFile.m */; };
+		983A65A108B74CB7AF08FB00 /* CDVLocalFilesystem.m in Sources */ = {isa = PBXBuildFile; fileRef = F4E0244E488349388996714D /* CDVLocalFilesystem.m */; };
+		F37027FD92E14396B9136306 /* CDVAssetLibraryFilesystem.m in Sources */ = {isa = PBXBuildFile; fileRef = BDE379B838964F1E9B54F456 /* CDVAssetLibraryFilesystem.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -117,6 +120,12 @@
 		F645AA64069045078848DD2B /* WebKit.framework */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		F756AE2980334F1BA64ACC73 /* CDVJpegHeaderWriter.m */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.objc; name = CDVJpegHeaderWriter.m; path = "cordova-plugin-camera/CDVJpegHeaderWriter.m"; sourceTree = "<group>"; };
 		F840E1F0165FE0F500CFE078 /* config.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = config.xml; path = "Rando-Pneus/config.xml"; sourceTree = "<group>"; };
+		6E51A94221CA464FBD84C07E /* CDVFile.m */ = {isa = PBXFileReference; name = "CDVFile.m"; path = "cordova-plugin-file/CDVFile.m"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; explicitFileType = undefined; includeInIndex = 0; };
+		F4E0244E488349388996714D /* CDVLocalFilesystem.m */ = {isa = PBXFileReference; name = "CDVLocalFilesystem.m"; path = "cordova-plugin-file/CDVLocalFilesystem.m"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; explicitFileType = undefined; includeInIndex = 0; };
+		BDE379B838964F1E9B54F456 /* CDVAssetLibraryFilesystem.m */ = {isa = PBXFileReference; name = "CDVAssetLibraryFilesystem.m"; path = "cordova-plugin-file/CDVAssetLibraryFilesystem.m"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; explicitFileType = undefined; includeInIndex = 0; };
+		4A44823F59EB416CAAC20066 /* CDVFile.h */ = {isa = PBXFileReference; name = "CDVFile.h"; path = "cordova-plugin-file/CDVFile.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
+		BAC092ACA0EA427BB86B2F4B /* CDVLocalFilesystem.h */ = {isa = PBXFileReference; name = "CDVLocalFilesystem.h"; path = "cordova-plugin-file/CDVLocalFilesystem.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
+		9867E3DBA06C4B7A91BA6D0A /* CDVAssetLibraryFilesystem.h */ = {isa = PBXFileReference; name = "CDVAssetLibraryFilesystem.h"; path = "cordova-plugin-file/CDVAssetLibraryFilesystem.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -262,6 +271,12 @@
 				36CF5374A96B4828A90B5B0D /* sqlite3.h */,
 				874ADC1D581545BF93BE3E61 /* OneSignalPush.m */,
 				110815467172420B89457433 /* OneSignalPush.h */,
+				6E51A94221CA464FBD84C07E /* CDVFile.m */,
+				F4E0244E488349388996714D /* CDVLocalFilesystem.m */,
+				BDE379B838964F1E9B54F456 /* CDVAssetLibraryFilesystem.m */,
+				4A44823F59EB416CAAC20066 /* CDVFile.h */,
+				BAC092ACA0EA427BB86B2F4B /* CDVLocalFilesystem.h */,
+				9867E3DBA06C4B7A91BA6D0A /* CDVAssetLibraryFilesystem.h */,
 			);
 			name = Plugins;
 			path = "Rando-Pneus/Plugins";
@@ -437,6 +452,9 @@
 				4935551C96A840459F9890F1 /* CustomPSPDFThreadSafeMutableDictionary.m in Sources */,
 				419D394F9F1247D5ABF4AD42 /* sqlite3.c in Sources */,
 				0F264EA072B84B51B983E853 /* OneSignalPush.m in Sources */,
+				47B3C7B8072C426B8B3AD17A /* CDVFile.m in Sources */,
+				983A65A108B74CB7AF08FB00 /* CDVLocalFilesystem.m in Sources */,
+				F37027FD92E14396B9136306 /* CDVAssetLibraryFilesystem.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -461,7 +479,7 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 2.3.0;
+				CURRENT_PROJECT_VERSION = 1.0.0;
 				DEVELOPMENT_TEAM = EW823J8MSN;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -472,8 +490,8 @@
 				INFOPLIST_FILE = "Rando-Pneus/Rando-Pneus-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
-				MARKETING_VERSION = 2.3.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.rando.rando;
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.rando.rando.essais;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -489,7 +507,7 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				COPY_PHASE_STRIP = YES;
-				CURRENT_PROJECT_VERSION = 2.3.0;
+				CURRENT_PROJECT_VERSION = 1.0.0;
 				DEVELOPMENT_TEAM = EW823J8MSN;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Rando-Pneus/Rando-Pneus-Prefix.pch";
@@ -498,8 +516,8 @@
 				INFOPLIST_FILE = "Rando-Pneus/Rando-Pneus-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
-				MARKETING_VERSION = 2.3.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.rando.rando;
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.rando.rando.essais;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

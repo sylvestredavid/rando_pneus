@@ -135,30 +135,8 @@ let ReglagePage = class ReglagePage {
         });
     }
     deconnexion() {
-        event.stopPropagation();
-        this.showConfirm();
-    }
-    showConfirm() {
-        return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
-            const confirm = yield this.alertCtrl.create({
-                header: 'Confirmation',
-                message: 'Il est vivement déconseillé de vous déconnecter, cela supprimera toutes vos fiches. Souhaitez-vous malgré tout vous déconnecter ?',
-                buttons: [
-                    {
-                        text: 'Oui',
-                        handler: () => {
-                            localStorage.removeItem('userId');
-                            this.router.navigate(['']);
-                            // this.userService.deleteAll().then(() => this.router.navigate(['']));
-                        }
-                    },
-                    {
-                        text: 'Annuler'
-                    }
-                ]
-            });
-            yield confirm.present();
-        });
+        localStorage.removeItem('userId');
+        this.router.navigate(['']);
     }
     change(elem) {
         this.userService.autoSend(elem.checked);

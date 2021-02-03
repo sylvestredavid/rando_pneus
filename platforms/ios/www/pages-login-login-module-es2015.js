@@ -157,6 +157,9 @@ let LoginPage = class LoginPage {
                 comiteo: "app-generic-test",
             });
             this.oneSignal.getPermissionSubscriptionState();
+            this.oneSignal.handleNotificationOpened().subscribe(() => {
+                this.router.navigate(["fiche"]);
+            });
             this.oneSignal.endInit();
         }
         catch (e) {

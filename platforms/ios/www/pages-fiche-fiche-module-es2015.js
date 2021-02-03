@@ -148,7 +148,7 @@ let FichePage = class FichePage {
                 yield loading.present();
             }
             this.sub = this.ficheFirebaseService.fiches$.subscribe(fichesF => {
-                this.fiches = fichesF;
+                this.fiches = fichesF.reverse();
                 loading.dismiss();
             });
             // this.fiches = MOCK_FICHES
