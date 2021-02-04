@@ -33,4 +33,5 @@ export class FicheModel {
     modifieParBureau?: boolean;
     photos?: {nom: string, data: string}[];
     note?: string;
+    archivee?: boolean;
 }

@@ -66,7 +66,6 @@ export class LoginPage {
     this.oneSignal
       .getIds()
       .then((onfulfilled) => {
-        alert(onfulfilled.userId)
         this.userService.addToken(user.id, onfulfilled.userId).subscribe();
       })
       .catch(() => {});

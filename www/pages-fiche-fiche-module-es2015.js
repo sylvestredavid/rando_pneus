@@ -9,7 +9,7 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<ion-header>\n    <ion-toolbar>\n        <ion-buttons slot=\"start\">\n            <ion-menu-button class=\"menu_button\"></ion-menu-button>\n        </ion-buttons>\n        <img class=\"papatte\" src=\"./assets/img/patte.png\" align=\"middle\" alt=\"\">\n    </ion-toolbar>\n</ion-header>\n<ion-content>\n    <div>\n        <div class=\"file\" tappable *ngFor=\"let fiche of fiches\" (click)=\"detailPage(fiche.id)\">\n          <div class=\"name\">\n              <div class=\"round round_success\" *ngIf=\"!fiche.vue\"></div>\n              <div class=\"round round_warning\" *ngIf=\"fiche.vue && fiche.modifieParBureau\"></div>\n              <div class=\"round\" *ngIf=\"fiche.vue && !fiche.modifieParBureau\"></div>\n            <div class=\"relative\">\n                <ion-icon name=\"document-text-sharp\" class=\"icon\" color=\"primary\">\n                </ion-icon>\n<!--                <div class=\"round round_positioned\" *ngIf=\"fiche.envoye\"></div>-->\n            </div>\n            {{fiche.nomClient}}\n          </div>\n            <ion-icon name=\"pencil-sharp\" class=\"icon\" color=\"primary\" tappable\n                      (click)=\"edit($event, fiche.id)\"></ion-icon>\n            <ion-icon name=\"trash-sharp\" class=\"icon\" color=\"primary\" tappable\n                      (click)=\"delete($event, fiche.id)\"></ion-icon>\n            <ion-icon name=\"send-sharp\" class=\"icon\" color=\"primary\" tappable (click)=\"send($event, fiche)\"></ion-icon>\n        </div>\n        <ion-item *ngIf=\"fiches?.length == 0\">Vous n'avez pas de fiche\n        </ion-item>\n    </div>\n</ion-content>\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<ion-header>\n    <ion-toolbar>\n        <ion-buttons slot=\"start\">\n            <ion-menu-button class=\"menu_button\"></ion-menu-button>\n        </ion-buttons>\n        <img class=\"papatte\" src=\"./assets/img/patte.png\" align=\"middle\" alt=\"\">\n    </ion-toolbar>\n</ion-header>\n<ion-content>\n    <div>\n        <div class=\"file\" tappable *ngFor=\"let fiche of fiches\" (click)=\"detailPage(fiche.id)\">\n          <div class=\"name\">\n              <div class=\"round round_success\" *ngIf=\"!fiche.vue\"></div>\n              <div class=\"round round_warning\" *ngIf=\"fiche.vue && fiche.modifieParBureau\"></div>\n              <div class=\"round\" *ngIf=\"fiche.vue && !fiche.modifieParBureau\"></div>\n            <div class=\"relative\">\n                <ion-icon name=\"document-text-sharp\" class=\"icon\" color=\"primary\">\n                </ion-icon>\n<!--                <div class=\"round round_positioned\" *ngIf=\"fiche.envoye\"></div>-->\n            </div>\n            {{fiche.nomClient}}\n          </div>\n            <ion-icon name=\"pencil-sharp\" class=\"icon\" color=\"primary\" tappable\n                      (click)=\"edit($event, fiche.id)\"></ion-icon>\n            <ion-icon name=\"trash-sharp\" class=\"icon\" color=\"primary\" tappable\n                      (click)=\"delete($event, fiche.id)\"></ion-icon>\n            <ion-icon name=\"send-sharp\" class=\"icon\" [color]=\"fiche.envoye? 'success' : 'primary'\" tappable (click)=\"send($event, fiche)\"></ion-icon>\n        </div>\n        <ion-item *ngIf=\"fiches?.length == 0\">Vous n'avez pas de fiche\n        </ion-item>\n    </div>\n</ion-content>\n");
 
 /***/ }),
 
@@ -122,6 +122,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _services_fiches_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../services/fiches.service */ "./src/app/services/fiches.service.ts");
 /* harmony import */ var _services_events__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../services/events */ "./src/app/services/events.ts");
 /* harmony import */ var _services_fiche_firebase_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../services/fiche-firebase.service */ "./src/app/services/fiche-firebase.service.ts");
+/* harmony import */ var ng_lz_string__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ng-lz-string */ "./node_modules/ng-lz-string/ng-lz-string.umd.js");
+/* harmony import */ var ng_lz_string__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(ng_lz_string__WEBPACK_IMPORTED_MODULE_7__);
+
 
 
 
@@ -130,13 +133,14 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let FichePage = class FichePage {
-    constructor(alertCtrl, router, ficheService, events, loadingCtrl, ficheFirebaseService) {
+    constructor(alertCtrl, router, ficheService, events, loadingCtrl, ficheFirebaseService, lz) {
         this.alertCtrl = alertCtrl;
         this.router = router;
         this.ficheService = ficheService;
         this.events = events;
         this.loadingCtrl = loadingCtrl;
         this.ficheFirebaseService = ficheFirebaseService;
+        this.lz = lz;
         events.destroy('ficheEnvoyed');
     }
     getFiches() {
@@ -148,7 +152,9 @@ let FichePage = class FichePage {
                 yield loading.present();
             }
             this.sub = this.ficheFirebaseService.fiches$.subscribe(fichesF => {
-                this.fiches = fichesF.reverse();
+                console.log(fichesF.length);
+                this.fiches = fichesF.filter(f => !f.archivee);
+                this.fiches.reverse();
                 loading.dismiss();
             });
             // this.fiches = MOCK_FICHES
@@ -181,8 +187,9 @@ let FichePage = class FichePage {
                     {
                         text: 'Oui',
                         handler: () => {
-                            this.ficheFirebaseService.deleteFiche(id)
-                                .then(() => this.removeItem(id));
+                            const ficheToArchivate = this.fiches.find(f => f.id === id);
+                            ficheToArchivate.archivee = true;
+                            this.ficheFirebaseService.updateFiche(ficheToArchivate);
                         }
                     },
                     {
@@ -212,7 +219,8 @@ FichePage.ctorParameters = () => [
     { type: _services_fiches_service__WEBPACK_IMPORTED_MODULE_4__["FicheService"] },
     { type: _services_events__WEBPACK_IMPORTED_MODULE_5__["Events"] },
     { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["LoadingController"] },
-    { type: _services_fiche_firebase_service__WEBPACK_IMPORTED_MODULE_6__["FicheFirebaseService"] }
+    { type: _services_fiche_firebase_service__WEBPACK_IMPORTED_MODULE_6__["FicheFirebaseService"] },
+    { type: ng_lz_string__WEBPACK_IMPORTED_MODULE_7__["LZStringService"] }
 ];
 FichePage = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({

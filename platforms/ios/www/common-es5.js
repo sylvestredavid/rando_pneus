@@ -723,9 +723,19 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     var _fiche_firebase_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
     /*! ./fiche-firebase.service */
     "./src/app/services/fiche-firebase.service.ts");
+    /* harmony import */
+
+
+    var ng_lz_string__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(
+    /*! ng-lz-string */
+    "./node_modules/ng-lz-string/ng-lz-string.umd.js");
+    /* harmony import */
+
+
+    var ng_lz_string__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(ng_lz_string__WEBPACK_IMPORTED_MODULE_7__);
 
     var FicheService = /*#__PURE__*/function () {
-      function FicheService(events, loadingCtrl, storage, http, alertCtrl, ficheFirebaseService) {
+      function FicheService(events, loadingCtrl, storage, http, alertCtrl, ficheFirebaseService, lz) {
         _classCallCheck(this, FicheService);
 
         this.events = events;
@@ -734,7 +744,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         this.http = http;
         this.alertCtrl = alertCtrl;
         this.ficheFirebaseService = ficheFirebaseService;
-        this.url = 'https://www.rando-pneus.fr/api/mail.php'; // URL to web api
+        this.lz = lz; // private url = 'https://www.rando-pneus.fr/api/mail.php';  // URL to web api
+
+        this.url = 'https://www.rando-pneus.fr/api/mailTest.php'; // URL to web api
 
         this.headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]({
           'Content-Type': 'application/json'
@@ -773,50 +785,38 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee3() {
             var _this = this;
 
-            var loading, ficheClean, user;
+            var ficheClean, user;
             return regeneratorRuntime.wrap(function _callee3$(_context3) {
               while (1) {
                 switch (_context3.prev = _context3.next) {
                   case 0:
-                    _context3.next = 2;
-                    return this.loadingCtrl.create({
-                      message: 'Envoi en cours...'
-                    });
-
-                  case 2:
-                    loading = _context3.sent;
-                    _context3.next = 5;
-                    return loading.present();
-
-                  case 5:
                     ficheClean = fiche;
-                    _context3.next = 8;
+                    _context3.next = 3;
                     return this.storage.get('user');
 
-                  case 8:
+                  case 3:
                     user = _context3.sent;
                     // ficheClean.signatureClient = encodeURIComponent(window.btoa(ficheClean.signatureClient));
                     // ficheClean.signatureResponsable = encodeURIComponent(window.btoa(ficheClean.signatureResponsable));
                     ficheClean.nom = user && user.nom ? user.nom : fiche.nomClient;
                     ficheClean.prenom = user && user.prenom ? user.prenom : '';
+                    ficheClean.signatureClient = fiche.signatureClient;
+                    ficheClean.signatureResponsable = fiche.signatureResponsable;
                     /************************/
 
                     return _context3.abrupt("return", this.http.post(this.url, JSON.stringify(ficheClean), {
                       headers: this.headers
                     }).subscribe(function (res) {
                       if (res) {
-                        loading.dismiss(); // fin du loading
-
                         _this.presentAlert('Demande envoyée !', 'Votre fiche a bien été envoyée.', ficheClean, true);
                       }
                     }, function (error) {
                       console.log(error);
-                      loading.dismiss(); // fin du loading
 
                       _this.presentAlert('Erreur', 'Votre fiche n\'a pas été envoyée, elle sera envoyée lorsque le serveur sera joignable.', ficheClean, false);
                     }));
 
-                  case 12:
+                  case 9:
                   case "end":
                     return _context3.stop();
                 }
@@ -920,6 +920,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["AlertController"]
       }, {
         type: _fiche_firebase_service__WEBPACK_IMPORTED_MODULE_6__["FicheFirebaseService"]
+      }, {
+        type: ng_lz_string__WEBPACK_IMPORTED_MODULE_7__["LZStringService"]
       }];
     };
 

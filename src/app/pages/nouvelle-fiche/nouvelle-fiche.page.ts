@@ -79,7 +79,7 @@ export class NouvelleFichePage implements OnInit {
                 nom: '',
                 quantite: ''
             }),
-            forfait: [''],
+            forfait: ['1'],
             observation: [''],
             numeroPneu: [''],
             pression: [''],
@@ -153,8 +153,8 @@ export class NouvelleFichePage implements OnInit {
         });
 
         await loading.present();
-        this.ficheForm.value.signatureClient = this.lz.compress(this.signatureClient.getSignature()); // recupere les coordoonnees
-        this.ficheForm.value.signatureResponsable = this.lz.compress(this.signatureResponsable.getSignature());
+        this.ficheForm.value.signatureClient = this.signatureClient.getSignature(); // recupere les coordoonnees
+        this.ficheForm.value.signatureResponsable = this.signatureResponsable.getSignature();
         this.ficheForm.value.aEnvoyer = true;
         this.ficheForm.value.envoye = false;
         this.ficheForm.value.vue = true;
@@ -417,12 +417,13 @@ export class NouvelleFichePage implements OnInit {
         const options: CameraOptions = {
             quality: 100,
             sourceType: source,
-            destinationType: this.camera.DestinationType.DATA_URL,
+            destinationType: this.camera.DestinationType.FILE_URI,
             encodingType: this.camera.EncodingType.JPEG,
             mediaType: this.camera.MediaType.PICTURE
         };
         this.camera.getPicture(options).then(
             (imageData) => {
+                console.log(imageData)
                 this.file.resolveLocalFilesystemUrl(imageData)
                     .then((entry: any) => {
                         entry.file(file => this.readFile(file));
@@ -430,17 +431,15 @@ export class NouvelleFichePage implements OnInit {
                     .catch(err => {
                         alert('Error while reading file.');
                     });
-                // const date = new Date();
-                // const name = 'image-' + date.getTime();
-                // this.photos.push({
-                //     nom: name,
-                //     data: 'data:image/*;base64,' + imageData
-                // });
             })
             .catch(e => console.log(e));
     }
 
-    readFile(file: any) {
+    async readFile(file: any) {
+        const loading = await this.loadingCtrl.create({
+            message: 'Enregistrement de la photo...'
+        });
+        await loading.present();
         const reader = new FileReader();
         reader.onload = () => {
             const imgBlob = new Blob([reader.result], {
@@ -457,6 +456,7 @@ export class NouvelleFichePage implements OnInit {
                                 nom: name,
                                 data: path
                             });
+                            loading.dismiss();
                         }
                     );
                 });

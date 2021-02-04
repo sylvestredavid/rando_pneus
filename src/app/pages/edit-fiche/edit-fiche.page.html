@@ -66,6 +66,7 @@
             <ion-item class="input fullwidth" lines="none" mode="ios" [ngClass]="ficheForm.get('nomAdresse').value ? 'green_input' : ''">
               <ion-input mode="ios" formControlName="nomAdresse" class="solo" type="text"
                          placeholder="Nom et adresse"></ion-input>
+              <img src="assets/icon/map.svg" (click)="openMapAPP()"/>
             </ion-item>
           </ion-col>
         </ion-row>

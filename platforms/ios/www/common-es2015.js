@@ -454,6 +454,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _events__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./events */ "./src/app/services/events.ts");
 /* harmony import */ var _ionic_storage__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @ionic/storage */ "./node_modules/@ionic/storage/__ivy_ngcc__/fesm2015/ionic-storage.js");
 /* harmony import */ var _fiche_firebase_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./fiche-firebase.service */ "./src/app/services/fiche-firebase.service.ts");
+/* harmony import */ var ng_lz_string__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ng-lz-string */ "./node_modules/ng-lz-string/ng-lz-string.umd.js");
+/* harmony import */ var ng_lz_string__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(ng_lz_string__WEBPACK_IMPORTED_MODULE_7__);
+
 
 
 
@@ -462,14 +465,16 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let FicheService = class FicheService {
-    constructor(events, loadingCtrl, storage, http, alertCtrl, ficheFirebaseService) {
+    constructor(events, loadingCtrl, storage, http, alertCtrl, ficheFirebaseService, lz) {
         this.events = events;
         this.loadingCtrl = loadingCtrl;
         this.storage = storage;
         this.http = http;
         this.alertCtrl = alertCtrl;
         this.ficheFirebaseService = ficheFirebaseService;
-        this.url = 'https://www.rando-pneus.fr/api/mail.php'; // URL to web api
+        this.lz = lz;
+        // private url = 'https://www.rando-pneus.fr/api/mail.php';  // URL to web api
+        this.url = 'https://www.rando-pneus.fr/api/mailTest.php'; // URL to web api
         this.headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]({ 'Content-Type': 'application/json' });
         this.fiche = [];
     }
@@ -490,27 +495,23 @@ let FicheService = class FicheService {
     }
     sendFiche(fiche) {
         return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
-            const loading = yield this.loadingCtrl.create({
-                message: 'Envoi en cours...'
-            });
-            yield loading.present();
             const ficheClean = fiche;
             const user = yield this.storage.get('user');
             // ficheClean.signatureClient = encodeURIComponent(window.btoa(ficheClean.signatureClient));
             // ficheClean.signatureResponsable = encodeURIComponent(window.btoa(ficheClean.signatureResponsable));
             ficheClean.nom = user && user.nom ? user.nom : fiche.nomClient;
             ficheClean.prenom = user && user.prenom ? user.prenom : '';
+            ficheClean.signatureClient = fiche.signatureClient;
+            ficheClean.signatureResponsable = fiche.signatureResponsable;
             /************************/
             return this.http
                 .post(this.url, JSON.stringify(ficheClean), { headers: this.headers })
                 .subscribe(res => {
                 if (res) {
-                    loading.dismiss(); // fin du loading
                     this.presentAlert('Demande envoyée !', 'Votre fiche a bien été envoyée.', ficheClean, true);
                 }
             }, error => {
                 console.log(error);
-                loading.dismiss(); // fin du loading
                 this.presentAlert('Erreur', 'Votre fiche n\'a pas été envoyée, elle sera envoyée lorsque le serveur sera joignable.', ficheClean, false);
             });
         });
@@ -568,7 +569,8 @@ FicheService.ctorParameters = () => [
     { type: _ionic_storage__WEBPACK_IMPORTED_MODULE_5__["Storage"] },
     { type: _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"] },
     { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["AlertController"] },
-    { type: _fiche_firebase_service__WEBPACK_IMPORTED_MODULE_6__["FicheFirebaseService"] }
+    { type: _fiche_firebase_service__WEBPACK_IMPORTED_MODULE_6__["FicheFirebaseService"] },
+    { type: ng_lz_string__WEBPACK_IMPORTED_MODULE_7__["LZStringService"] }
 ];
 FicheService = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({

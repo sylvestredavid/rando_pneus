@@ -21,7 +21,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<ion-header>\n    <ion-toolbar>\n        <ion-buttons slot=\"start\">\n            <ion-menu-button class=\"menu_button\"></ion-menu-button>\n        </ion-buttons>\n        <img class=\"papatte\" src=\"./assets/img/patte.png\" align=\"middle\" alt=\"\">\n    </ion-toolbar>\n</ion-header>\n<ion-content>\n    <div>\n        <div class=\"file\" tappable *ngFor=\"let fiche of fiches\" (click)=\"detailPage(fiche.id)\">\n          <div class=\"name\">\n              <div class=\"round round_success\" *ngIf=\"!fiche.vue\"></div>\n              <div class=\"round round_warning\" *ngIf=\"fiche.vue && fiche.modifieParBureau\"></div>\n              <div class=\"round\" *ngIf=\"fiche.vue && !fiche.modifieParBureau\"></div>\n            <div class=\"relative\">\n                <ion-icon name=\"document-text-sharp\" class=\"icon\" color=\"primary\">\n                </ion-icon>\n<!--                <div class=\"round round_positioned\" *ngIf=\"fiche.envoye\"></div>-->\n            </div>\n            {{fiche.nomClient}}\n          </div>\n            <ion-icon name=\"pencil-sharp\" class=\"icon\" color=\"primary\" tappable\n                      (click)=\"edit($event, fiche.id)\"></ion-icon>\n            <ion-icon name=\"trash-sharp\" class=\"icon\" color=\"primary\" tappable\n                      (click)=\"delete($event, fiche.id)\"></ion-icon>\n            <ion-icon name=\"send-sharp\" class=\"icon\" color=\"primary\" tappable (click)=\"send($event, fiche)\"></ion-icon>\n        </div>\n        <ion-item *ngIf=\"fiches?.length == 0\">Vous n'avez pas de fiche\n        </ion-item>\n    </div>\n</ion-content>\n";
+    __webpack_exports__["default"] = "<ion-header>\n    <ion-toolbar>\n        <ion-buttons slot=\"start\">\n            <ion-menu-button class=\"menu_button\"></ion-menu-button>\n        </ion-buttons>\n        <img class=\"papatte\" src=\"./assets/img/patte.png\" align=\"middle\" alt=\"\">\n    </ion-toolbar>\n</ion-header>\n<ion-content>\n    <div>\n        <div class=\"file\" tappable *ngFor=\"let fiche of fiches\" (click)=\"detailPage(fiche.id)\">\n          <div class=\"name\">\n              <div class=\"round round_success\" *ngIf=\"!fiche.vue\"></div>\n              <div class=\"round round_warning\" *ngIf=\"fiche.vue && fiche.modifieParBureau\"></div>\n              <div class=\"round\" *ngIf=\"fiche.vue && !fiche.modifieParBureau\"></div>\n            <div class=\"relative\">\n                <ion-icon name=\"document-text-sharp\" class=\"icon\" color=\"primary\">\n                </ion-icon>\n<!--                <div class=\"round round_positioned\" *ngIf=\"fiche.envoye\"></div>-->\n            </div>\n            {{fiche.nomClient}}\n          </div>\n            <ion-icon name=\"pencil-sharp\" class=\"icon\" color=\"primary\" tappable\n                      (click)=\"edit($event, fiche.id)\"></ion-icon>\n            <ion-icon name=\"trash-sharp\" class=\"icon\" color=\"primary\" tappable\n                      (click)=\"delete($event, fiche.id)\"></ion-icon>\n            <ion-icon name=\"send-sharp\" class=\"icon\" [color]=\"fiche.envoye? 'success' : 'primary'\" tappable (click)=\"send($event, fiche)\"></ion-icon>\n        </div>\n        <ion-item *ngIf=\"fiches?.length == 0\">Vous n'avez pas de fiche\n        </ion-item>\n    </div>\n</ion-content>\n";
     /***/
   },
 
@@ -239,9 +239,19 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     var _services_fiche_firebase_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
     /*! ../../services/fiche-firebase.service */
     "./src/app/services/fiche-firebase.service.ts");
+    /* harmony import */
+
+
+    var ng_lz_string__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(
+    /*! ng-lz-string */
+    "./node_modules/ng-lz-string/ng-lz-string.umd.js");
+    /* harmony import */
+
+
+    var ng_lz_string__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(ng_lz_string__WEBPACK_IMPORTED_MODULE_7__);
 
     var FichePage = /*#__PURE__*/function () {
-      function FichePage(alertCtrl, router, ficheService, events, loadingCtrl, ficheFirebaseService) {
+      function FichePage(alertCtrl, router, ficheService, events, loadingCtrl, ficheFirebaseService, lz) {
         _classCallCheck(this, FichePage);
 
         this.alertCtrl = alertCtrl;
@@ -250,6 +260,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         this.events = events;
         this.loadingCtrl = loadingCtrl;
         this.ficheFirebaseService = ficheFirebaseService;
+        this.lz = lz;
         events.destroy('ficheEnvoyed');
       }
 
@@ -282,7 +293,13 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
                   case 6:
                     this.sub = this.ficheFirebaseService.fiches$.subscribe(function (fichesF) {
-                      _this.fiches = fichesF.reverse();
+                      console.log(fichesF.length);
+                      _this.fiches = fichesF.filter(function (f) {
+                        return !f.archivee;
+                      });
+
+                      _this.fiches.reverse();
+
                       loading.dismiss();
                     }); // this.fiches = MOCK_FICHES
 
@@ -340,9 +357,13 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                       buttons: [{
                         text: 'Oui',
                         handler: function handler() {
-                          _this2.ficheFirebaseService.deleteFiche(id).then(function () {
-                            return _this2.removeItem(id);
+                          var ficheToArchivate = _this2.fiches.find(function (f) {
+                            return f.id === id;
                           });
+
+                          ficheToArchivate.archivee = true;
+
+                          _this2.ficheFirebaseService.updateFiche(ficheToArchivate);
                         }
                       }, {
                         text: 'Annuler',
@@ -395,6 +416,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["LoadingController"]
       }, {
         type: _services_fiche_firebase_service__WEBPACK_IMPORTED_MODULE_6__["FicheFirebaseService"]
+      }, {
+        type: ng_lz_string__WEBPACK_IMPORTED_MODULE_7__["LZStringService"]
       }];
     };
 

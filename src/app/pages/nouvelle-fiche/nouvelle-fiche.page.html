@@ -262,7 +262,7 @@
                                 <ion-item-sliding>
                                     <ion-item class="input" lines="none" mode="ios" [ngClass]="fourniture.get('nom').value ? 'label_plein' : ''">
                                         <ion-select class="selector" formControlName="nom" placeholder="Fourniture">
-                                            <ion-select-option *ngFor="let fourni of fournituresList"
+                                            <ion-select-option *ngFor="let fourni of fournituresList" style="min-width: 70%"
                                                                [value]="fourni">{{fourni}}</ion-select-option>
                                         </ion-select>
                                     </ion-item>

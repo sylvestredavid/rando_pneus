@@ -31,18 +31,19 @@ export class FichePage implements OnInit, OnDestroy {
     }
 
    async getFiches() {
-        // const loading = await this.loadingCtrl.create({
-        //     message: 'Récupération des fiches en cours...'
-        // });
-        // if(!this.fiches) {
-        //     await loading.present();
-        // }
+        const loading = await this.loadingCtrl.create({
+            message: 'Récupération des fiches en cours...'
+        });
+        if(!this.fiches) {
+            await loading.present();
+        }
 
         this.sub = this.ficheFirebaseService.fiches$.subscribe(
             fichesF => {
                 console.log(fichesF.length);
-                this.fiches = fichesF
-                // loading.dismiss();
+                this.fiches = fichesF.filter(f => !f.archivee);
+                this.fiches.reverse();
+                loading.dismiss();
             }
         );
 
@@ -83,8 +84,9 @@ export class FichePage implements OnInit, OnDestroy {
                 {
                     text: 'Oui',
                     handler: () => {
-                        this.ficheFirebaseService.deleteFiche(id)
-                            .then(() => this.removeItem(id));
+                        const ficheToArchivate = this.fiches.find(f => f.id === id);
+                        ficheToArchivate.archivee = true;
+                        this.ficheFirebaseService.updateFiche(ficheToArchivate);
                     }
                 },
                 {
@@ -108,14 +110,5 @@ export class FichePage implements OnInit, OnDestroy {
 
     ngOnDestroy(): void {
         this.sub.unsubscribe();
-    }
-
-    showMore() {
-        const lastId = this.fiches[this.fiches.length - 1].id;
-        this.ficheFirebaseService.moreFiches(23, lastId).subscribe(
-            f => {
-                this.fiches.push(...f);
-            }
-        )
     }
 }

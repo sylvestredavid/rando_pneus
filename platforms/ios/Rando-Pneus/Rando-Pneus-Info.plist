@@ -22,6 +22,26 @@
 	<string>????</string>
 	<key>CFBundleVersion</key>
 	<string>$(CURRENT_PROJECT_VERSION)</string>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>citymapper</string>
+		<string>comgooglemaps</string>
+		<string>navigon</string>
+		<string>transit</string>
+		<string>waze</string>
+		<string>yandexnavi</string>
+		<string>uber</string>
+		<string>tomtomhome</string>
+		<string>com.sygic.aura</string>
+		<string>here-route</string>
+		<string>moovit</string>
+		<string>lyft</string>
+		<string>mapsme</string>
+		<string>cabify</string>
+		<string>baidumap</string>
+		<string>taxis99</string>
+		<string>iosamap</string>
+	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>
@@ -38,7 +58,9 @@
 		</dict>
 	</dict>
 	<key>NSCameraUsageDescription</key>
-	<string>Take photos to send for billing</string>
+	<string>You can take photos</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>This app requires access to your location for navigation purposes</string>
 	<key>NSMainNibFile</key>
 	<string></string>
 	<key>NSMainNibFile~ipad</key>
@@ -60,9 +82,6 @@
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
-		<string>UIInterfaceOrientationLandscapeLeft</string>
-		<string>UIInterfaceOrientationPortraitUpsideDown</string>
-		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 </dict>
 </plist>

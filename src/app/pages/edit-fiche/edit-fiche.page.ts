@@ -17,6 +17,7 @@ import {Subscription} from 'rxjs';
 import {LZStringService} from 'ng-lz-string';
 import {File} from '@ionic-native/file/ngx';
 import {AngularFireStorage} from '@angular/fire/storage';
+import {LaunchNavigator} from '@ionic-native/launch-navigator/ngx';
 
 @Component({
     selector: 'app-edit-fiche',
@@ -127,8 +128,8 @@ export class EditFichePage implements OnInit, AfterViewInit, OnDestroy {
             serrage: [this.fiche.serrage]
         });
         setTimeout(() => {
-            this.signatureClient.signaturePad.fromDataURL(this.lz.decompress(this.fiche.signatureClient));
-            this.signatureResponsable.signaturePad.fromDataURL(this.lz.decompress(this.fiche.signatureResponsable));
+            this.signatureClient.signaturePad.fromDataURL(this.fiche.signatureClient);
+            this.signatureResponsable.signaturePad.fromDataURL(this.fiche.signatureResponsable);
 
         }, 1000);
     }
@@ -143,8 +144,8 @@ export class EditFichePage implements OnInit, AfterViewInit, OnDestroy {
             message: 'Modification de la fiche en cours...'
         });
         await loading.present();
-        this.ficheForm.value.signatureClient = this.lz.compress(this.signatureClient.getSignature()); //
-        this.ficheForm.value.signatureResponsable = this.lz.compress(this.signatureResponsable.getSignature()); //
+        this.ficheForm.value.signatureClient = this.signatureClient.getSignature(); //
+        this.ficheForm.value.signatureResponsable = this.signatureResponsable.getSignature(); //
         this.ficheForm.value.photos = this.photos;
         const fiche = this.ficheForm.value;
         fiche.id = this.fiche.id;
@@ -382,7 +383,7 @@ export class EditFichePage implements OnInit, AfterViewInit, OnDestroy {
         const options: CameraOptions = {
             quality: 100,
             sourceType: source,
-            destinationType: this.camera.DestinationType.DATA_URL,
+            destinationType: this.camera.DestinationType.FILE_URI,
             encodingType: this.camera.EncodingType.JPEG,
             mediaType: this.camera.MediaType.PICTURE
         };
@@ -405,7 +406,11 @@ export class EditFichePage implements OnInit, AfterViewInit, OnDestroy {
             .catch(e => console.log(e));
     }
 
-    readFile(file: any) {
+    async readFile(file: any) {
+        const loading = await this.loadingCtrl.create({
+            message: 'Enregistrement de la photo...'
+        });
+        await loading.present();
         const reader = new FileReader();
         reader.onload = () => {
             const imgBlob = new Blob([reader.result], {
@@ -422,6 +427,7 @@ export class EditFichePage implements OnInit, AfterViewInit, OnDestroy {
                                 nom: name,
                                 data: path
                             });
+                            loading.dismiss();
                         }
                     );
                 });
@@ -448,6 +454,10 @@ export class EditFichePage implements OnInit, AfterViewInit, OnDestroy {
             mode: 'ios'
         });
         await confirm.present();
+    }
+
+    openMapAPP() {
+        new LaunchNavigator().navigate(this.ficheForm.value.nomAdresse);
     }
 
     ngOnDestroy(): void {

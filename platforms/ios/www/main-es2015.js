@@ -468,6 +468,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ionic_native_Camera_ngx__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! @ionic-native/Camera/ngx */ "./node_modules/@ionic-native/Camera/__ivy_ngcc__/ngx/index.js");
 /* harmony import */ var _ionic_native_base64_ngx__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! @ionic-native/base64/ngx */ "./node_modules/@ionic-native/base64/__ivy_ngcc__/ngx/index.js");
 /* harmony import */ var _ionic_native_onesignal_ngx__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! @ionic-native/onesignal/ngx */ "./node_modules/@ionic-native/onesignal/__ivy_ngcc__/ngx/index.js");
+/* harmony import */ var ng_lz_string__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ng-lz-string */ "./node_modules/ng-lz-string/ng-lz-string.umd.js");
+/* harmony import */ var ng_lz_string__WEBPACK_IMPORTED_MODULE_21___default = /*#__PURE__*/__webpack_require__.n(ng_lz_string__WEBPACK_IMPORTED_MODULE_21__);
+/* harmony import */ var _ionic_native_file_ngx__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! @ionic-native/file/ngx */ "./node_modules/@ionic-native/file/__ivy_ngcc__/ngx/index.js");
+/* harmony import */ var _ionic_native_launch_navigator_ngx__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! @ionic-native/launch-navigator/ngx */ "./node_modules/@ionic-native/launch-navigator/__ivy_ngcc__/ngx/index.js");
+
+
+
 
 
 
@@ -492,7 +499,8 @@ __webpack_require__.r(__webpack_exports__);
 const firebaseConfig = {
     apiKey: "AIzaSyDIF_Gu-dVLpN6m1PYDUZ_rgKYXMs1-NcE",
     authDomain: "rando-pneus.firebaseapp.com",
-    databaseURL: "https://rando-pneus.firebaseio.com",
+    // databaseURL: "https://rando-pneus.firebaseio.com",
+    databaseURL: "https://rando-pneus-test.firebaseio.com/",
     projectId: "rando-pneus",
     storageBucket: "rando-pneus.appspot.com",
     messagingSenderId: "861834275864",
@@ -525,6 +533,9 @@ AppModule = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
             _guards_connected_guard__WEBPACK_IMPORTED_MODULE_16__["ConnectedGuard"],
             _guards_is_connected_guard__WEBPACK_IMPORTED_MODULE_17__["IsConnectedGuard"],
             _ionic_native_splash_screen_ngx__WEBPACK_IMPORTED_MODULE_5__["SplashScreen"],
+            _ionic_native_file_ngx__WEBPACK_IMPORTED_MODULE_22__["File"],
+            _ionic_native_launch_navigator_ngx__WEBPACK_IMPORTED_MODULE_23__["LaunchNavigator"],
+            ng_lz_string__WEBPACK_IMPORTED_MODULE_21__["LZStringService"],
             _ionic_native_base64_ngx__WEBPACK_IMPORTED_MODULE_19__["Base64"],
             { provide: _angular_router__WEBPACK_IMPORTED_MODULE_3__["RouteReuseStrategy"], useClass: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonicRouteStrategy"] },
             _ionic_native_onesignal_ngx__WEBPACK_IMPORTED_MODULE_20__["OneSignal"],
@@ -656,6 +667,7 @@ let FicheFirebaseService = class FicheFirebaseService {
         this.http = http;
     }
     getFiches(userId) {
+        console.log('getFiches');
         this.ficheList = this.af.list('fiches', ref => ref.orderByChild('userId').equalTo('' + userId));
         this.fiches$ = this.ficheList.valueChanges();
     }

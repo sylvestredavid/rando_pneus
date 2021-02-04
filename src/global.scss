@@ -73,3 +73,14 @@ ion-menu {
   --background: rgba(255, 255, 255, 0.9);
   --width: 355px;
 }
+
+// Applies a text wrap on ion options
+.alert-tappable.alert-radio {
+  height: auto;
+  contain: content;
+}
+
+.alert-radio-label.sc-ion-alert-md,
+.alert-radio-label.sc-ion-alert-ios {
+  white-space: normal;
+}

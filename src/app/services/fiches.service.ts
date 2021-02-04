@@ -14,6 +14,7 @@ import {LZStringService} from 'ng-lz-string';
 })
 export class FicheService {
     private url = 'https://www.rando-pneus.fr/api/mail.php';  // URL to web api
+    // private url = 'https://www.rando-pneus.fr/api/mailTest.php';  // URL to web api
     private headers = new HttpHeaders({'Content-Type': 'application/json'});
 
     fiche: any;
@@ -55,8 +56,8 @@ export class FicheService {
         // ficheClean.signatureResponsable = encodeURIComponent(window.btoa(ficheClean.signatureResponsable));
         ficheClean.nom = user && user.nom ? user.nom : fiche.nomClient;
         ficheClean.prenom = user && user.prenom ? user.prenom : '';
-        ficheClean.signatureClient = this.lz.decompress(fiche.signatureClient);
-        ficheClean.signatureResponsable = this.lz.decompress(fiche.signatureResponsable);
+        ficheClean.signatureClient = fiche.signatureClient;
+        ficheClean.signatureResponsable = fiche.signatureResponsable;
         /************************/
         return this.http
             .post(this.url, JSON.stringify(ficheClean), {headers: this.headers})

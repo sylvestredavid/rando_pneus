@@ -22,12 +22,13 @@ import { Base64 } from "@ionic-native/base64/ngx";
 import { OneSignal } from "@ionic-native/onesignal/ngx";
 import { LZStringModule, LZStringService } from 'ng-lz-string';
 import { File } from '@ionic-native/file/ngx';
+import {LaunchNavigator} from '@ionic-native/launch-navigator/ngx';
 
 const firebaseConfig = {
   apiKey: "AIzaSyDIF_Gu-dVLpN6m1PYDUZ_rgKYXMs1-NcE",
   authDomain: "rando-pneus.firebaseapp.com",
-  // databaseURL: "https://rando-pneus.firebaseio.com",
-  databaseURL: "https://rando-pneus-test.firebaseio.com/",
+  databaseURL: "https://rando-pneus.firebaseio.com",
+  // databaseURL: "https://rando-pneus-test.firebaseio.com/",
   projectId: "rando-pneus",
   storageBucket: "rando-pneus.appspot.com",
   messagingSenderId: "861834275864",
@@ -59,6 +60,7 @@ const firebaseConfig = {
     IsConnectedGuard,
     SplashScreen,
     File,
+    LaunchNavigator,
     LZStringService,
     Base64,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },

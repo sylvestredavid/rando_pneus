@@ -24,7 +24,7 @@
                       (click)="edit($event, fiche.id)"></ion-icon>
             <ion-icon name="trash-sharp" class="icon" color="primary" tappable
                       (click)="delete($event, fiche.id)"></ion-icon>
-            <ion-icon name="send-sharp" class="icon" color="primary" tappable (click)="send($event, fiche)"></ion-icon>
+            <ion-icon name="send-sharp" class="icon" [color]="fiche.envoye? 'success' : 'primary'" tappable (click)="send($event, fiche)"></ion-icon>
         </div>
         <ion-item *ngIf="fiches?.length == 0">Vous n'avez pas de fiche
         </ion-item>

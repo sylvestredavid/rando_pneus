@@ -293,8 +293,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           var _this2 = this;
 
           this.oneSignal.getIds().then(function (onfulfilled) {
-            alert(onfulfilled.userId);
-
             _this2.userService.addToken(user.id, onfulfilled.userId).subscribe();
           })["catch"](function () {});
         }
